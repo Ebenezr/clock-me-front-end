@@ -1,0 +1,19 @@
+@import "./variables";
+.container__main{
+    background-color: $color-background;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 6% auto 6%;
+    overflow-y: hidden;
+   
+  }
+  .view__main{
+    padding-right: 1rem;
+  }
+@media (max-width: $breakpoint-tablet) {
+    .container__main{
+        height: 100vh;
+        overflow-y: unset;
+        max-width: inherit;
+    }
+}

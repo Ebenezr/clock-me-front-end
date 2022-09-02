@@ -1,0 +1,117 @@
+//fonts
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@import "./variables";
+// aside section style
+@import "./aside";
+//header
+@import "./header";
+//footer
+@import "./footer";
+//main view
+@import "./main";
+
+//login
+@import "./login";
+
+//views
+@import './dashboard';
+@import './admin';
+@import './timecard';
+@import './analytics';
+
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  ul{
+    list-style: none;
+  }
+  a{
+    text-decoration: none;
+  }
+  body{
+    font-family: 'Poppins', sans-serif;
+    height: 100vh;
+    width: 100vw;
+  }
+  #root{
+    height: 100%;
+    width: 100%;
+    background: $color-background;
+    overflow-x: hidden;
+    user-select: none;
+  }
+  main{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 18rem auto;
+    overflow: hidden;
+   
+ }
+  img{
+    display: block;
+    width: 100%;
+  }
+  .profile-photo{
+    width: 2.8rem;
+    height: 2.8rem;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+  }
+//font sizes
+
+
+
+  //text colors
+.text-muted{
+    color: $color-info-dark;
+}
+p{
+  color: $color-dark-variant;
+}
+b{
+  color: $color-dark;
+}
+.primary{
+  color:$color-primary;
+}
+.danger{
+  color:$color-danger;
+}
+.succes{
+  color:$color-success;
+}
+.warning{
+  color: $color-warning;
+}
+
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+  border-radius: 0.3rem;
+  background: $color-info-light;
+  
+}
+::-webkit-scrollbar-thumb {
+  background: $color-primary;
+  -webkit-border-radius: 1ex;
+  -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
+}
+
+
+  
+
+.required:after{
+  content:" *";
+  color:red;
+}
