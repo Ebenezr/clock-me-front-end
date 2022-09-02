@@ -1,46 +1,151 @@
-# Getting Started with Create React App
+# CLOCK-ME
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+### Author : BUKOSIA EBENEZAR
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Project Description
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Clock-me: is is a web application used to keep track of employees and thier clock-in and clock out time and also calculates their salary based on total clocked time.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## SCREENSHOTS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Table of content
 
-### `npm run build`
+- [Technologies](#description)
+- [Description](#description)
+- [Features](#features)
+- [Setup-process](#setup_process)
+- [Project-usage](#project-usage)
+- [Licence](#licence)
+- [Copyright](#copyright)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+languages used are:
 
-### `npm run eject`
+1. React(Typescript)
+2. Sass
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- As a employee you can be able to:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Login with his/her account.
+2. Record and track his/her timestamp.
+3. view company analytics
 
-## Learn More
+- AS an admin you can be able to:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+4. Add new employees.
+5. Update employees details.
+6. Delete an Employee
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+### description
+
+This web application helps to solve the problem of tracing employees working time. This can be very essential espesialy jobs that pays thier employees on hourly basis.
+the application is also beneficial to a any company since it enables them track thier working times of thier employees and know how to optimize make thiem efficient.
+the application solve this such as recoding each day's clock-in and clock-out timestamp and record it in the database as string array. the application then uses the timestamps to calculate how many hours the employee has been working and compute the employees salary.
+
+---
+
+### challenges
+
+- Implementing login authentification.
+- Implementing theme change.
+
+---
+
+## How to set up and run the project
+
+### Requirements
+
+- [npm](https://www.npmjs.com/)
+- Text editor eg [Visual Studio Code](https://code.visualstudio.com/download)
+
+---
+
+### Dependencies
+
+- npm
+
+---
+
+### setup
+
+clone the repo using the command
+
+- `git clone https://github.com/Ebenezr/clock-me.git`
+
+change directory using command
+
+- `cd clock-me-react`
+
+open project in vscode texteditor
+
+- `code .`
+
+install dependancies packages
+
+- `run npm install`
+
+run back end
+
+- `npm run server`
+
+run front end
+
+- `npm start`
+
+---
+
+#### live link
+
+//TODO
+
+<!-- - run the following live link in your browser  -->
+
+## How to use the project
+
+---
+
+### Contributing to project
+
+- Fork the repo
+
+* Create a new branch in your terminal (git checkout -b improve-feature)
+* Install the prerequisites
+* Make appropriate changes in file(s)
+* Run the server to see the changes
+* Add the changes and commit them (git commit -am "Improve App")
+* Push to the branch (git push origin improve-app)
+* Create a Pull request
+
+---
+
+## Copyright
+
+Copyright(c)[2022][bukosia ebenezar]
+
+---
+
+## Contact Information
+
+- Email : ebenezarbukosia@gmail.om
+
+---
+
+## [License](LICENSE)
+
+MIT License
+Copyright (c) 2022 Bukosia Ebenezar
