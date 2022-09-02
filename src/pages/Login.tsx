@@ -60,27 +60,6 @@ const Login:React.FC<formData>=()=> {
         console.log(formData);
         console.log(users)
     }    
-    
-    //     const useraccount = users.find(
-    //       (user:formData) => user.username === formData.username
-    //     );
-    //     if (useraccount && useraccount.password === formData.password) {
-    //       //setauthenticated(true);
-    
-    //       //setAccount(useraccount);
-    //       //setLoggedUser(useraccount);
-    
-    //       localStorage.setItem("name", JSON.stringify(useraccount));
-    //       localStorage.setItem("authenticated", JSON.stringify(true));
-    //       console.log(formData);
-    //       alert(`Logged in successful as ${useraccount.name}`);
-    //       navigate("/home/dashboard");
-    
-    //       return;
-    //     }
-    //     alert("Wrong Username or Password");
-    //   };
-
 
     return (
         <section id="login">
