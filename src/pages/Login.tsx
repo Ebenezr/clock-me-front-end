@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 interface formData{
     username?:string,
@@ -17,7 +17,7 @@ const Login:React.FC<formData>=()=> {
     const [loading,setIsLoading] =useState(true);
     const userRef=React.useRef<HTMLInputElement>(null);
     const url_local = "http://localhost:8004/users";
-    const navigate = useNavigate();
+   // const navigate = useNavigate();
 
       //fetch users
   const fetchUsers = async () => {
@@ -58,6 +58,7 @@ const Login:React.FC<formData>=()=> {
     const handleSubmit = async (e:any) => {
         e.preventDefault();
         console.log(formData);
+        console.log(users)
     }    
     
     //     const useraccount = users.find(
