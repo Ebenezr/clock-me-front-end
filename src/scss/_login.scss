@@ -4,7 +4,7 @@
     height: 100%;
     display: grid;
     place-items: center;
-    background-image: url('../assets/images/bgseiko.png');
+    background-image: url('../assets/bgseiko.png');
     background-size:cover ;
     background-color: $color-info-dark;
     
@@ -24,11 +24,11 @@
 
     h2{
         color:$color-info-light;
-        font-size: 2rem;
+        font-size: $step-2;
         font-weight: 500;
         span{
             font-weight: 300;
-            font-size: 2rem;
+            font-size: $step-2;
             color: $color-primary;
             
         }
@@ -46,18 +46,19 @@
         h4{
             text-align: center;
             color: $color-info-dark;
-            font-size: 1.1rem;
+            font-size: $step--1;
             font-weight: 500;
         }
         label{
             color:$color-info-dark;
-            font-size: 0.9rem;
+            font-size: $step--1;
             font-weight: 500;
            
         }
         .inputs{
             border: $color-info-dark 1.5px solid;
             width: 100%;
+            font-size: $step--2;
             padding: 0.5rem;
             outline: none;
             background: transparent;
@@ -80,6 +81,7 @@
             padding: 0.3rem;
             h3 strong{
                 font-weight: 700;
+                font-size: $step--1;
             }
             span{
                 display: flex;
@@ -93,9 +95,11 @@
             color: white;
             border-radius:   $border-radius-1;
             font-weight: 500;
+            font-size: $step--1;
         }
         a{
             color:$color-primary;
+            font-size: $step--1;
         }
         .misc{
             padding-top: 1rem;
