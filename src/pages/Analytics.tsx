@@ -17,7 +17,6 @@ const inputEl=React.useRef<HTMLInputElement>(null);
     }
   }
 
-
   return (
     <section className="analytics__view">
       <article className="left">

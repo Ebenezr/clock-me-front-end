@@ -1,5 +1,5 @@
 import React, { useState, useEffect} from "react";
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { axiosRequest } from '../API/api';
 import {requests} from '../API/requests';
 import { userInterface } from "../interfaces/interface";
@@ -10,6 +10,7 @@ interface formData{
     remember_me?:boolean
 }
 const Login:React.FC<formData>=()=> {
+  const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     const [formData, setFormData] = useState<formData>({
         username: "",
@@ -60,6 +61,8 @@ const Login:React.FC<formData>=()=> {
         }
         console.log(formData);
         console.log(users)
+        setauthenticated(true)
+        navigate("/home/dashboard");
 
 
         localStorage.setItem("name", JSON.stringify(useraccount));
@@ -82,7 +85,7 @@ const Login:React.FC<formData>=()=> {
               placeholder="Usename"
               id="username"
               autoComplete="off"
-              required
+         
               onChange={handleChange}
               ref={userRef}
               value={formData.username}
@@ -95,7 +98,7 @@ const Login:React.FC<formData>=()=> {
               type="password"
               placeholder="******"
               id="password"
-              required
+      
               value={formData.password}
               onChange={handleChange}
             />

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 
 import {
     MdSpaceDashboard,
@@ -14,8 +14,15 @@ import {
   import { accContext } from "../../App";
 
 
-const Aside:React.FC=()=> {
+const Aside:React.FC<& { className?: string }>=()=> {
   const accUser = useContext(accContext);
+  const [isActive, setActive] = useState(false);
+
+  //toggle themes
+  const handleToggle = () => {
+    setActive(!isActive);
+  };
+
   console.log(accUser)
     return(
         <aside>
@@ -72,11 +79,11 @@ const Aside:React.FC=()=> {
           <legend>PREFRENCES</legend>
           <div className="content-wrapper">
             <h3>Theme</h3>
-            <div className="theme-toggler">
-              <span className="active">
+            <div className="theme-toggler" onClick={handleToggle}>
+              <span className={isActive ? "active" : ""}>
                 <MdWbSunny />
               </span>
-              <span>
+              <span className={!isActive ? "active" : ""}>
                 <BsMoonFill />
               </span>
             </div>
