@@ -76,28 +76,28 @@ const Main:React.FC = () => {
   };
 
   //patch timestamp to db
-  const postTimeStamp = async (id:number, formData:userInterface) => {
-    // try {
-    //   await axios.patch(`${url_local}/${id}`, formData);
-    //   setUsers([...users, formData]);
-    // } catch (err) {
-    //   console.log(err);
-    //   alert("Task Failed :(");
-    // }
+  const postTimeStamp = (id:number, formData:userInterface) => {
+    try {
+      axiosRequest.patch(`/employees/${id}`, formData)
+      // .then(()=>setUsers([...users, formData]))
+    } catch (err) {
+      console.log(err);
+      alert("Task Failed :(");
+    }
   };
 
-//   //update user details request
-//   const updateUser = async (id, formData) => {
-//     try {
-//       await axios.patch(`${url_local}/${id}`, formData);
-//       setUsers(users);
-//       alert("User Updated succesfully :)");
-//     } catch (err) {
-//       console.log(err);
-//       alert("Task Failed :(");
-//     }
-//   };
-  //add new employee
+  //update user details request
+  const updateUser = (id:number, formData:userInterface) => {
+    try {
+      axiosRequest.patch(`employees/${id}`, formData)
+      .then(()=>setUsers(users))
+      .then(()=>alert("User Updated succesfully :)"))
+    } catch (err) {
+      console.log(err);
+      alert("Task Failed :(");
+    }
+  };
+
 
   //search function
   function handleSearch(str:string) {
@@ -162,7 +162,7 @@ const Main:React.FC = () => {
           >
             <Route
               path="Addnew"
-              element={<AddNew  />}
+              element={<AddNew />}
             />
             <Route
               path="/admin/"
