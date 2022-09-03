@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+
 import {
     MdSpaceDashboard,
     MdAdminPanelSettings,
@@ -9,9 +11,12 @@ import {
   } from "react-icons/md";
   import { IoTimer } from "react-icons/io5";
   import { BsMoonFill } from "react-icons/bs";
+  import { accContext } from "../../App";
 
 
 const Aside:React.FC=()=> {
+  const accUser = useContext(accContext);
+  console.log(accUser)
     return(
         <aside>
         <div className="top">
@@ -81,13 +86,13 @@ const Aside:React.FC=()=> {
         <div className="aside__footer">
           <div className="profile">
             <div className="profile-photo">
-              <img  alt="Img" />
+              <img  src={accUser?.avatar} alt="Img" />
             </div>
             <div className="info">
               <p>
-                <b></b>
+                <b>{accUser?.name}</b>
               </p>
-              <small className="text-muted">{true ? "Admin" : "User"}</small>
+              <small className="text-muted">{accUser?.admin ? "Admin" : "User"}</small>
             </div>
           </div>
         </div>

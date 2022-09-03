@@ -24,6 +24,7 @@ const App:React.FC = () =>{
       navigate("/");
       // Redirect if not loggedin
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   if (!authenticated) {
     navigate("/");

@@ -17,6 +17,7 @@ interface TimecardProp{
 
 const Timecard:React.FC<TimecardProp> = ({currentuser,setCurrentUser,postTimeStamp,filterUsers}) => {
   const employees = useContext(appContext);
+  console.log(employees)
   // const id = useId();
   const [stamps, setStamp] = useState<string>();
   // const renderUser = (id) => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, createContext } from "react";
+import React, { useState, useEffect, createContext,useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import { axiosRequest } from '../API/api';
 import {requests} from '../API/requests';
@@ -11,67 +11,70 @@ import Admin from "./Admin";
 import Analytics from "./Analytics";
 import Dashboard from "./dashboard";
 import Timecard from "./Timecard";
+import { accContext } from "../App";
 
 
   
-  export const appContext = createContext<userInterface[] |null>(null);
+export const appContext = createContext<userInterface[] |null>(null);
 
 
 const Main:React.FC = () => {
+  const accUser = useContext(accContext);
     const [loading,setIsLoading] =useState(true);
 
-    const [currentUser, setCurrentUser] = useState<userInterface>({
-    name: "",
-    username: "",
-    password: "",
-    admin: false,
-    staffid: "",
-    department: "",
-    avatar: "",
-    timestamp: [],
-  });
+    const [currentUser, setCurrentUser] = useState<userInterface>({});
   const [users, setUsers] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   //local api link
 
   useEffect(() => {
+    try{
     axiosRequest.get('/users')
     .then((res:any) =>setUsers(res.data))
+    .then(()=>{
+      //check if loged use is loaded with user info
+      if(accUser !== undefined){
+        setCurrentUser(accUser)
+      }
+    })
     .then(()=>setIsLoading(false))
-    .catch((err:any)=>console.error(err))
-    
+  } catch (err) {
+    console.error(err);
+  }
     
     //setCurrentUser(acc);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(users)
 
-//   //delete user
-//   const deleteUser = async (id:number) => {
-//     try {
-//       let deluser = users.filter((user) => user.id !== id);
-//       setUsers(deluser);
-//       await axios.delete(`${url_local}/${id}`);
-//       setCurrentUser("");
-//       alert("User Deleted succesfully :)");
-//     } catch (err) {
-//       console.error(err);
-//       alert("Task Failed :(");
-//     }
-//   };
+  //delete user
+  const deleteUser = (id:number) => {
+    try {
+      let deluser = users.filter((user:userInterface) => user?.id !== id);
+      setUsers(deluser);
+      axiosRequest.delete(`/employee/${id}`)
+      .then(()=>setCurrentUser({}))
+      .then(()=>alert("User Deleted succesfully :)"))
+    } catch (err) {
+      console.error(err);
+      alert("Task Failed :(");
+    }
+  };
 
-//   //post data to db
-//   const postData = async (formData) => {
-//     try {
-//       await axios.post(url_local, formData);
-//       setUsers([...users, formData]);
-//       alert("User Added succesfully :)");
-//     } catch (err) {
-//       console.log(err);
-//       alert("Task Failed :(");
-//     }
-//   };
+  //post data to db
+  const postData = (formData:userInterface) => {
+    try {
+      axiosRequest.post('/employees', formData)
+     // .then(()=>setUsers([...users, formData]))
+      .then(()=>alert("User Added succesfully :)"))
+    } catch (err) {
+      console.log(err);
+      alert("Task Failed :(");
+    }
+  };
+
   //patch timestamp to db
   const postTimeStamp = async (id:number, formData:userInterface) => {
     // try {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from "react";
-import axios from "axios";
 //import { useNavigate } from "react-router-dom";
 import { axiosRequest } from '../API/api';
 import {requests} from '../API/requests';
@@ -32,7 +31,7 @@ const Login:React.FC<formData>=()=> {
     if(null !== userRef.current && !loading){
         userRef.current.focus();
     }
-    
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
     //hangle change event
@@ -118,6 +117,7 @@ const Login:React.FC<formData>=()=> {
             </button>
           </div>
           <span className="misc">
+          {/* eslint-disable-next-line react-hooks/exhaustive-deps */}
             <a href="#">I forgot my password</a>
           </span>
 
