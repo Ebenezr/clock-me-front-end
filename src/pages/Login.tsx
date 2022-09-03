@@ -1,6 +1,9 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
 //import { useNavigate } from "react-router-dom";
+import { axiosRequest } from '../API/api';
+import {requests} from '../API/requests';
+import { userInterface } from "../interfaces/interface";
 
 interface formData{
     username?:string,
@@ -15,26 +18,16 @@ const Login:React.FC<formData>=()=> {
         remember_me: true,
     });
     const [loading,setIsLoading] =useState(true);
+    const [account, setAccount] = useState({});
+    const [loggeduser, setLoggedUser] = useState({});
+    const [authenticated, setauthenticated] = useState(false);
     const userRef=React.useRef<HTMLInputElement>(null);
-    const url_local = "http://localhost:8004/users";
-   // const navigate = useNavigate();
-
-      //fetch users
-  const fetchUsers = async () => {
-    try {
-      await axios.get(url_local).then((responce) => {
-        const allusers = responce.data;
-        setUsers(allusers);
-        setIsLoading(false);
-
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   useEffect(() => {
-    fetchUsers();
+    axiosRequest.get(requests.fetchUsers)
+    .then((res:any) =>setUsers(res.data))
+    .then(()=>setIsLoading(false))
+    .catch((err:any)=>console.error(err))
 
     if(null !== userRef.current && !loading){
         userRef.current.focus();
@@ -57,8 +50,21 @@ const Login:React.FC<formData>=()=> {
     //submission form function
     const handleSubmit = async (e:any) => {
         e.preventDefault();
+        let useraccount:userInterface={
+          name: "",
+          username: "",
+          password: "",
+          admin: false,
+          staffid: "",
+          department: "",
+          avatar: "",
+        }
         console.log(formData);
         console.log(users)
+
+
+        localStorage.setItem("name", JSON.stringify(useraccount));
+        localStorage.setItem("authenticated", JSON.stringify(true));
     }    
 
     return (

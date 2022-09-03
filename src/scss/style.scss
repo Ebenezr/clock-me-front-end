@@ -109,7 +109,17 @@ b{
 }
 
 
-  
+  //$breakpoint-tablet: 850px;
+@media (max-width: $breakpoint-tablet) {
+  main{
+    max-width: $breakpoint-tablet;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+    
+  }
+ }
 
 .required:after{
   content:" *";
