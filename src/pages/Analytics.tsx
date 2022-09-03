@@ -1,21 +1,19 @@
-import React,{useRef} from "react";
+import React,{useRef,useContext} from "react";
 import Welcomeinfo from "../components/cards/Welcomeinfo";
 import Starts from "../components/cards/Starts";
 // import Searchbar from "../components/forms/Searchbar";
 import Employeecard from "../components/cards/Employeecard";
-
-interface employee{
-    avatar:string,
-    usrname:string,
-    staffid:number,
-    department:string
-}
+import Searchbar from "../components/forms/Searchbar";
+import { appContext } from "./Main";
+import { userInterface } from "../interfaces/interface";
 
 const Analytics:React.FC = () => {
+const employees = useContext(appContext);
+//{avatar,department}=employees;
 const inputEl=React.useRef<HTMLInputElement>(null);
   const handleFilter=()=>{
     if(null !== inputEl.current){
-        // filterUsers(inputEl.current.value);
+        //filterUsers(inputEl.current.value);
     }
   }
 
@@ -24,8 +22,8 @@ const inputEl=React.useRef<HTMLInputElement>(null);
     <section className="analytics__view">
       <article className="left">
         <Welcomeinfo />
-        {/* <Starts employees={employee} /> */}
-        {/* <Searchbar /> */}
+        <Starts /> 
+        <Searchbar />
         <div className="users-list">
           <div className="user-title">
             <h3>Employees </h3>
@@ -43,26 +41,12 @@ const inputEl=React.useRef<HTMLInputElement>(null);
         </div>
       </article>
       <article className="right">
-        {/* {employees.map((employee) => (
+        {employees?.map((employee:userInterface) => (
           <Employeecard
             key={employee.id}
-            avatar={employee.avatar}
-            admin={employee.admin}
-            staffid={employee.staffid}
-            department={employee.department}
-            usrname={employee.name}
+            employee={employee}          
           />
-        ))} */}
-        {/* {employee?.map((employee:employee) => (
-          <Employeecard
-          key={employee.id}
-        
-            avatar={employee.avatar}
-            usrname={employee.name}
-            staffid={employee.staffid}
-            department={employee.department}
-          />
-        ))} */}
+        ))}
       </article>
     </section>
   );

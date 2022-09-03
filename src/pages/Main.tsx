@@ -22,9 +22,9 @@ const Main:React.FC = () => {
   const accUser = useContext(accContext);
     const [loading,setIsLoading] =useState(true);
 
-    const [currentUser, setCurrentUser] = useState<userInterface>({});
-  const [users, setUsers] = useState([]);
-  const [searchResult, setSearchResult] = useState([]);
+  const [currentUser, setCurrentUser] = useState<userInterface>({});
+  const [users, setUsers] = useState<userInterface[]>([]);
+  const [searchResult, setSearchResult] = useState<userInterface[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   //local api link
 
@@ -52,7 +52,7 @@ const Main:React.FC = () => {
   //delete user
   const deleteUser = (id:number) => {
     try {
-      let deluser = users.filter((user:userInterface) => user?.id !== id);
+      let deluser = users?.filter((user:userInterface) => user?.id !== id);
       setUsers(deluser);
       axiosRequest.delete(`/employee/${id}`)
       .then(()=>setCurrentUser({}))
@@ -104,14 +104,14 @@ const Main:React.FC = () => {
     setSearchTerm(str);
 
     if (searchTerm !== "") {
-      const newList = users.filter((user) =>
+      const newList = users?.filter((user) =>
         Object.values(user)
           .join(" ")
           .toLowerCase()
           .includes(searchTerm.toLowerCase())
       );
-      setSearchResult(newList);
-
+        setSearchResult(newList);
+      
       return searchResult;
     }
     setSearchResult(users);
@@ -122,7 +122,7 @@ const Main:React.FC = () => {
     setSearchTerm(str);
 
     if (searchTerm !== "all") {
-      const newList = users.filter((user) =>
+      const newList = users?.filter((user) =>
         Object.values(user)
           .join(" ")
           .toLowerCase()
@@ -137,7 +137,7 @@ const Main:React.FC = () => {
 
 
   return (
-    <appContext.Provider value={users}>
+    <appContext.Provider value={searchTerm.length < 1? users : searchResult}>
     <section className="container__main">
       <Header />
       <div className="view__main">
@@ -146,7 +146,6 @@ const Main:React.FC = () => {
             path="dashboard"
             element={
               <Dashboard
-        
               />
             }
           />
