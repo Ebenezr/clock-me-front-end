@@ -48,7 +48,7 @@ const Login:React.FC<formData>=()=> {
  
     //TODO backend
     //submission form function
-    const handleSubmit = async (e:any) => {
+    const handleSubmit = async (e:React.SyntheticEvent) => {
         e.preventDefault();
         let useraccount:userInterface={
           name: "",
