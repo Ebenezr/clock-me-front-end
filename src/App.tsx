@@ -31,10 +31,10 @@ const App:React.FC = () =>{
  
   return (
        <accContext.Provider value={acc}>
-          <div className="App">
+          <main className="App">
             <Aside />
             <Main />
-          </div>
+          </main>
       </accContext.Provider>
   );
 }
