@@ -12,7 +12,7 @@
 }
 .container__login{
     min-width: 20%;
-    height: 55%;
+    height: 57%;
     display: flex;
     flex-direction: column;
     display: flex;
@@ -97,12 +97,12 @@
             font-weight: 500;
             font-size: $step--1;
         }
-        a{
+        p{
             color:$color-primary;
             font-size: $step--1;
         }
         .misc{
-            padding-top: 1rem;
+            padding-top: 0.3rem;
         }
     }
 

@@ -14,7 +14,7 @@ import {
   import { accContext } from "../../App";
 
 
-const Aside:React.FC<& { className?: string }>=()=> {
+const Aside:React.FC< { className?: string }>=()=> {
   const accUser = useContext(accContext);
   const [isActive, setActive] = useState(false);
 

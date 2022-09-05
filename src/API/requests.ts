@@ -1,6 +1,6 @@
 const requests={
     fetchEmployees:"/employees/fetch",
-    fetchTimestamps:"/timestamps",
+    passwordrecovery:'/employees/updatepassword',
     loginuser:"/login/user"
 
 }
