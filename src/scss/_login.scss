@@ -65,6 +65,9 @@
             border-radius:   $border-radius-1;
 
         }
+        .invalid{
+            border: $color-danger 1.5px solid;
+        }
         .error{
             background: transparent;
             border: none;

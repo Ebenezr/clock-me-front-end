@@ -1,3 +1,4 @@
+import console from "console";
 import React, { useState, useEffect} from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { axiosRequest } from "../../API/api";
@@ -30,36 +31,39 @@ const PasswordRecovery:React.FC<formData>=()=> {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
+    //email validator
+    const checkEmail = (email:string) => {
+        const mailformat= new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+        if(email.match(mailformat)){
+            setvalidEmail(false);
+            console.groupCollapsed(validemail)
+        }
+    }
     //hangle change event
     const handleChange = (event:any):void => {
         const key:string = event.target.id;
         const value:any = event.target.value;
+
         setFormData({ ...formData, [key]: value });
+        // checkEmail(formData.email);
+        // console.log(validemail)
       };
  
 
-      //email validator
-      const checkEmail = (email:string) => {
-      const emailpatten= new RegExp(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
-        if(emailpatten.test(email)){
-            setvalidEmail(false);
-      }
 
-      }
 
     //TODO backend
     //submission form function
     const handleSubmit = (e:React.SyntheticEvent) => {
         e.preventDefault();
-        checkEmail(formData.email);
-        if (validemail){
-
-        }
+        
+    
 
 
-        if(formData.password !== formData.cpassword){
-            return
-        } 
+        // if(validemail || formData.password !== formData.cpassword){
+        //     return
+        // } 
         
         axiosRequest.patch(`${requests.passwordrecovery}/email="${formData.email}"`, formData)
         .then(response =>  {
@@ -79,7 +83,7 @@ return(
            <form onSubmit={handleSubmit}>
         <h4>Recover Account!</h4>
           <label>
-            Username
+            Email
             <input
               className={validemail?"inputs":"invalid"}
               type="text"
