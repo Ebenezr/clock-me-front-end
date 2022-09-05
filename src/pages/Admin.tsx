@@ -7,11 +7,11 @@ import Starts from "../components/cards/Starts";
 import Searchbar from "../components/forms/Searchbar";
 
 const Admin:React.FC = () => {
-//   const inputEl = useRef("");
-//   const handleFilterFunction = () => {
-//     handleSearch(inputEl.current.value);
+  const inputEl = useRef("");
+  // const handleFilterFunction = () => {
+  //   handleSearch(inputEl.current.value);
     
-//   };
+  // };
 
 //   const renderUser = (id) => {
 //     const user = employees.filter((element) => {

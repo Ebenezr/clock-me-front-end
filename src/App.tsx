@@ -12,7 +12,7 @@ const App:React.FC = () =>{
   const [acc, setAcc] = useState<userInterface>();
   const navigate = useNavigate();
   //protect app component
-  const [authenticated, setauthenticated] = useState<boolean>(); 
+  const [authenticated, setauthenticated] = useState<boolean>(false); 
 
   useEffect(() => {
     const loggedUser:userInterface = JSON.parse(localStorage.getItem('name')|| '{}');
@@ -32,7 +32,7 @@ const App:React.FC = () =>{
  
   return (
        <accContext.Provider value={acc}>
-          <main className="App">
+          <main className="dark-mode">
             <Aside />
             <Main authenticated={authenticated} setauth={setauthenticated}/>
           </main>

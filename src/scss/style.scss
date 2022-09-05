@@ -45,7 +45,27 @@
     background: $color-background;
     overflow-x: hidden;
     user-select: none;
+
+
+    .light-mode{ 
+      $color-background:#f6f6f9;
+      $color-white: #fff;
+      $color-dark: #363949;
+      $color-dark-variant:#677483;
+      $color-light: rgba(132,139,200,0.18);
+      $box-shadow: 0 2rem 3rem $color-light;
+}
+.dark-mode{
+      $color-background: #181a1e;
+      $color-white: #202528;
+      $color-dark: #edeffd;
+      $color-dark-variant: #a3bdcc;
+      $color-light:rgba(0,0,0,0.4);
+      $box-shadow: 0 2rem 3rem $color-light;
+}
   }
+
+
   main{
     position: relative;
     height: 100%;
@@ -54,6 +74,8 @@
     display: grid;
     grid-template-columns: 18rem auto;
     overflow: hidden;
+
+
    
  }
   img{

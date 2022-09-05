@@ -10,6 +10,7 @@ interface formData{
     remember_me?:boolean
 }
 const Login:React.FC<formData>=()=> {
+  
   const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     const [formData, setFormData] = useState<formData>({
@@ -18,9 +19,6 @@ const Login:React.FC<formData>=()=> {
         remember_me: true,
     });
     const [loading,setIsLoading] =useState(true);
-    const [account, setAccount] = useState({});
-    const [loggeduser, setLoggedUser] = useState<userInterface>({});
-    const [authenticated, setauthenticated] = useState(false);
     const userRef=React.useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -45,21 +43,19 @@ const Login:React.FC<formData>=()=> {
     //submission form function
     const handleSubmit = (e:React.SyntheticEvent) => {
         e.preventDefault();
+        
         axiosRequest.post(requests.loginuser, formData)
         .then(response =>  {
-          setLoggedUser(response.data)
-          setauthenticated(true)     
+          if(Object.values(response.data).length > 1) {
+              localStorage.setItem("name", JSON.stringify(response.data));
+              localStorage.setItem("authenticated", JSON.stringify(true));
+              alert("Login successful")
+              navigate("/home/dashboard");
+          }else{
+            alert("user doesn't exist");
+          }      
     }).then(() => setIsLoading(false))  
-    if(authenticated){
-      alert("Login successful")
-      localStorage.setItem("name", JSON.stringify(loggeduser));
-      localStorage.setItem("authenticated", JSON.stringify(authenticated));
-      navigate("/home/dashboard");
-    } 
-    else{
-      alert("Login failed, check your details")
-    }
-    
+  
   }
 
     return (

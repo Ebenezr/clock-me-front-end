@@ -36,7 +36,7 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
 
   useEffect(() => {
     try{
-    axiosRequest.get('/employees/fetch')
+    axiosRequest.get(requests.fetchEmployees)
     .then((res:any) =>setUsers(res.data))
     .then(()=>{
       //check if loged use is loaded with user info
@@ -48,11 +48,11 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
   } catch (err) {
     console.error(err);
   }
-    
-    //setCurrentUser(acc);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+
+  //console.log(users)
  
 
   //delete user
@@ -145,6 +145,9 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
   return (
     <appContext.Provider value={searchTerm.length < 1? users : searchResult}>
     <section className="container__main">
+
+
+     
       <Header authenticated={authenticated} setauth={setauth} />
       <div className="view__main">
         <Routes>

@@ -21,12 +21,13 @@ const Aside:React.FC<& { className?: string }>=()=> {
   //toggle themes
   const handleToggle = () => {
     setActive(!isActive);
+
   };
 
 
     return(
         <aside>
-        <div className="top">
+        <div className="top dark-mode">
           <div className="logo">
             <IoTimer className="logo__icon" />
             <h2>Clock-Me</h2>
@@ -80,7 +81,7 @@ const Aside:React.FC<& { className?: string }>=()=> {
           <div className="content-wrapper">
             <h3>Theme</h3>
             <div className="theme-toggler" onClick={handleToggle}>
-              <span className={isActive ? "active" : ""}>
+              <span className={isActive ? ("active") : ""}>
                 <MdWbSunny />
               </span>
               <span className={!isActive ? "active" : ""}>
