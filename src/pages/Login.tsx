@@ -23,17 +23,12 @@ const Login:React.FC<formData>=()=> {
     const [authenticated, setauthenticated] = useState(false);
     const userRef=React.useRef<HTMLInputElement>(null);
 
-  // useEffect(() => {
-  //   axiosRequest.get(requests.fetchUsers)
-  //   .then((res:any) =>setUsers(res.data))
-  //   .then(()=>setIsLoading(false))
-  //   .catch((err:any)=>console.error(err))
-
-  //   if(null !== userRef.current && !loading){
-  //       userRef.current.focus();
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    if(null !== userRef.current){
+        userRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
     //hangle change event
     const handleChange = (event:any):void => {
@@ -48,20 +43,22 @@ const Login:React.FC<formData>=()=> {
  
     //TODO backend
     //submission form function
-    const handleSubmit = async (e:React.SyntheticEvent) => {
+    const handleSubmit = (e:React.SyntheticEvent) => {
         e.preventDefault();
         axiosRequest.post(requests.loginuser, formData)
         .then(response =>  {
           setLoggedUser(response.data)
           setauthenticated(true)     
-    })  
+    }).then(() => setIsLoading(false))  
     if(authenticated){
+      alert("Login successful")
       localStorage.setItem("name", JSON.stringify(loggeduser));
       localStorage.setItem("authenticated", JSON.stringify(authenticated));
       navigate("/home/dashboard");
-      console.log(loggeduser)
-
     } 
+    else{
+      alert("Login failed, check your details")
+    }
     
   }
 
