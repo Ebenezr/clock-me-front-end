@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { MdMenu } from "react-icons/md";
 import Aside from "./nav/nav";
-const Header = () => {
+import { MainProps } from "../pages/Main";
+
+// interface MainProps{
+//   authenticated:boolean,
+//   setauth(auth:boolean):void
+
+// }
+const Header:React.FC<MainProps> = ({setauth, authenticated}) => {
   const [toggleNavBar, setToggle] = useState(false);
 
   return (
@@ -18,10 +25,10 @@ const Header = () => {
       <span>
         <RiLogoutCircleLine></RiLogoutCircleLine>
         <h3
-          // onClick={() => {
-          //   setAuthenticated(!authenticated);
-          //   localStorage.clear();
-          // }}
+          onClick={() => {
+            setauth(!authenticated);
+            localStorage.clear();
+          }}
         >
           Logout
         </h3>

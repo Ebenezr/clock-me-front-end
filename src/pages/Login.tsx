@@ -19,21 +19,21 @@ const Login:React.FC<formData>=()=> {
     });
     const [loading,setIsLoading] =useState(true);
     const [account, setAccount] = useState({});
-    const [loggeduser, setLoggedUser] = useState({});
+    const [loggeduser, setLoggedUser] = useState<userInterface>({});
     const [authenticated, setauthenticated] = useState(false);
     const userRef=React.useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    axiosRequest.get(requests.fetchUsers)
-    .then((res:any) =>setUsers(res.data))
-    .then(()=>setIsLoading(false))
-    .catch((err:any)=>console.error(err))
+  // useEffect(() => {
+  //   axiosRequest.get(requests.fetchUsers)
+  //   .then((res:any) =>setUsers(res.data))
+  //   .then(()=>setIsLoading(false))
+  //   .catch((err:any)=>console.error(err))
 
-    if(null !== userRef.current && !loading){
-        userRef.current.focus();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   if(null !== userRef.current && !loading){
+  //       userRef.current.focus();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
     //hangle change event
     const handleChange = (event:any):void => {
@@ -50,24 +50,20 @@ const Login:React.FC<formData>=()=> {
     //submission form function
     const handleSubmit = async (e:React.SyntheticEvent) => {
         e.preventDefault();
-        let useraccount:userInterface={
-          name: "",
-          username: "",
-          password: "",
-          admin: false,
-          staffid: "",
-          department: "",
-          avatar: "",
-        }
-        console.log(formData);
-        console.log(users)
-        setauthenticated(true)
-        navigate("/home/dashboard");
+        axiosRequest.post(requests.loginuser, formData)
+        .then(response =>  {
+          setLoggedUser(response.data)
+          setauthenticated(true)     
+    })  
+    if(authenticated){
+      localStorage.setItem("name", JSON.stringify(loggeduser));
+      localStorage.setItem("authenticated", JSON.stringify(authenticated));
+      navigate("/home/dashboard");
+      console.log(loggeduser)
 
-
-        localStorage.setItem("name", JSON.stringify(useraccount));
-        localStorage.setItem("authenticated", JSON.stringify(true));
-    }    
+    } 
+    
+  }
 
     return (
         <section id="login">
@@ -85,7 +81,7 @@ const Login:React.FC<formData>=()=> {
               placeholder="Usename"
               id="username"
               autoComplete="off"
-         
+            required
               onChange={handleChange}
               ref={userRef}
               value={formData.username}
@@ -98,7 +94,7 @@ const Login:React.FC<formData>=()=> {
               type="password"
               placeholder="******"
               id="password"
-      
+              required
               value={formData.password}
               onChange={handleChange}
             />

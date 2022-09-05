@@ -19,11 +19,57 @@
   $color-warning: #ffbb55;
   $color-info-dark:#7d8da1;
   $color-info-light:#dce1eb;
-  $color-dark: #edeffd;
-  $color-light: rgba(0,0,0,0.4);
+  $color-dark: #363949;
+  $color-white: #fff;
+  $color-light: rgba(132,139,200,0.18);
   $color-primary-variant:#111e88;
-  $color-dark-variant:#a3bdcc;
-  $color-background:#181a1e;
+  $color-dark-variant:#677483;
+  $color-background:#f6f6f9;
+
+
+  //box shadow
+  $box-shadow:0 2rem 3rem $color-light;
+
+  //thems
+
+$themes: (
+    light: (
+      $color-background:#f6f6f9,
+      $color-white: #fff,
+      $color-dark: #363949,
+      $color-dark-variant:#677483,
+      $color-light: rgba(132,139,200,0.18),
+      $box-shadow: 0 2rem 3rem $color-light
+    ),
+    dark: (
+      $color-background: #181a1e,
+      $color-white: #202528,
+      $color-dark: #edeffd,
+      $color-dark-variant: #a3bdcc,
+      $color-light:rgba(0,0,0,0.4),
+      $box-shadow: 0 2rem 3rem $color-light
+    )
+);
+
+@mixin styles($mode) {
+  @each $key, $map in $themes {
+    @each $prop, $color in $map {
+      @if $prop == $mode {
+        --#{$key}: #{$color};
+      }
+    }
+  }
+}
+
+.dark-mode {
+  @include styles("darkTheme");
+}
+
+.light-mode {
+  @include styles("lightTheme");
+}
+
+
   //border radius
   $card-border-radius:2rem;
   $border-radius-1:0.4rem;
@@ -35,7 +81,7 @@
   $padding-1:1.2rem;
   
   //box shadow
-  $box-shadow:0.2rem 3rem $color-light;
+  $box-shadow:0 2rem 3rem $color-light;
 
 
   //breaking point

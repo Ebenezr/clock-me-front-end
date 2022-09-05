@@ -23,7 +23,7 @@ const Aside:React.FC<& { className?: string }>=()=> {
     setActive(!isActive);
   };
 
-  console.log(accUser)
+
     return(
         <aside>
         <div className="top">

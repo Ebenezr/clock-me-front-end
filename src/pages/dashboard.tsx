@@ -5,12 +5,11 @@ import Searchbar from "../components/forms/Searchbar";
 import Employeecard from "../components/cards/Employeecard";
 import { useContext } from "react";
 import { userInterface } from "../interfaces/interface";
-import { appContext } from "./Main";
+
 
 
 const Dashboard:React.FC = () => {
-  const employees = useContext(appContext);
-  console.log("employees")
+ 
 
   return (
     <section className="dashboard__view">

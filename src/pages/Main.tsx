@@ -17,8 +17,14 @@ import { accContext } from "../App";
   
 export const appContext = createContext<userInterface[] |null>(null);
 
+export interface MainProps{
+  authenticated:boolean,
+  setauth(auth:boolean):void
 
-const Main:React.FC = () => {
+}
+
+
+const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
   const accUser = useContext(accContext);
     const [loading,setIsLoading] =useState(true);
 
@@ -30,7 +36,7 @@ const Main:React.FC = () => {
 
   useEffect(() => {
     try{
-    axiosRequest.get('/users')
+    axiosRequest.get('/employees/fetch')
     .then((res:any) =>setUsers(res.data))
     .then(()=>{
       //check if loged use is loaded with user info
@@ -47,7 +53,7 @@ const Main:React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(users)
+ 
 
   //delete user
   const deleteUser = (id:number) => {
@@ -139,7 +145,7 @@ const Main:React.FC = () => {
   return (
     <appContext.Provider value={searchTerm.length < 1? users : searchResult}>
     <section className="container__main">
-      <Header />
+      <Header authenticated={authenticated} setauth={setauth} />
       <div className="view__main">
         <Routes>
           <Route

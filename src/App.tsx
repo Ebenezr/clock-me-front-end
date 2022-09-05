@@ -34,7 +34,7 @@ const App:React.FC = () =>{
        <accContext.Provider value={acc}>
           <main className="App">
             <Aside />
-            <Main />
+            <Main authenticated={authenticated} setauth={setauthenticated}/>
           </main>
       </accContext.Provider>
   );

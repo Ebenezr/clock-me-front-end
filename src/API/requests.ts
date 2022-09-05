@@ -1,7 +1,8 @@
 const requests={
-    fetchUsers:"/users",
-    fetchEmployees:"/employees",
-    fetchTimestamps:"/timestamps"
+    fetchEmployees:"/employees/fetch",
+    fetchTimestamps:"/timestamps",
+    loginuser:"/login/user"
+
 }
 
 export {requests}
