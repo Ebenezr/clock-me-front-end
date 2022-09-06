@@ -4,10 +4,11 @@ export interface userInterface{
     email?:string
     username?: string,
     password?: string,
-    admin?: boolean,
+    gender?: string,
+    title?:string
     staffid?: string,
-    department?: number,
+    department_id?: number,
     avatar?: string,
-    usertype?: boolean,
+    usertype?: number,
     timestamp?: string[],
 }

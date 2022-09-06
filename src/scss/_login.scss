@@ -21,6 +21,7 @@
     align-items: center;
     gap: 0.7rem;
     color: $color-info-dark;
+    border-radius: $border-radius-3;
 
     h2{
         color:$color-info-light;
@@ -63,6 +64,7 @@
             outline: none;
             background: transparent;
             border-radius:   $border-radius-1;
+            color:$color-info-dark;
 
         }
         .invalid{

@@ -1,28 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
+import { userInterface } from "../../interfaces/interface";
 
 
-interface formdata{
-    name:string,
-    username:string,
-    password:string,
-    admin:boolean,
-    staffid:string,
-    department:string,
-    avatar:string,
-    timestamp:string[]
-}
+
 
 const Update:React.FC = (currentuser:any) => {
   //hold user data
-  const [formData, setFormData] = useState<formdata>({
-    name: currentuser.name,
-    username: currentuser.username,
-    password: currentuser.password,
-    admin: currentuser.admin,
-    staffid: currentuser.staffid,
-    department: currentuser.department,
-    avatar: currentuser.avatar,
-    timestamp: currentuser.timestamp,
+  const [formData, setFormData] = useState<userInterface>({
+    name: currentuser?.name,
+    username: currentuser?.username,
+    password: currentuser?.password,
+    usertype: currentuser?.usertype,
+    staffid: currentuser?.staffid,
+    department_id: currentuser?.department_id,
+    avatar: currentuser?.avatar,
+    timestamp: currentuser?.timestamp,
   });
 
   const userRef = useRef();
@@ -100,7 +92,7 @@ const Update:React.FC = (currentuser:any) => {
         <select
           id="department"
           className="inputs"
-          value={formData.department}
+          // value={formData?.department_id}
           onChange={handleChange}
         >
           <option value="Sales">Sales</option>
@@ -110,7 +102,7 @@ const Update:React.FC = (currentuser:any) => {
         </select>
       </label>
 
-      <label>
+      {/* <label>
         Staff-ID
         <input
           id="staffid"
@@ -120,13 +112,13 @@ const Update:React.FC = (currentuser:any) => {
           value={formData.staffid}
           placeholder="SD-8456"
         />
-      </label>
+      </label> */}
       <span className="checkbox">
         Admin ?
         <input
           id="admin"
           type="checkbox"
-          checked={formData.admin}
+          // checked={formData.admin}
           onChange={handleChange}
         />
       </span>

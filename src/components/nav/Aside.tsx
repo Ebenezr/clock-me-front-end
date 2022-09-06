@@ -100,7 +100,7 @@ const Aside:React.FC< { className?: string }>=()=> {
               <p>
                 <b>{accUser?.name}</b>
               </p>
-              <small className="text-muted">{accUser?.admin ? "Admin" : "User"}</small>
+              {/* <small className="text-muted">{accUser?.admin ? "Admin" : "User"}</small> */}
             </div>
           </div>
         </div>

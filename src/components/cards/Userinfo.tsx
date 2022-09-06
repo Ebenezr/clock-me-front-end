@@ -10,7 +10,7 @@ const Userinfo:React.FC<TimecardProp> = ({currentuser}) => {
       <h3>{currentuser.name}</h3>
       <span className="card-info">
         <span>Usertype</span>
-        <p>{currentuser.admin ? "Admin" : "User"}</p>
+        <p>{currentuser.usertype ? "Admin" : "User"}</p>
       </span>
       <span className="card-info">
         <span>StaffId</span>
@@ -18,7 +18,7 @@ const Userinfo:React.FC<TimecardProp> = ({currentuser}) => {
       </span>
       <span className="card-info">
         <span>Department</span>
-        <p>{currentuser.department}</p>
+        <p>{currentuser.department_id}</p>
       </span>
     </div>
   );

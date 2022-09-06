@@ -103,6 +103,7 @@
             align-items: center;
             .addnew{
                 display: flex;
+                width: 80%;
                 flex-direction: column;
                 gap:  $space-3xs;
                 padding: $space-2xs;

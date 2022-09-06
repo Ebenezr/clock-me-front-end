@@ -17,7 +17,7 @@ const UserList:React.FC<UserListProps>=({renderUser})=> {
         }}
       > 
          <h4>{users.name}</h4>
-        <small>{users.department}</small>
+        <small>{users.department_id}</small>
       </span>
     ))}
   </div>

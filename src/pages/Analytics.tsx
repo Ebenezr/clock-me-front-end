@@ -6,6 +6,10 @@ import Employeecard from "../components/cards/Employeecard";
 import Searchbar from "../components/forms/Searchbar";
 import { appContext } from "./Main";
 import { userInterface } from "../interfaces/interface";
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
+import ProgressProvider from "../utils/ProgressProvider";
 
 const Analytics:React.FC = () => {
 const employees = useContext(appContext);
@@ -40,12 +44,9 @@ const inputEl=React.useRef<HTMLInputElement>(null);
         </div>
       </article>
       <article className="right">
-        {employees?.map((employee:userInterface) => (
-          <Employeecard
-            key={employee.id}
-            employee={employee}          
-          />
-        ))}
+    
+          <CircularProgressbar value={8} maxValue={11} text={`${8 * 100}%`} />
+  
       </article>
     </section>
   );

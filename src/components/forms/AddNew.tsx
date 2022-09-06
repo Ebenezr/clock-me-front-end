@@ -22,15 +22,16 @@ const AddNew:React.FC =() =>{
   //set focus
   useEffect(() => {
     // userRef.current.focus();
+    // console.log(formData.)
   }, []);
 
   //hangle change event
   const handleChange = (event:any) => {
-    const key = event.target.id;
+    const key = event.target.id 
     const value =
       event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
+        ? event.target.checked?1:0
+        : event.target.id === "department_id"? event.target.value = parseInt(event.target.value):event.target.value;
 
     setFormData({ ...formData, [key]: value });
   };
@@ -41,7 +42,8 @@ const AddNew:React.FC =() =>{
     
     axiosRequest.post(requests.employeesadd, formData)
     .then(response =>  {
-      console.log(response?.data)
+      console.log(formData)
+      console.log(response.data)
       if(Object.values(response.data).length > 1) {
           alert("Registration successful")
 
@@ -89,6 +91,17 @@ const AddNew:React.FC =() =>{
         placeholder="johndoe@hotmail.com"
       />
 
+      <label>Gender </label>
+      <select
+        id="gender"
+        className="inputs"
+        value={formData?.gender}
+        onChange={handleChange}
+      >
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
       <label className="required">Avatar </label>
       <input
         id="avatar"
@@ -101,9 +114,9 @@ const AddNew:React.FC =() =>{
 
       <label>Department </label>
       <select
-        id="department"
+        id="department_id"
         className="inputs"
-        value={formData?.department}
+        value={formData?.department_id}
         onChange={handleChange}
       >
         <option value="1">Hospitality</option>
@@ -112,6 +125,17 @@ const AddNew:React.FC =() =>{
         <option value="4">Design</option>
         <option value="5">Technical Support</option>
       </select>
+
+
+      <label className="required">Title </label>
+      <input
+        id="title"
+        type="text"
+        className="inputs"
+        value={formData?.title}
+        onChange={handleChange}
+        placeholder="Product Manager"
+      />
 
       <label className="required">Password </label>
       <input
@@ -126,9 +150,9 @@ const AddNew:React.FC =() =>{
       <span className="checkbox">
         Admin ?
         <input
-          id="admin"
+          id="usertype"
           type="checkbox"
-          checked={formData?.usertype}
+        
           onChange={handleChange}
         />
       </span>

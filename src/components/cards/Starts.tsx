@@ -7,6 +7,9 @@ import {
 import { axiosRequest } from "../../API/api";
 import { requests } from "../../API/requests";
 import { appContext } from "../../pages/Main";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import '../../scss/custom.scss';
 
 
 
@@ -27,15 +30,20 @@ const Starts:React.FC = () => {
     <div className="starts">
       <div className="starts__card one">
         <span className="icon__starts"><BsFillCalendarDateFill color="#41f1b6" size="3.5rem"/></span>
-        <h3>{employees.length}</h3>
+        <h3>{employees.length-14}</h3>
         <small>Employees working today</small>
         <div className="progress">
-          <svg>
-            <circle cx='35' cy='35' r='30'></circle>
-            </svg>
-            <div className="number">
-              <small>81%</small>
-            </div>
+        <CircularProgressbar value={employees.length-14} maxValue={25} text={`${(employees.length-14)/25 * 100}%`} 
+        styles={buildStyles({
+          strokeLinecap: 'round',
+          textSize: '26px',
+          pathTransitionDuration: 0.5,
+          pathColor: `#7380ec`,
+          textColor: '#7d8da1',
+          trailColor: 'transparent',
+          backgroundColor: 'transparent',
+        })}
+        />
         </div>
       </div>
       <div className="starts__card two">
@@ -43,12 +51,17 @@ const Starts:React.FC = () => {
         <h3>{employees.length}</h3>
         <small>Active Employees</small>
         <div className="progress">
-          <svg>
-            <circle cx='35' cy='35' r='30'></circle>
-            </svg>
-            <div className="number">
-              <small>81%</small>
-            </div>
+        <CircularProgressbar value={employees.length} maxValue={25} text={`${employees.length/25 * 100}%`} 
+        styles={buildStyles({
+          strokeLinecap: 'round',
+          textSize: '26px',
+          pathTransitionDuration: 0.5,
+          pathColor: `#7380ec`,
+          textColor: '#7d8da1',
+          trailColor: 'transparent',
+          backgroundColor: 'transparent',
+        })}
+        />
         </div>
       </div>
       <div className="starts__card three">
@@ -56,12 +69,17 @@ const Starts:React.FC = () => {
         <h3>{departments}</h3>
         <small>Total Departments</small>
         <div className="progress">
-          <svg>
-            <circle cx='35' cy='35' r='30'></circle>
-            </svg>
-            <div className="number">
-              <small>81%</small>
-            </div>
+        <CircularProgressbar value={departments} maxValue={25} text={`${departments/25 * 100}%`} 
+        styles={buildStyles({
+          strokeLinecap: 'round',
+          textSize: '26px',
+          pathTransitionDuration: 0.5,
+          pathColor: `#7380ec`,
+          textColor: '#7d8da1',
+          trailColor: 'transparent',
+          backgroundColor: 'transparent',
+        })}
+        />
         </div>
       </div>
       <div className="starts__card four">
@@ -69,12 +87,17 @@ const Starts:React.FC = () => {
         <h3>{employees.length}</h3>
         <small>Total Employees</small>
         <div className="progress">
-          <svg>
-            <circle cx='35' cy='35' r='30'></circle>
-            </svg>
-            <div className="number">
-              <small>81%</small>
-            </div>
+        <CircularProgressbar value={employees.length} maxValue={25} text={`${employees.length/25 * 100}%`} 
+        styles={buildStyles({
+          strokeLinecap: 'round',
+          textSize: '26px',
+          pathTransitionDuration: 0.5,
+          pathColor: `#7380ec`,
+          textColor: '#7d8da1',
+          trailColor: 'transparent',
+          backgroundColor: 'transparent',
+        })}
+        />
         </div>
       </div>
     </div>
