@@ -30,6 +30,7 @@
              align-items: center;
              padding: 0.5rem;
              gap: 0.3rem;
+             box-shadow: $box-shadow;
              img{
                  background-color: $color-info-dark;
                  border-radius: 50%;
@@ -70,6 +71,7 @@
                  padding: 0.5rem 1rem;
                  border-radius: $border-radius-3;
                  font-weight: 700;
+                 
                  &:hover{
                     transform: scale(1.1);
                  }
@@ -99,6 +101,7 @@
              flex-direction: column;
              justify-content: flex-start;
             align-items: center;
+            box-shadow: $box-shadow;
             h3{
                 color: $color-dark;
                 font-size: 1.2rem;
@@ -187,20 +190,26 @@
      
      }
      .welcome-info{
-         display: flex;
-         flex-direction: column;
-         margin: 1.5rem 0;
-         color: $color-info-dark;
-         h2{
-             color:$color-dark;
-         }
- 
- 
-     }
+        display: flex;
+        flex-direction: column;
+        margin:  $space-s 0;
+        color: $color-info-dark;
+       
+        h2{
+            color:$color-dark;
+            font-size: $step-0;
+        }
+        span{
+            font-size:   $step--1;
+        }
+
+
+    }
      .users-list{
          display: flex;
          flex-direction: column;
-         overflow:hidden;    
+         overflow:hidden;  
+         box-shadow: $box-shadow;  
          .user-title{
              display: flex;
              justify-content: space-between;
@@ -217,32 +226,39 @@
              }
          }
          .results{
-             background: white;
-             border-radius: $border-radius-3;
-             padding: 1rem;
-             display: flex;
-             flex-direction: column;
-             overflow-y: auto;
-             height: auto;
-             max-height: 45rem;
-             width: 100%;
-             span{
-                 padding: 0.3rem;
-                 font-weight: 500;
-                 width: 98%;
-                 margin: 0.2rem auto;
-                 color: $color-info-dark;
-                 border-radius: $border-radius-1;
-                 &:hover{
-                     border:2px solid $color-primary;
-                     
-                 }
-                 small{
-                     opacity: 0.9;
-                 }
-             }
-            
-         }
+        
+            background: $color-white;
+            border-radius: $border-radius-3;
+            padding: $space-xs;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            height: auto;
+            max-height: 35rem;
+            width: 100%;
+            span{
+                padding: $space-3xs;
+                font-weight: 500;
+                width: 98%;
+                margin: $space-3xs auto;
+                color: $color-info-dark;
+                border-radius: $border-radius-1;
+                &.active{
+                    border:2px solid $color-primary;
+                }
+                &:focus-within{
+                    border:2px solid $color-primary;
+                }
+                &:hover{
+                    border:2px solid $color-primary;
+                    
+                }
+                small{
+                    opacity: 0.9;
+                }
+            }
+           
+        }
  
      }
      }

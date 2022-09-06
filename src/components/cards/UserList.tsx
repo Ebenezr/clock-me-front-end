@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { appContext } from '../../pages/Main';
+import { getDepartment } from './Userinfo';
 
 
 interface UserListProps{
@@ -17,7 +18,7 @@ const UserList:React.FC<UserListProps>=({renderUser})=> {
         }}
       > 
          <h4>{users.name}</h4>
-        <small>{users.department_id}</small>
+        <small>{getDepartment(users.department_id)}</small>
       </span>
     ))}
   </div>

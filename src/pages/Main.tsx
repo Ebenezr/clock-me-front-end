@@ -59,8 +59,9 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
       setUsers(deluser);
       axiosRequest.delete(`${requests.deleteuser}/${id}`)
       .then((response)=>{
-        setCurrentUser({})
+        
         if(Object.values(response.data).length > 1) {
+          setCurrentUser({})
           alert("User Deleted succesfully :)")
         }else{
         alert("Task Failed :(");

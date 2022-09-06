@@ -8,11 +8,11 @@ header{
     justify-content: space-between;
     
     align-items: center;
-    padding: 0.5rem 2rem;
+    padding: $space-2xs $space-m;
     color:$color-info-dark;
     span{
         display: flex;
-        gap:0.5rem;
+        gap:$space-2xs;
         cursor: pointer;
         align-items: center;
 
@@ -21,6 +21,7 @@ header{
         background: transparent;
         border:none;
         cursor: pointer;
+    
         
     }
     .mobileNav{

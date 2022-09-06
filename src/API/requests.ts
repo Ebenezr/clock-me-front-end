@@ -5,7 +5,7 @@ const requests={
     fetchDepartments:"/departments/count",
     employeesadd: "/employees/register",
     updateinfo: '/employees/update',
-    deleteuser: '/employees/delete'
+    deleteuser: '/employee/delete'
    
 }
 

@@ -4,12 +4,8 @@ import { MdMenu } from "react-icons/md";
 import Aside from "./nav/nav";
 import { MainProps } from "../pages/Main";
 import { useNavigate } from "react-router-dom";
-// interface MainProps{
-//   authenticated:boolean,
-//   setauth(auth:boolean):void
 
-// }
-const Header:React.FC<MainProps> = ({setauth, authenticated}) => {
+const Header:React.FC<MainProps> = () => {
   const navigate = useNavigate();
   const [toggleNavBar, setToggle] = useState(false);
 
@@ -20,17 +16,15 @@ const Header:React.FC<MainProps> = ({setauth, authenticated}) => {
           setToggle(!toggleNavBar);
         }}
       >
-        <MdMenu />
+        <MdMenu size="3rem" color="#dce1eb"/>
         {toggleNavBar ? <Aside /> : null}
       </button>
       <span>
-        <RiLogoutCircleLine></RiLogoutCircleLine>
+        <RiLogoutCircleLine size="1.5rem" color="#dce1eb"/>
         <h3
           onClick={() => {
-            //setauth(!authenticated);
             localStorage.setItem("authenticated", JSON.stringify(false));
-            navigate("/");
-            //localStorage.clear();
+            navigate("/login");
           }}
         >
           Logout

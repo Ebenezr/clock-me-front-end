@@ -251,10 +251,14 @@
     .welcome-info{
         display: flex;
         flex-direction: column;
-        margin: $space-m 0;
+        margin:  $space-s 0;
         color: $color-info-dark;
         h2{
             color:$color-dark;
+            font-size: $step-0;
+        }
+        span{
+            font-size:   $step--1;
         }
 
 
