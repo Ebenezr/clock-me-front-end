@@ -11,7 +11,7 @@ import { TimecardProp } from "./Timecard";
 
 
 
-const Admin:React.FC<TimecardProp> = ({currentuser,setCurrentUser,filterUsers}) => {
+const Admin:React.FC<TimecardProp> = ({currentuser,setCurrentUser,filterUsers,deleteUser}) => {
   const employees = useContext(appContext);
   const inputEl = useRef("");
   // const handleFilterFunction = () => {
@@ -27,10 +27,8 @@ const Admin:React.FC<TimecardProp> = ({currentuser,setCurrentUser,filterUsers}) 
     const userobj = user[0];
     setCurrentUser(userobj);
   };
-//  //delete user
-//   const delUser = () => {
-//     deleteUser(currentuser.id);
-//   };
+
+  
 
   return (
     <section className="admin__view">
@@ -68,7 +66,7 @@ const Admin:React.FC<TimecardProp> = ({currentuser,setCurrentUser,filterUsers}) 
           <NavLink className="btn-new btn"  to="addnew">
             Add New?
           </NavLink>
-          <button className="btn-del btn">
+          <button className="btn-del btn" onClick={()=>deleteUser(currentuser.id)}> 
             Remove user
           </button>
         </div>

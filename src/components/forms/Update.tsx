@@ -1,23 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useState} from "react";
+import { axiosRequest } from "../../API/api";
+import { requests } from "../../API/requests";
 import { userInterface } from "../../interfaces/interface";
 
 
+interface Updateprops{
+  currentuser:userInterface,
+  setCurrentUser(obj:userInterface):void,
 
+}
 
-const Update:React.FC = (currentuser:any) => {
+const Update:React.FC<Updateprops> = ({currentuser,setCurrentUser}) => {
+  const [loading,setIsLoading] =useState(true);
   //hold user data
-  const [formData, setFormData] = useState<userInterface>({
-    name: currentuser?.name,
-    username: currentuser?.username,
-    password: currentuser?.password,
-    usertype: currentuser?.usertype,
-    staffid: currentuser?.staffid,
-    department_id: currentuser?.department_id,
-    avatar: currentuser?.avatar,
-    timestamp: currentuser?.timestamp,
-    title: currentuser?.title,
-    gender: currentuser?.gender
-  });
+  const [formData, setFormData] = useState<userInterface>({});
+ //set focus
+ useEffect(() => {
+  setFormData(currentuser)
+}, [currentuser]);
+  
 
 //hangle change event
 const handleChange = (event:any) => {
@@ -30,11 +31,21 @@ const handleChange = (event:any) => {
   setFormData({ ...formData, [key]: value });
 };
 
-  const handleSubmit = (e:any) => {
+const handleSubmit = (e:React.SyntheticEvent) => {
     e.preventDefault();
-    // setCurrentuser(formData);
-    // setUsers(users);
-    // updateUser(currentuser.id, formData);
+    axiosRequest.patch(`${requests.updateinfo}/${currentuser.id}`, formData)
+    .then(response =>  {
+      console.log(formData)
+      console.log(response.data)
+      if(Object.values(response.data).length > 1) {
+          alert("Update successful")
+
+      }else{
+        alert("Employee Not Found");
+      }      
+}).then(() => setIsLoading(false))  
+
+  
   };
 
   return (
@@ -44,7 +55,6 @@ const handleChange = (event:any) => {
         <input
           id="name"
           type="text"
-        //   ref={userRef}
           className="inputs"
           value={formData?.name}
           onChange={handleChange}
@@ -136,7 +146,7 @@ const handleChange = (event:any) => {
       <span className="checkbox">
         Admin ?
         <input
-          id="admin"
+          id="usertype"
           type="checkbox"
           checked={formData?.usertype === 1?true:false}
           onChange={handleChange}

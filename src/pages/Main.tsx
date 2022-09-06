@@ -52,52 +52,31 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
   }, []);
 
 
-  //console.log(users)
- 
-
   //delete user
-  const deleteUser = (id:number) => {
+  const deleteUser = (id:number):void => {
     try {
       let deluser = users?.filter((user:userInterface) => user?.id !== id);
       setUsers(deluser);
-      axiosRequest.delete(`/employee/${id}`)
-      .then(()=>setCurrentUser({}))
-      .then(()=>alert("User Deleted succesfully :)"))
+      axiosRequest.delete(`${requests.deleteuser}/${id}`)
+      .then((response)=>{
+        setCurrentUser({})
+        if(Object.values(response.data).length > 1) {
+          alert("User Deleted succesfully :)")
+        }else{
+        alert("Task Failed :(");
+        }})
     } catch (err) {
       console.error(err);
       alert("Task Failed :(");
     }
   };
 
-  //post data to db
-  const postData = (formData:userInterface) => {
-    try {
-      axiosRequest.post('/employees', formData)
-     // .then(()=>setUsers([...users, formData]))
-      .then(()=>alert("User Added succesfully :)"))
-    } catch (err) {
-      console.log(err);
-      alert("Task Failed :(");
-    }
-  };
 
   //patch timestamp to db
   const postTimeStamp = (id:number, formData:userInterface) => {
     try {
       axiosRequest.patch(`/employees/${id}`, formData)
       // .then(()=>setUsers([...users, formData]))
-    } catch (err) {
-      console.log(err);
-      alert("Task Failed :(");
-    }
-  };
-
-  //update user details request
-  const updateUser = (id:number, formData:userInterface) => {
-    try {
-      axiosRequest.patch(`employees/${id}`, formData)
-      .then(()=>setUsers(users))
-      .then(()=>alert("User Updated succesfully :)"))
     } catch (err) {
       console.log(err);
       alert("Task Failed :(");
@@ -167,6 +146,7 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
               currentuser={currentUser}
               setCurrentUser={setCurrentUser}
               filterUsers={filterUsers}
+              deleteUser={deleteUser}
               />
             }
           >
@@ -181,7 +161,12 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
             <Route
               path="update"
               element={
-                <Update  />
+                <Update  
+                
+                currentuser={currentUser}
+                setCurrentUser={setCurrentUser}
+                />
+
               }
             />
           </Route>

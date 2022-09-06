@@ -4,6 +4,8 @@ const requests={
     loginuser:"/login/user",
     fetchDepartments:"/departments/count",
     employeesadd: "/employees/register",
+    updateinfo: '/employees/update',
+    deleteuser: '/employees/delete'
    
 }
 

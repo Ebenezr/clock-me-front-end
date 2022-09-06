@@ -7,22 +7,15 @@ const AddNew:React.FC =() =>{
   //hold user data
   const [formData, setFormData] = useState<userInterface>();
   const [loading,setIsLoading] =useState(true);
-//   const userRef = useRef(null);
-  //funtion to generate staffid
-  // function staffIdGen() {
-  //   const number = Math.floor(1000 + Math.random() * 9000);
-  //   return `CM-${number}`;
-  // }
-  //fuction to generate profile pictures
-  function proPicGen() {
+
+  function proPicGen():string {
     let imgurl = "https://picsum.photos/";
     const number = Math.floor(100 + Math.random() * 10);
     return `${imgurl}/${number}`;
   }
   //set focus
   useEffect(() => {
-    // userRef.current.focus();
-    // console.log(formData.)
+    setFormData({ ...formData, avatar: proPicGen() });
   }, []);
 
   //hangle change event
@@ -156,7 +149,7 @@ const AddNew:React.FC =() =>{
           onChange={handleChange}
         />
       </span>
-      <button className="btn-submit">Create new</button>
+      <button className="btn-submit">Register Employee</button>
     </form>
   );
 }

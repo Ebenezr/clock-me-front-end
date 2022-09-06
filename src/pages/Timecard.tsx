@@ -13,6 +13,7 @@ export interface TimecardProp{
   postTimeStamp?(id:number,obj:userInterface):void
   filterUsers?(str:string):void;
   activeclassname?:string
+  deleteUser?(id:number):void
 
 }
 
