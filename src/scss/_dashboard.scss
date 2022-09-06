@@ -96,8 +96,8 @@
             padding:   $space-xs $space-m;
             gap: $space-2xs;
         .starts__card{
-            width: 12rem;
-            height: 7rem;
+            width: 18rem;
+            height: 8rem;
             background: $color-white;
             padding: $space-2xs;
             display: flex;
@@ -148,6 +148,10 @@
         color: $color-info-dark;
         h2{
             color:$color-dark;
+            font-size: $step-0;
+        }
+        span{
+            font-size:   $step--1;
         }
 
 
