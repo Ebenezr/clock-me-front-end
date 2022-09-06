@@ -5,34 +5,50 @@ import Searchbar from "../components/forms/Searchbar";
 import Employeecard from "../components/cards/Employeecard";
 import { useContext } from "react";
 import { userInterface } from "../interfaces/interface";
+import { appContext } from "./Main";
 
 
 
 const Dashboard:React.FC = () => {
- 
+  const employees = useContext(appContext);
+//{avatar,department}=employees;
+const inputEl=React.useRef<HTMLInputElement>(null);
+  const handleFilter=()=>{
+    if(null !== inputEl.current){
+        //filterUsers(inputEl.current.value);
+    }
+  }
+
 
   return (
     <section className="dashboard__view">
-      <article className="left">
+  <article className="left">
         <Welcomeinfo />
-        <Starts  />
+        <Starts /> 
         <Searchbar />
         <div className="users-list">
           <div className="user-title">
             <h3>Employees </h3>
+            <select
+            //   type="option"
+            //   ref={inputEl}
+              onChange={handleFilter}
+            >
+              <option value="all">Filter</option>
+              <option value="System Design">System Design</option>
+              <option value="sales">Sales</option>
+              <option value="hospitality">Hospitality</option>
+            </select>
           </div>
         </div>
       </article>
       <article className="right">
-        {/* {allusers?.map((profile, index) => (
+        {employees?.map((employee:userInterface) => (
           <Employeecard
-            key={index}
-            avatar={profile.picture.medium}
-            usrname={profile.name.first}
-            staffid={profile.cell}
-            department={profile.email}
+            key={employee.id}
+            employee={employee}          
           />
-        ))} */}
+        ))}
       </article>
     </section>
   );
