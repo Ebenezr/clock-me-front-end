@@ -1,15 +1,25 @@
-import React,{useContext} from "react";
+import React,{useContext, useState} from "react";
 import {
   BsFillCalendarDateFill,
   BsPieChartFill,
   BsServer,
 } from "react-icons/bs";
+import { axiosRequest } from "../../API/api";
+import { requests } from "../../API/requests";
 import { appContext } from "../../pages/Main";
 
 
 
 const Starts:React.FC = () => {
+  const [departments, setDepartment]=useState<number>();
   const employees = useContext(appContext);
+
+  axiosRequest.get(requests.fetchDepartments).then((response) =>
+  { 
+    
+    setDepartment(response.data)});
+
+
   //get total number of departments
   //const unique = [...new Set(employees.map((item) => item.department))];
 
@@ -43,7 +53,7 @@ const Starts:React.FC = () => {
       </div>
       <div className="starts__card three">
       <span className="icon__starts"><BsPieChartFill color="#ff7782" size="3.5rem" /></span>
-        <h3>{employees.length}</h3>
+        <h3>{departments}</h3>
         <small>Total Departments</small>
         <div className="progress">
           <svg>

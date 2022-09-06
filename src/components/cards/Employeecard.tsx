@@ -6,13 +6,12 @@ interface EmployeecardProp{
   {
     avatar?:string,
     username?:string,
-    department?:string,
     staffid?:string,
     email?:string,
   }
 }
 
-const Employeecard:React.FC<EmployeecardProp> = ({employee:{avatar,username,department,staffid,email}}) => {
+const Employeecard:React.FC<EmployeecardProp> = ({employee:{avatar,username,staffid,email}}) => {
   return (
     <div className="emp__card" id="card">
       <div className="top">
