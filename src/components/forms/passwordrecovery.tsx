@@ -33,13 +33,13 @@ const PasswordRecovery:React.FC<formData>=()=> {
 
 
     //email validator
-    const checkEmail = (email:string) => {
-        const mailformat= new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
-        if(email.match(mailformat)){
-            setvalidEmail(false);
-            console.groupCollapsed(validemail)
-        }
-    }
+    // const checkEmail = (email:string) => {
+    //     const mailformat= new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+    //     if(email.match(mailformat)){
+    //         setvalidEmail(false);
+    //         console.groupCollapsed(validemail)
+    //     }
+    // }
     //hangle change event
     const handleChange = (event:any):void => {
         const key:string = event.target.id;

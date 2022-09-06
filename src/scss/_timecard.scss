@@ -19,7 +19,7 @@
          overflow: hidden;
          .card{
             
-             background: white;
+             background: $color-white;
              border-radius: $border-radius-3;
              width: 80%;
              margin: 0.5rem auto;
@@ -91,7 +91,7 @@
  
          }
          .forms-container{
-             background: white;
+             background: $color-white;
              border-radius: $border-radius-3;
              flex-grow: 1;
              display: flex;

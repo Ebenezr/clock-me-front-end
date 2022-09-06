@@ -17,7 +17,7 @@
 
        .emp__card1 {
         width: 18rem;
-        background: white;
+        background: $color-white;
         height: 6rem;
         border-radius: 0.7rem;
         display: flex;
@@ -25,7 +25,7 @@
         padding: 0.3rem;
       
       img {
-        background-color: #14213d;
+        background-color: $color-dark-variant;
         border-radius: 50%;
         height: 2.5rem;
         width: 2.5rem;
@@ -40,7 +40,7 @@
         font-weight: 500;
         gap: 0.5rem;
         position: relative;
-        font-size: 0.7rem;
+        font-size: $step-1;
         h3{
             color: $color-dark;
         }
@@ -81,7 +81,7 @@
         color: $color-info-dark;
         border-radius: $border-radius-2;
         height: 10rem;
-        background: white;
+        background: $color-white;
         padding: 0.5rem;
         display: grid;
         grid-template-columns: 25% auto;
@@ -138,7 +138,7 @@
         .starts__card{
             width: 12rem;
             height: 7rem;
-            background: white;
+            background: $color-white;
             padding: 0.6rem;
             display: flex;
             gap: 0.5rem;
