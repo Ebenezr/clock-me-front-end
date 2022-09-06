@@ -58,7 +58,9 @@ const Admin:React.FC<TimecardProp> = ({currentuser,setCurrentUser,filterUsers}) 
         </div>
       </article>
       <article className="right">
-        <Userinfo />
+        <Userinfo 
+            currentuser={currentuser}
+        />
         <div className="right-manage">
           <NavLink className="btn-new btn" to="update">
             Update Info

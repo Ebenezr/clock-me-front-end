@@ -8,10 +8,10 @@ import { userInterface } from "../interfaces/interface";
 
 
 export interface TimecardProp{
-  currentuser:userInterface,
-  setCurrentUser(obj:userInterface):void
+  currentuser?:userInterface,
+  setCurrentUser?(obj:userInterface):void
   postTimeStamp?(id:number,obj:userInterface):void
-  filterUsers(str:string):void;
+  filterUsers?(str:string):void;
   activeclassname?:string
 
 }
@@ -82,7 +82,9 @@ const Timecard:React.FC<TimecardProp> = ({currentuser,setCurrentUser,postTimeSta
         </div>
       </article>
       <article className="right">
-        <Userinfo />
+        <Userinfo 
+          currentuser={currentuser}
+        />
         <div className="right-manage">
           <button className="btn-out btn" onClick={clockInTime}>
             Clock-In

@@ -15,25 +15,57 @@ const Starts:React.FC = () => {
 
   return (
     <div className="starts">
-      <div className="starts__card">
-        <BsFillCalendarDateFill />
+      <div className="starts__card one">
+        <span className="icon__starts"><BsFillCalendarDateFill color="#41f1b6" size="3.5rem"/></span>
         <h3>{employees.length}</h3>
         <small>Employees working today</small>
+        <div className="progress">
+          <svg>
+            <circle cx='35' cy='35' r='30'></circle>
+            </svg>
+            <div className="number">
+              <small>81%</small>
+            </div>
+        </div>
       </div>
-      <div className="starts__card">
-        <BsFillCalendarDateFill />
-        {/* <h3>{unique.length}</h3> */}
+      <div className="starts__card two">
+      <span className="icon__starts"><BsFillCalendarDateFill color="#7380ec" size="3.5rem"/></span>
+        <h3>{employees.length}</h3>
         <small>Active Employees</small>
+        <div className="progress">
+          <svg>
+            <circle cx='35' cy='35' r='30'></circle>
+            </svg>
+            <div className="number">
+              <small>81%</small>
+            </div>
+        </div>
       </div>
-      <div className="starts__card">
-        <BsPieChartFill />
-        {/* <h3>{unique.length}</h3> */}
+      <div className="starts__card three">
+      <span className="icon__starts"><BsPieChartFill color="#ff7782" size="3.5rem" /></span>
+        <h3>{employees.length}</h3>
         <small>Total Departments</small>
+        <div className="progress">
+          <svg>
+            <circle cx='35' cy='35' r='30'></circle>
+            </svg>
+            <div className="number">
+              <small>81%</small>
+            </div>
+        </div>
       </div>
-      <div className="starts__card">
-        <BsServer />
-        <h4>{employees.length}</h4>
+      <div className="starts__card four">
+      <span className="icon__starts"><BsServer color="#ffbb55" size="3.5rem" /></span>
+        <h3>{employees.length}</h3>
         <small>Total Employees</small>
+        <div className="progress">
+          <svg>
+            <circle cx='35' cy='35' r='30'></circle>
+            </svg>
+            <div className="number">
+              <small>81%</small>
+            </div>
+        </div>
       </div>
     </div>
   );

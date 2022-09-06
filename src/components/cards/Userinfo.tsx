@@ -1,11 +1,12 @@
 import React from "react";
+import { TimecardProp } from "../../pages/Timecard";
 
-const Userinfo = () => {
+const Userinfo:React.FC<TimecardProp> = ({currentuser}) => {
 
 
   return (
     <div className="card">
-      {/* <img src={currentuser.avatar} alt="avatar" />
+      <img src={currentuser.avatar} alt="avatar" />
       <h3>{currentuser.name}</h3>
       <span className="card-info">
         <span>Usertype</span>
@@ -18,7 +19,7 @@ const Userinfo = () => {
       <span className="card-info">
         <span>Department</span>
         <p>{currentuser.department}</p>
-      </span> */}
+      </span>
     </div>
   );
 };

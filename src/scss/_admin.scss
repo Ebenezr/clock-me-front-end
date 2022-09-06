@@ -154,26 +154,74 @@
             padding: $space-xs;
             gap: $space-2xs;
         .starts__card{
-            width: 15rem;
-            height: 7rem;
+            width: 18rem;
+            height: 10rem;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: $space-xl $space-s $space-xl;
+            grid-template-areas:
+              "a b c"
+              "d e c"
+              "f f f";
             box-shadow: $box-shadow;
             background: $color-white;
             padding: $space-xs;
-            display: flex;
-            gap: 0.5rem;
-            flex-direction: column;
+        
+            gap: $space-3xs;
             border-radius: $border-radius-3;
-            :first-child{
-                color: $color-primary;
-                font-size: $step-2;
+            transition: all 300ms ease;
+            .icon__starts{
+                grid-area: a;
             }
             h3{
+                grid-area: d;
                 color: $color-dark;
             }
             small{
+                grid-area: f;
                 color: $color-info-dark;
             }
-        }}
+            &:hover{
+                box-shadow: none;
+            }
+            .progress{
+                grid-area: c;
+                position: relative;
+                width: 5rem;
+                height: 5rem;
+                border-radius: 50%;
+                .number{
+                    position: absolute;
+                    top:0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    small{
+                        font-size: $step-1;
+                    }
+
+                }
+                svg{
+                    width: 5rem;
+                    height: 5rem;
+                    circle{
+                        fill: none;
+                        stroke: $color-primary;
+                        stroke-width: 9;
+                        stroke-linecap: round;
+                        // transform: translate(5px,5px);
+                        stroke-dasharray: 110;
+                        stroke-dashoffset: 92;
+                    }
+                }
+            }
+        }
+    
+    
+    }
 
         form{
             position: relative;
