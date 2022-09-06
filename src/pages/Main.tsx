@@ -164,7 +164,9 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
             path="admin"
             element={
               <Admin
-   
+              currentuser={currentUser}
+              setCurrentUser={setCurrentUser}
+              filterUsers={filterUsers}
               />
             }
           >

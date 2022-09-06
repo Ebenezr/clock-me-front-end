@@ -1,35 +1,33 @@
 @import "./variables";
 
 .admin__view{
-   // background: rgb(149, 55, 55);
     height: 100%;
     width: 100%;
     display: grid;
-    //place-items: center;
     grid-template-columns: 1.5fr 1fr;
     overflow: hidden;
     .right{
-       // background: grey;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 1rem;
+        padding: $space-xs;
         overflow: hidden;
         .card{
            
             background: $color-white;
             border-radius: $border-radius-3;
+            box-shadow: $box-shadow;
             width: 80%;
-            margin: 0.5rem auto;
+            margin: $space-2xs auto;
             height: 18rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0.5rem;
-            gap: 0.3rem;
+            padding: $space-2xs;
+            gap: $space-3xs;
             img{
                 background-color: $color-info-dark;
                 border-radius: 50%;
@@ -37,7 +35,7 @@
                 height: 5rem;
             }
             h3{
-                font-size: 2rem;
+                font-size: $step-3;
                 color: $color-dark;
                 
             }
@@ -48,11 +46,11 @@
                 width: 80%;
                 display: flex;
                 align-items: center;
-                gap: 0.2rem;
+                gap: $space-3xs;
                 :first-child{
                     color: $color-dark;
                     background: $color-light;
-                    padding: 0.1rem 0.2rem;
+                    padding: 0.1rem $space-3xs;
                     height: 100%;
                     border-right: 1px solid $color-info-dark;
 
@@ -64,10 +62,10 @@
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            padding: 1rem;
+            gap: $space-xs;
+            padding: $space-xs;
             .btn{
-                padding: 0.5rem 1rem;
+                padding: $space-2xs $space-xs;
                 border-radius: $border-radius-3;
                 font-weight: 700;
             }
@@ -86,22 +84,18 @@
                     background: transparent;
                     border: 2px solid $color-danger;
                     color: $color-info-dark;
-
                 }
             }
             .active{
                 border-radius: $border-radius-3;
-                
                 background: $color-primary;
                 color: $color-info-light;
-
             }
-
-
         }
         .forms-container{
             background: $color-white;
             border-radius: $border-radius-3;
+            box-shadow: $box-shadow;
             flex-grow: 1;
             display: flex;
             width: 80%;
@@ -110,8 +104,8 @@
             .addnew{
                 display: flex;
                 flex-direction: column;
-                gap:0.2rem;
-                padding: 0.4rem;
+                gap:  $space-3xs;
+                padding: $space-2xs;
                 label{
                     color: $color-dark;
                     font-weight: 500;
@@ -119,7 +113,7 @@
               
                 .inputs{
                     width: 100%;
-                    padding: 0.4rem;
+                    padding: $space-2xs;
                     background: transparent;
                     border: 1px solid $color-info-dark;
                     border-radius: $border-radius-1;
@@ -136,7 +130,7 @@
                 .btn-submit{
                     background: $color-primary;
                     border: none;
-                    padding: 0.5rem;
+                    padding: $space-2xs;
                     font-weight: 600;
                     letter-spacing: 0.2rem;
                     border-radius: $border-radius-3;
@@ -151,26 +145,27 @@
         flex-direction: column;
         position: relative;
         max-height: 100%;
-        padding:1rem;
+        padding:$space-xs;
         overflow: hidden;
         .starts{
             width: 100%;
             justify-content: space-between;
             display: flex;
-            padding: 0.8rem;
-            gap: 0.5rem;
+            padding: $space-xs;
+            gap: $space-2xs;
         .starts__card{
-            width: 12rem;
+            width: 15rem;
             height: 7rem;
+            box-shadow: $box-shadow;
             background: $color-white;
-            padding: 0.6rem;
+            padding: $space-xs;
             display: flex;
             gap: 0.5rem;
             flex-direction: column;
             border-radius: $border-radius-3;
             :first-child{
                 color: $color-primary;
-                font-size: 1.7rem;
+                font-size: $step-2;
             }
             h3{
                 color: $color-dark;
@@ -182,8 +177,7 @@
 
         form{
             position: relative;
-            padding-top: 1.5rem;
-            //background: #fff;
+            padding-top: $space-m;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -199,8 +193,8 @@
         }
         .search__icon{
             position: absolute;
-            font-size: 2rem;
-            margin-right: 0.5rem;
+            font-size: $step-3;
+            margin-right: $space-2xs;
             color: $color-info-dark;
         }
     
@@ -208,7 +202,7 @@
     .welcome-info{
         display: flex;
         flex-direction: column;
-        margin: 1.5rem 0;
+        margin: $space-m 0;
         color: $color-info-dark;
         h2{
             color:$color-dark;
@@ -220,10 +214,11 @@
         display: flex;
         flex-direction: column;
         overflow:hidden;    
+        box-shadow: $box-shadow;
         .user-title{
             display: flex;
             justify-content: space-between;
-            margin: 1rem 0;
+            margin: $space-xs 0;
             h3{
                 color:$color-dark
             }
@@ -237,7 +232,7 @@
         .results{
             background: $color-white;
             border-radius: $border-radius-3;
-            padding: 1rem;
+            padding: $space-xs;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
@@ -245,10 +240,10 @@
             max-height: 35rem;
             width: 100%;
             span{
-                padding: 0.3rem;
+                padding: $space-3xs;
                 font-weight: 500;
                 width: 98%;
-                margin: 0.2rem auto;
+                margin: $space-3xs auto;
                 color: $color-info-dark;
                 border-radius: $border-radius-1;
                 &:hover{
@@ -279,7 +274,7 @@
         margin: 0 auto;
     }
     .users-list{
-        padding: 1rem 0;
+        padding: $space-xs 0;
         width: 90%;
         margin: 0 auto;
    
@@ -301,7 +296,7 @@
         }
         .forms-container{
             width: 90% !important;
-            padding: 1rem;
+            padding: $space-xs;
             .addnew{
                 width: 80%;
             }
@@ -316,10 +311,10 @@
             width: 90%;
             display: flex;
             justify-content: space-between;
-            gap: 0.5rem;
-            padding: 0.5rem;
+            gap: $space-2xs;
+            padding: $space-2xs;
             .btn{
-                padding: 0.2rem 0.5rem !important;
+                padding: $space-3xs $space-2xs !important;
                 border-radius: $border-radius-3;
                 font-weight: 700;
             }

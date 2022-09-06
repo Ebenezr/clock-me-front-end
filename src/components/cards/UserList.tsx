@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { appContext } from '../../pages/Main';
 
-const UserList:React.FC=()=> {
+
+interface UserListProps{
+  renderUser(id:number):void;
+}
+const UserList:React.FC<UserListProps>=({renderUser})=> {
+  const employees = useContext(appContext);
   return (
     <div className="results">
-    {/* {employees?.map((users) => (
+    {employees?.map((users) => (
       <span
         key={users.id}
         onClick={() => {
           renderUser(users.id);
         }}
-      > */}
-        {/* <h4>{users.name}</h4>
+      > 
+         <h4>{users.name}</h4>
         <small>{users.department}</small>
       </span>
-    ))} */}
+    ))}
   </div>
   )
 }

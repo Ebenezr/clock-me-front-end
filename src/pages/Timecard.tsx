@@ -7,11 +7,12 @@ import { appContext } from "./Main";
 import { userInterface } from "../interfaces/interface";
 
 
-interface TimecardProp{
+export interface TimecardProp{
   currentuser:userInterface,
   setCurrentUser(obj:userInterface):void
-  postTimeStamp(id:number,obj:userInterface):void
+  postTimeStamp?(id:number,obj:userInterface):void
   filterUsers(str:string):void;
+  activeclassname?:string
 
 }
 
@@ -20,13 +21,13 @@ const Timecard:React.FC<TimecardProp> = ({currentuser,setCurrentUser,postTimeSta
   console.log(employees)
   // const id = useId();
   const [stamps, setStamp] = useState<string>();
-  // const renderUser = (id) => {
-  //   const user = employees.filter((element) => {
-  //     return element.id === id;
-  //   });
-  //   const userobj = user[0];
-  //   setCurrentUser(userobj);
-  // };
+  const renderUser = (id:number):void => {
+    const user = employees.filter((element) => {
+      return element.id === id;
+    });
+    const userobj = user[0];
+    setCurrentUser(userobj);
+  };
 
   let timeIn:Date;
   let timeOut:Date;
@@ -75,7 +76,9 @@ const Timecard:React.FC<TimecardProp> = ({currentuser,setCurrentUser,postTimeSta
               <option value="hospitality">Hospitality</option>
             </select>
           </div>
-          <UserList />
+          <UserList 
+           renderUser={renderUser}
+          />
         </div>
       </article>
       <article className="right">
