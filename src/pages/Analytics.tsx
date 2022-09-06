@@ -26,22 +26,6 @@ const inputEl=React.useRef<HTMLInputElement>(null);
       <article className="left">
         <Welcomeinfo />
         <Starts /> 
-        <Searchbar />
-        <div className="users-list">
-          <div className="user-title">
-            <h3>Employees </h3>
-            <select
-            //   type="option"
-            //   ref={inputEl}
-              onChange={handleFilter}
-            >
-              <option value="all">Filter</option>
-              <option value="System Design">System Design</option>
-              <option value="sales">Sales</option>
-              <option value="hospitality">Hospitality</option>
-            </select>
-          </div>
-        </div>
       </article>
       <article className="right">
     

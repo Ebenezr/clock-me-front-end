@@ -15,22 +15,20 @@ const Update:React.FC = (currentuser:any) => {
     department_id: currentuser?.department_id,
     avatar: currentuser?.avatar,
     timestamp: currentuser?.timestamp,
+    title: currentuser?.title,
+    gender: currentuser?.gender
   });
 
-  const userRef = useRef();
-  //set focus
-  useEffect(() => {
-    // userRef.current.focus();
-  }, []);
-  //hangle change event
-  const handleChange = (event:any) => {
-    const key = event.target.id;
-    const value =
-      event.target.type === "checkbox"
-        ? event.target.checked
-        : event.target.value;
-    setFormData({ ...formData, [key]: value });
-  };
+//hangle change event
+const handleChange = (event:any) => {
+  const key = event.target.id 
+  const value =
+    event.target.type === "checkbox"
+      ? event.target.checked?1:0
+      : event.target.id === "department_id"? event.target.value = parseInt(event.target.value):event.target.value;
+
+  setFormData({ ...formData, [key]: value });
+};
 
   const handleSubmit = (e:any) => {
     e.preventDefault();
@@ -48,7 +46,7 @@ const Update:React.FC = (currentuser:any) => {
           type="text"
         //   ref={userRef}
           className="inputs"
-          value={formData.name}
+          value={formData?.name}
           onChange={handleChange}
           placeholder="Jon Doe"
         />
@@ -60,10 +58,34 @@ const Update:React.FC = (currentuser:any) => {
           id="username"
           type="text"
           className="inputs"
-          value={formData.username}
+          value={formData?.username}
           onChange={handleChange}
           placeholder="ebbe"
         />
+      </label>
+      <label>
+        Email
+        <input
+          required
+          id="email"
+          type="text"
+          className="inputs"
+          value={formData?.email}
+          onChange={handleChange}
+          placeholder="ebbe"
+        />
+      </label>
+      <label>
+      Gender
+        <select
+          id="gender"
+          className="inputs"
+          value={formData?.gender}
+          onChange={handleChange}
+        >
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
       </label>
       <label>
         Avatar
@@ -71,7 +93,7 @@ const Update:React.FC = (currentuser:any) => {
           id="avatar"
           type="text"
           className="inputs"
-          value={formData.avatar}
+          value={formData?.avatar}
           onChange={handleChange}
           placeholder="https://avater.png"
         />
@@ -82,47 +104,45 @@ const Update:React.FC = (currentuser:any) => {
           id="password"
           type="text"
           className="inputs"
-          value={formData.password}
+          value={formData?.password}
           onChange={handleChange}
           placeholder="******"
         />
       </label>
-      <label>
-        Department
-        <select
-          id="department"
-          className="inputs"
-          // value={formData?.department_id}
-          onChange={handleChange}
-        >
-          <option value="Sales">Sales</option>
-          <option value="Support Desk">Support Desk</option>
-          <option value="Human Resource">Human Resource</option>
-          <option value="Hospitality">Hospitality</option>
-        </select>
-      </label>
+      <label>Department </label>
+      <select
+        id="department_id"
+        className="inputs"
+        value={formData?.department_id}
+        onChange={handleChange}
+      >
+        <option value="1">Hospitality</option>
+        <option value="2">Human Resource</option>
+        <option value="3">Support Desk</option>
+        <option value="4">Design</option>
+        <option value="5">Technical Support</option>
+      </select>
 
-      {/* <label>
-        Staff-ID
+      <label>
+        Title
         <input
-          id="staffid"
+          id="title"
           type="text"
-          disabled
           className="inputs"
-          value={formData.staffid}
-          placeholder="SD-8456"
+          value={formData?.title}
+          placeholder="Managing Director"
         />
-      </label> */}
+      </label>
       <span className="checkbox">
         Admin ?
         <input
           id="admin"
           type="checkbox"
-          // checked={formData.admin}
+          checked={formData?.usertype === 1?true:false}
           onChange={handleChange}
         />
       </span>
-      <button className="btn-submit">Update</button>
+      <button className="btn-submit">Update Info</button>
     </form>
   );
 };
