@@ -26,6 +26,7 @@ const Analytics: React.FC<Analyticsprops> = ({
   currentuser,
   setCurrentUser,
 }) => {
+  const [useraccount, setuseracc] = useState<userInterface>();
   const [loading, setIsLoading] = useState(false);
   const [data, setdata] = useState({
     monday: 0,
@@ -36,6 +37,10 @@ const Analytics: React.FC<Analyticsprops> = ({
   });
 
   useEffect(() => {
+    const loggedUser: userInterface = JSON.parse(
+      localStorage.getItem("name") || "{}"
+    );
+    setuseracc(loggedUser);
     const getTimestamps = (id = 1) => {
       try {
         axiosRequest.get(`${requests.gettimestamp}/${id}`).then((response) => {
@@ -68,7 +73,7 @@ const Analytics: React.FC<Analyticsprops> = ({
     <section className="analytics__view">
       <article className="left">
         <Welcomeinfo />
-        <Usercard />
+        <Usercard currentuser={currentuser} />
       </article>
       <article className="right">
         {loading && (
@@ -81,7 +86,7 @@ const Analytics: React.FC<Analyticsprops> = ({
               ignoreEmptyPoints={true}
             />
             <SeriesTemplate nameField="day" />
-            <Title text="Weekly perfomance" subtitle={`${currentuser?.name}`}>
+            <Title text="Weekly perfomance" subtitle={`${useraccount?.name}`}>
               <Font color="white" />
             </Title>
           </Chart>

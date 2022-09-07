@@ -10,6 +10,9 @@ const requests = {
   updatetimestamp: "/employee/timestamps/update",
   gettimerecord: "/employee/timerecord",
   updatetimerecord: "/employee/timerecord/update",
+  getsalary: "/employee/fetch/salary",
+  gettotalhours: "/employee/fetch/totalhours",
+  getavaragetime: "/employee/fetch/avaragetime",
 };
 
 export { requests };
