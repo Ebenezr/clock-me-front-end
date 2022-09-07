@@ -163,7 +163,6 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
               path="update"
               element={
                 <Update  
-                
                 currentuser={currentUser}
                 setCurrentUser={setCurrentUser}
                 />
@@ -176,8 +175,10 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
           <Route
             path="analytics"
             element={
-              <Analytics />
-            }
+              <Analytics 
+                currentuser={currentUser}
+              />
+            } 
           />
         </Routes>
         <Routes>

@@ -12,6 +12,7 @@
     "@types/react-dom": "^18.0.6",
     "axios": "^0.27.2",
     "d3-ease": "^3.0.1",
+    "devextreme-react": "^22.1.4",
     "react": "^18.2.0",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
