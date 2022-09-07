@@ -8,6 +8,8 @@ const requests = {
   deleteuser: "/employee/delete",
   gettimestamp: "/employee/timestamps",
   updatetimestamp: "/employee/timestamps/update",
+  gettimerecord: "/employee/timerecord",
+  updatetimerecord: "/employee/timerecord/update",
 };
 
 export { requests };

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Userinfo from "../components/cards/Userinfo";
 import UserList from "../components/cards/UserList";
 import Welcomeinfo from "../components/cards/Welcomeinfo";
@@ -23,9 +23,23 @@ const Timecard: React.FC<TimecardProp> = ({
   postTimeStamp,
   filterUsers,
 }) => {
+  const [timerecord, setTimerecords] = useState({
+    monday: "",
+    tuesday: "",
+    wednesday: "",
+    thursday: "",
+    friday: "",
+  });
   const employees = useContext(appContext);
   // const id = useId();
   //const [stamps, setStamp] = useState<string>();
+
+  useEffect(() => {
+    axiosRequest
+      .get(`${requests.gettimerecord}/${currentuser?.id}`)
+      .then((response) => setTimerecords(response?.data));
+  }, [currentuser]);
+
   const renderUser = (id: number): void => {
     const user = employees.filter((element) => {
       return element.id === id;
@@ -78,6 +92,12 @@ const Timecard: React.FC<TimecardProp> = ({
       let timestamp = { [key]: value };
       return timestamp;
     };
+    const createTimerecord = () => {
+      const key = today;
+      const value = `${timeIn.toUTCString()}-${timeOut.toUTCString()}`;
+      let timestamp = { [key]: value };
+      return timestamp;
+    };
 
     //check if any account is selected
     if (Object.values(currentuser).length < 1) {
@@ -89,11 +109,15 @@ const Timecard: React.FC<TimecardProp> = ({
     }
     let today: string = getDay(timeIn);
     let hours: number = getHours(timeIn, timeOut);
-
+    // console.log(createTimerecord());
     try {
       axiosRequest.put(
         `${requests.updatetimestamp}/${currentuser?.id}`,
         createData()
+      );
+      axiosRequest.put(
+        `${requests.updatetimerecord}/${currentuser?.id}`,
+        createTimerecord()
       );
     } catch (e) {
       console.error(e);
@@ -135,9 +159,15 @@ const Timecard: React.FC<TimecardProp> = ({
         <div className="forms-container">
           <h3>My Timestamps</h3>
           <div className="timestamp-container">
-            {/* {currentuser.timestamp.map((times) => (
-              <span key={`${id}-stamps`}>{times}</span>
-            ))} */}
+            {timerecord?.monday && <span>{timerecord?.monday}</span>}
+
+            {timerecord?.tuesday && <span>{timerecord?.tuesday}</span>}
+
+            {timerecord?.wednesday && <span>{timerecord?.wednesday}</span>}
+
+            {timerecord?.thursday && <span>{timerecord?.thursday}</span>}
+
+            {timerecord?.friday && <span>{timerecord?.friday}</span>}
           </div>
         </div>
       </article>

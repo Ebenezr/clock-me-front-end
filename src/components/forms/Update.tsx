@@ -1,51 +1,52 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { axiosRequest } from "../../API/api";
 import { requests } from "../../API/requests";
 import { userInterface } from "../../interfaces/interface";
 
-
-interface Updateprops{
-  currentuser:userInterface,
-  setCurrentUser(obj:userInterface):void,
-
+interface Updateprops {
+  currentuser: userInterface;
+  setCurrentUser(obj: userInterface): void;
 }
 
-const Update:React.FC<Updateprops> = ({currentuser,setCurrentUser}) => {
-  const [loading,setIsLoading] =useState(true);
+const Update: React.FC<Updateprops> = ({ currentuser, setCurrentUser }) => {
+  const [loading, setIsLoading] = useState(true);
   //hold user data
   const [formData, setFormData] = useState<userInterface>({});
- //set focus
- useEffect(() => {
-  setFormData(currentuser)
-}, [currentuser]);
-  
+  //set focus
+  useEffect(() => {
+    console.log(formData?.usertype);
+    setFormData(currentuser);
+  }, [currentuser]);
+  console.log(formData?.usertype);
+  //hangle change event
+  const handleChange = (event: any) => {
+    const key = event.target.id;
+    const value =
+      event.target.type === "checkbox"
+        ? event.target.checked
+          ? 1
+          : 0
+        : event.target.id === "department_id"
+        ? (event.target.value = parseInt(event.target.value))
+        : event.target.value;
 
-//hangle change event
-const handleChange = (event:any) => {
-  const key = event.target.id 
-  const value =
-    event.target.type === "checkbox"
-      ? event.target.checked?1:0
-      : event.target.id === "department_id"? event.target.value = parseInt(event.target.value):event.target.value;
+    setFormData({ ...formData, [key]: value });
+  };
 
-  setFormData({ ...formData, [key]: value });
-};
-
-const handleSubmit = (e:React.SyntheticEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    axiosRequest.patch(`${requests.updateinfo}/${currentuser.id}`, formData)
-    .then(response =>  {
-      console.log(formData)
-      console.log(response.data)
-      if(Object.values(response.data).length > 1) {
-          alert("Update successful")
-
-      }else{
-        alert("Employee Not Found");
-      }      
-}).then(() => setIsLoading(false))  
-
-  
+    axiosRequest
+      .patch(`${requests.updateinfo}/${currentuser.id}`, formData)
+      .then((response) => {
+        console.log(formData);
+        console.log(response.data);
+        if (Object.values(response.data).length > 1) {
+          alert("Update successful");
+        } else {
+          alert("Employee Not Found");
+        }
+      })
+      .then(() => setIsLoading(false));
   };
 
   return (
@@ -86,7 +87,7 @@ const handleSubmit = (e:React.SyntheticEvent) => {
         />
       </label>
       <label>
-      Gender
+        Gender
         <select
           id="gender"
           className="inputs"
@@ -148,7 +149,7 @@ const handleSubmit = (e:React.SyntheticEvent) => {
         <input
           id="usertype"
           type="checkbox"
-          checked={formData?.usertype === 1?true:false}
+          checked={formData?.usertype === 1 ? true : false}
           onChange={handleChange}
         />
       </span>

@@ -15,6 +15,7 @@ import {
 } from "devextreme-react/chart";
 import { axiosRequest } from "../API/api";
 import { requests } from "../API/requests";
+import Usercard from "../components/cards/Usercard";
 
 interface Analyticsprops {
   currentuser?: userInterface;
@@ -38,7 +39,6 @@ const Analytics: React.FC<Analyticsprops> = ({
     const getTimestamps = (id = 1) => {
       try {
         axiosRequest.get(`${requests.gettimestamp}/${id}`).then((response) => {
-          console.log(response.data);
           setdata(response.data);
           setIsLoading(true);
           if (Object.values(response.data).length > 1) {
@@ -68,7 +68,7 @@ const Analytics: React.FC<Analyticsprops> = ({
     <section className="analytics__view">
       <article className="left">
         <Welcomeinfo />
-        <Starts />
+        <Usercard />
       </article>
       <article className="right">
         {loading && (

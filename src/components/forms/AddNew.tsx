@@ -1,14 +1,14 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { axiosRequest } from "../../API/api";
 import { requests } from "../../API/requests";
 import { userInterface } from "../../interfaces/interface";
 
-const AddNew:React.FC =() =>{
+const AddNew: React.FC = () => {
   //hold user data
   const [formData, setFormData] = useState<userInterface>();
-  const [loading,setIsLoading] =useState(true);
+  const [loading, setIsLoading] = useState(true);
 
-  function proPicGen():string {
+  function proPicGen(): string {
     let imgurl = "https://picsum.photos/";
     const number = Math.floor(100 + Math.random() * 10);
     return `${imgurl}/${number}`;
@@ -16,38 +16,41 @@ const AddNew:React.FC =() =>{
   //set focus
   useEffect(() => {
     setFormData({ ...formData, avatar: proPicGen() });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //hangle change event
-  const handleChange = (event:any) => {
-    const key = event.target.id 
+  const handleChange = (event: any) => {
+    const key = event.target.id;
     const value =
       event.target.type === "checkbox"
-        ? event.target.checked?1:0
-        : event.target.id === "department_id"? event.target.value = parseInt(event.target.value):event.target.value;
+        ? event.target.checked
+          ? 1
+          : 0
+        : event.target.id === "department_id"
+        ? (event.target.value = parseInt(event.target.value))
+        : event.target.value;
 
     setFormData({ ...formData, [key]: value });
   };
 
   //handle form submission
-  const handleSubmit = (e:React.SyntheticEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    
-    axiosRequest.post(requests.employeesadd, formData)
-    .then(response =>  {
-      console.log(formData)
-      console.log(response.data)
-      if(Object.values(response.data).length > 1) {
-          alert("Registration successful")
 
-      }else{
-        alert("Employee already exists");
-      }      
-}).then(() => setIsLoading(false))  
-
-}
-
-
+    axiosRequest
+      .post(requests.employeesadd, formData)
+      .then((response) => {
+        console.log(formData);
+        console.log(response.data);
+        if (Object.values(response.data).length > 1) {
+          alert("Registration successful");
+        } else {
+          alert("Employee already exists");
+        }
+      })
+      .then(() => setIsLoading(false));
+  };
 
   return (
     <form className="addnew" onSubmit={handleSubmit}>
@@ -73,7 +76,7 @@ const AddNew:React.FC =() =>{
         onChange={handleChange}
         placeholder="ebbe"
       />
-        <label className="required">Email </label>
+      <label className="required">Email </label>
       <input
         required
         id="email"
@@ -119,7 +122,6 @@ const AddNew:React.FC =() =>{
         <option value="5">Technical Support</option>
       </select>
 
-
       <label className="required">Title </label>
       <input
         id="title"
@@ -142,16 +144,11 @@ const AddNew:React.FC =() =>{
       />
       <span className="checkbox">
         Admin ?
-        <input
-          id="usertype"
-          type="checkbox"
-        
-          onChange={handleChange}
-        />
+        <input id="usertype" type="checkbox" onChange={handleChange} />
       </span>
       <button className="btn-submit">Register Employee</button>
     </form>
   );
-}
+};
 
 export default AddNew;
