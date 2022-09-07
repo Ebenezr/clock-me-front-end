@@ -5,21 +5,23 @@ import { userInterface } from "./interfaces/interface";
 import Main from "./pages/Main";
 import "./scss/style.scss";
 
-
 export const accContext = createContext<userInterface | undefined>(undefined);
-const App:React.FC = () =>{
-
+const App: React.FC = () => {
   const [acc, setAcc] = useState<userInterface>();
   const navigate = useNavigate();
   //protect app component
-  const [authenticated, setauthenticated] = useState<boolean>(false); 
+  const [authenticated, setauthenticated] = useState<boolean>(false);
 
   useEffect(() => {
-    const loggedUser:userInterface = JSON.parse(localStorage.getItem('name')|| '{}');
-    const auth:boolean = JSON.parse(localStorage.getItem('authenticated')||'');
+    const loggedUser: userInterface = JSON.parse(
+      localStorage.getItem("name") || "{}"
+    );
+    const auth: boolean = JSON.parse(
+      localStorage.getItem("authenticated") || ""
+    );
     if (auth) {
       setauthenticated(auth);
-      setAcc(loggedUser)
+      setAcc(loggedUser);
     } else {
       navigate("/");
       // Redirect if not loggedin
@@ -29,15 +31,15 @@ const App:React.FC = () =>{
   if (!authenticated) {
     navigate("/");
   }
- 
+
   return (
-       <accContext.Provider value={acc}>
-          <main className="dark-mode">
-            <Aside />
-            <Main authenticated={authenticated} setauth={setauthenticated}/>
-          </main>
-      </accContext.Provider>
+    <accContext.Provider value={acc}>
+      <main className="dark-mode">
+        <Aside />
+        <Main authenticated={authenticated} setauth={setauthenticated} />
+      </main>
+    </accContext.Provider>
   );
-}
+};
 
 export default App;

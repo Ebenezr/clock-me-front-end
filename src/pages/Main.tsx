@@ -1,7 +1,7 @@
-import React, { useState, useEffect, createContext,useContext } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import { axiosRequest } from '../API/api';
-import {requests} from '../API/requests';
+import { axiosRequest } from "../API/api";
+import { requests } from "../API/requests";
 import Footer from "../components/Footer";
 import AddNew from "../components/forms/AddNew";
 import Update from "../components/forms/Update";
@@ -13,20 +13,16 @@ import Dashboard from "./dashboard";
 import Timecard from "./Timecard";
 import { accContext } from "../App";
 
+export const appContext = createContext<userInterface[] | null>(null);
 
-  
-export const appContext = createContext<userInterface[] |null>(null);
-
-export interface MainProps{
-  authenticated:boolean,
-  setauth(auth:boolean):void
-
+export interface MainProps {
+  authenticated: boolean;
+  setauth(auth: boolean): void;
 }
 
-
-const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
+const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
   const accUser = useContext(accContext);
-    const [loading,setIsLoading] =useState(true);
+  const [loading, setIsLoading] = useState(true);
 
   const [currentUser, setCurrentUser] = useState<userInterface>({});
   const [users, setUsers] = useState<userInterface[]>([]);
@@ -35,48 +31,46 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
   //local api link
 
   useEffect(() => {
-    try{
-    axiosRequest.get(requests.fetchEmployees)
-    .then((res:any) =>setUsers(res.data))
-    .then(()=>{
-      //check if loged use is loaded with user info
-      if(accUser !== undefined){
-        setCurrentUser(accUser)
-      }
-    })
-    .then(()=>setIsLoading(false))
-  } catch (err) {
-    console.error(err);
-  }
+    try {
+      axiosRequest
+        .get(requests.fetchEmployees)
+        .then((res: any) => setUsers(res.data))
+        .then(() => {
+          //check if loged use is loaded with user info
+          if (accUser !== undefined) {
+            setCurrentUser(accUser);
+          }
+        })
+        .then(() => setIsLoading(false));
+    } catch (err) {
+      console.error(err);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-
   //delete user
-  const deleteUser = (id:number):void => {
+  const deleteUser = (id: number): void => {
     try {
-      let deluser = users?.filter((user:userInterface) => user?.id !== id);
+      let deluser = users?.filter((user: userInterface) => user?.id !== id);
       setUsers(deluser);
-      axiosRequest.delete(`${requests.deleteuser}/${id}`)
-      .then((response)=>{
-        
-        if(Object.values(response.data).length > 1) {
-          setCurrentUser({})
-          alert("User Deleted succesfully :)")
-        }else{
-        alert("Task Failed :(");
-        }})
+      axiosRequest.delete(`${requests.deleteuser}/${id}`).then((response) => {
+        if (Object.values(response.data).length > 1) {
+          setCurrentUser({});
+          alert("User Deleted succesfully :)");
+        } else {
+          alert("Task Failed :(");
+        }
+      });
     } catch (err) {
       console.error(err);
       alert("Task Failed :(");
     }
   };
 
-
   //patch timestamp to db
-  const postTimeStamp = (id:number, formData:userInterface) => {
+  const postTimeStamp = (id: number, formData: userInterface) => {
     try {
-      axiosRequest.patch(`/employees/${id}`, formData)
+      axiosRequest.patch(`/employees/${id}`, formData);
       // .then(()=>setUsers([...users, formData]))
     } catch (err) {
       console.log(err);
@@ -84,9 +78,8 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
     }
   };
 
-
   //search function
-  function handleSearch(str:string) {
+  function handleSearch(str: string) {
     setSearchTerm(str);
 
     if (searchTerm !== "") {
@@ -96,15 +89,15 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
           .toLowerCase()
           .includes(searchTerm.toLowerCase())
       );
-        setSearchResult(newList);
-      
+      setSearchResult(newList);
+
       return searchResult;
     }
     setSearchResult(users);
   }
 
   //filter function
-  function filterUsers(str:string) {
+  function filterUsers(str: string) {
     setSearchTerm(str);
 
     if (searchTerm !== "all") {
@@ -121,82 +114,66 @@ const Main:React.FC<MainProps> = ({authenticated,setauth}) => {
     setSearchResult(users);
   }
 
-
   return (
-    <appContext.Provider value={searchTerm.length < 1? users : searchResult}>
-    <section className="container__main">
-
-
-     
-      <Header authenticated={authenticated} setauth={setauth} />
-      <div className="view__main">
-        <Routes>
-          <Route
-            path="dashboard"
-            element={
-              <Dashboard
-              />
-            }
-          />
-        </Routes>
-        <Routes>
-          <Route
-            path="admin"
-            element={
-              <Admin
-              currentuser={currentUser}
-              setCurrentUser={setCurrentUser}
-              filterUsers={filterUsers}
-              deleteUser={deleteUser}
-              />
-            }
-          >
+    <appContext.Provider value={searchTerm.length < 1 ? users : searchResult}>
+      <section className="container__main">
+        <Header authenticated={authenticated} setauth={setauth} />
+        <div className="view__main">
+          <Routes>
+            <Route path="dashboard" element={<Dashboard />} />
+          </Routes>
+          <Routes>
             <Route
-              path="Addnew"
-              element={<AddNew />}
-            />
-            <Route
-              path="/admin/"
-              element={<AddNew />}
-            />
-            <Route
-              path="update"
+              path="admin"
               element={
-                <Update  
-                currentuser={currentUser}
-                setCurrentUser={setCurrentUser}
+                <Admin
+                  currentuser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                  filterUsers={filterUsers}
+                  deleteUser={deleteUser}
                 />
-
               }
-            />
-          </Route>
-        </Routes>
-        <Routes>
-          <Route
-            path="analytics"
-            element={
-              <Analytics 
-                currentuser={currentUser}
-              />
-            } 
-          />
-        </Routes>
-        <Routes>
-          <Route
-            path="timecard"
-            element={
-              <Timecard 
+            >
+              <Route path="Addnew" element={<AddNew />} />
+              <Route path="/admin/" element={<AddNew />} />
+              <Route
+                path="update"
+                element={
+                  <Update
                     currentuser={currentUser}
                     setCurrentUser={setCurrentUser}
-                    postTimeStamp={postTimeStamp}
-                    filterUsers={filterUsers}
+                  />
+                }
               />
-            }
-          />
-        </Routes>
-      </div>
-      <Footer />
-    </section>
+            </Route>
+          </Routes>
+          <Routes>
+            <Route
+              path="analytics"
+              element={
+                <Analytics
+                  currentuser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                />
+              }
+            />
+          </Routes>
+          <Routes>
+            <Route
+              path="timecard"
+              element={
+                <Timecard
+                  currentuser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                  postTimeStamp={postTimeStamp}
+                  filterUsers={filterUsers}
+                />
+              }
+            />
+          </Routes>
+        </div>
+        <Footer />
+      </section>
     </appContext.Provider>
   );
 };
