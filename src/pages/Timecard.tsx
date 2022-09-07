@@ -1,28 +1,32 @@
-import React, { useState, useId, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Userinfo from "../components/cards/Userinfo";
 import UserList from "../components/cards/UserList";
 import Welcomeinfo from "../components/cards/Welcomeinfo";
 import Searchbar from "../components/forms/Searchbar";
 import { appContext } from "./Main";
 import { userInterface } from "../interfaces/interface";
+import { axiosRequest } from "../API/api";
+import { requests } from "../API/requests";
 
-
-export interface TimecardProp{
-  currentuser?:userInterface,
-  setCurrentUser?(obj:userInterface):void
-  postTimeStamp?(id:number,obj:userInterface):void
-  filterUsers?(str:string):void;
-  activeclassname?:string
-  deleteUser?(id:number):void
-
+export interface TimecardProp {
+  currentuser?: userInterface;
+  setCurrentUser?(obj: userInterface): void;
+  postTimeStamp?(id: number, obj: userInterface): void;
+  filterUsers?(str: string): void;
+  activeclassname?: string;
+  deleteUser?(id: number): void;
 }
 
-const Timecard:React.FC<TimecardProp> = ({currentuser,setCurrentUser,postTimeStamp,filterUsers}) => {
+const Timecard: React.FC<TimecardProp> = ({
+  currentuser,
+  setCurrentUser,
+  postTimeStamp,
+  filterUsers,
+}) => {
   const employees = useContext(appContext);
-  console.log(employees)
   // const id = useId();
-  const [stamps, setStamp] = useState<string>();
-  const renderUser = (id:number):void => {
+  //const [stamps, setStamp] = useState<string>();
+  const renderUser = (id: number): void => {
     const user = employees.filter((element) => {
       return element.id === id;
     });
@@ -30,30 +34,69 @@ const Timecard:React.FC<TimecardProp> = ({currentuser,setCurrentUser,postTimeSta
     setCurrentUser(userobj);
   };
 
-  let timeIn:Date;
-  let timeOut:Date;
+  let timeIn: Date;
+  let timeOut: Date;
+  let day: number;
   const clockInTime = () => {
     timeIn = new Date();
     return timeIn;
   };
- // function clock-out and return day's timestamp
+
+  //function to get clocked-in's day
+  const getDay = (timeIn: Date): string => {
+    day = timeIn.getDay();
+    switch (day) {
+      case 1:
+        return "monday";
+      case 2:
+        return "tuesday";
+      case 3:
+        return "wednesday";
+      case 4:
+        return "thursday";
+      case 5:
+        return "friday";
+      default:
+        return;
+    }
+  };
+
+  //function to get hours worked in aday
+  const getHours = (timeIn: Date, timeOut: Date) => {
+    let difference: number = timeOut.getTime() - timeIn.getTime();
+    let hoursDifference: number = Math.floor(difference / 1000 / 60 / 60);
+    difference -= hoursDifference * 1000 * 60 * 60;
+    return hoursDifference;
+  };
+
+  // function clock-out and return day's timestamp
   const clockOutTime = () => {
-    //chech if user acccount is selected
-    if (currentuser.name !== null) {
-      if (!timeIn !== null) {
-        timeOut = new Date();
-        let currentstamp = `${timeIn}-${timeOut}`;
-        setStamp(currentstamp);
-        //TODO
-       // currentuser.timestamp?.push(stamps);
-        //if current stamp is empty dont..
-        if (stamps !== null) {
-          setCurrentUser(currentuser);
-        //  postTimeStamp(currentuser?.id, currentuser);
-        }
-      }
-    } else {
-      alert("Please select your account!");
+    timeOut = new Date();
+    const createData = () => {
+      const key = today;
+      const value = hours;
+      let timestamp = { [key]: value };
+      return timestamp;
+    };
+
+    //check if any account is selected
+    if (Object.values(currentuser).length < 1) {
+      return alert("Please select your account!");
+    }
+    //check if user clocked in?
+    if (timeIn === undefined) {
+      return alert("You should first clockIn!");
+    }
+    let today: string = getDay(timeIn);
+    let hours: number = getHours(timeIn, timeOut);
+
+    try {
+      axiosRequest.put(
+        `${requests.updatetimestamp}/${currentuser?.id}`,
+        createData()
+      );
+    } catch (e) {
+      console.error(e);
     }
   };
 
@@ -66,7 +109,6 @@ const Timecard:React.FC<TimecardProp> = ({currentuser,setCurrentUser,postTimeSta
           <div className="user-title">
             <h3>Employees List</h3>
             <select
-              
               onChange={(e) => {
                 filterUsers(e.target.value);
               }}
@@ -77,15 +119,11 @@ const Timecard:React.FC<TimecardProp> = ({currentuser,setCurrentUser,postTimeSta
               <option value="hospitality">Hospitality</option>
             </select>
           </div>
-          <UserList 
-           renderUser={renderUser}
-          />
+          <UserList renderUser={renderUser} />
         </div>
       </article>
       <article className="right">
-        <Userinfo 
-          currentuser={currentuser}
-        />
+        <Userinfo currentuser={currentuser} />
         <div className="right-manage">
           <button className="btn-out btn" onClick={clockInTime}>
             Clock-In
