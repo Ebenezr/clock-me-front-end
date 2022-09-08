@@ -97,7 +97,7 @@ clone the repo using the command
 
 change directory using command
 
-- `cd clock-me-react-backend-end`
+- `cd clock-me-backend-end`
 
 open project in vscode texteditor
 
@@ -121,7 +121,7 @@ clone the repo using the command
 
 change directory using command
 
-- `cd clock-me-react-front-end`
+- `cd clock-me-front-end`
 
 open project in vscode texteditor
 
