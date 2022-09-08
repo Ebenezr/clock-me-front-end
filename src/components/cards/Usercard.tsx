@@ -5,12 +5,13 @@ import { useEffect, useState } from "react";
 import { axiosRequest } from "../../API/api";
 import { requests } from "../../API/requests";
 import { userInterface } from "../../interfaces/interface";
+import { IconContext } from "react-icons";
 
 interface UsercardProps {
-  currentuser: userInterface;
+  className?: string;
 }
 
-const Usercard: React.FC<UsercardProps> = ({ currentuser }) => {
+const Usercard: React.FC<UsercardProps> = () => {
   const [useraccount, setuseracc] = useState<userInterface>();
   const [loading, setIsLoading] = useState(false);
   const [salary, setSalary] = useState<number>();
@@ -62,7 +63,7 @@ const Usercard: React.FC<UsercardProps> = ({ currentuser }) => {
     <article className="usercard">
       <div className="user__card">
         <span>
-          <BsFillBarChartFill size="3.5rem" color="#7380ec" />
+          <BsFillBarChartFill color="#7380ec" className="myReact-icons" />
         </span>
         <p>{hours}</p>
         <small>Total hours</small>
@@ -70,7 +71,7 @@ const Usercard: React.FC<UsercardProps> = ({ currentuser }) => {
 
       <div className="user__card">
         <span>
-          <BsWalletFill size="3.5rem" color="#41f1b6" />
+          <BsWalletFill color="#41f1b6" className="myReact-icons" />
         </span>
         <p>
           {salary?.toLocaleString("en-US", {
@@ -82,14 +83,14 @@ const Usercard: React.FC<UsercardProps> = ({ currentuser }) => {
       </div>
       <div className="user__card">
         <span>
-          <IoTimerSharp size="3.5rem" color="#ff7782" />
+          <IoTimerSharp color="#ff7782" className="myReact-icons" />
         </span>
         <p>{avghours}</p>
         <small>Avarage Time</small>
       </div>
       <div className="user__card">
         <span>
-          <VscBellDot size="3.5rem" color="#ffbb55" />
+          <VscBellDot color="#ffbb55" className="myReact-icons" />
         </span>
         <p>5</p>
         <small>Notifications</small>

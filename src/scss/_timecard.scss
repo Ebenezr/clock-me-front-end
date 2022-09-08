@@ -210,6 +210,7 @@
          flex-direction: column;
          overflow:hidden;  
          box-shadow: $box-shadow;  
+         max-height: 42rem;
          .user-title{
              display: flex;
              justify-content: space-between;

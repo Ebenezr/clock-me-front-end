@@ -73,12 +73,12 @@ const Analytics: React.FC<Analyticsprops> = ({
     <section className="analytics__view">
       <article className="left">
         <Welcomeinfo />
-        <Usercard currentuser={currentuser} />
+        <Usercard />
       </article>
       <article className="right">
         {loading && (
           <Chart id="chart" palette="Soft" dataSource={dataSource}>
-            <AdaptiveLayout height={200} width={500} />
+            {/* <AdaptiveLayout height={200} width={200} /> */}
             <CommonSeriesSettings
               argumentField="day"
               valueField="number"

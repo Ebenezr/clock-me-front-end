@@ -50,6 +50,10 @@ const Signin: React.FC<formData> = () => {
           navigate("/home/dashboard");
         } else {
           alert("user doesn't exist");
+          setFormData({
+            username: "",
+            password: "",
+          });
         }
       })
       .then(() => setIsLoading(false));
@@ -70,7 +74,7 @@ const Signin: React.FC<formData> = () => {
             required
             onChange={handleChange}
             ref={userRef}
-            value={formData.username}
+            value={formData?.username}
           />
         </label>
         <label>
@@ -81,7 +85,7 @@ const Signin: React.FC<formData> = () => {
             placeholder="******"
             id="password"
             required
-            value={formData.password}
+            value={formData?.password}
             onChange={handleChange}
           />
         </label>
@@ -89,8 +93,8 @@ const Signin: React.FC<formData> = () => {
           <span>
             <input
               type="checkbox"
-              id="rememberMe"
-              checked={formData.remember_me}
+              id="remember_me"
+              checked={formData?.remember_me}
               onChange={handleChange}
             />
             <h3>
