@@ -5,7 +5,17 @@ import { userInterface } from "../../interfaces/interface";
 
 const AddNew: React.FC = () => {
   //hold user data
-  const [formData, setFormData] = useState<userInterface>();
+  const [formData, setFormData] = useState<userInterface>({
+    name: "",
+    email: "",
+    username: "",
+    password: "",
+    gender: "",
+    title: "",
+    department_id: 0,
+    avatar: "",
+    usertype: 0,
+  });
   const [loading, setIsLoading] = useState(true);
 
   function proPicGen(): string {

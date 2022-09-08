@@ -11,7 +11,17 @@ interface Updateprops {
 const Update: React.FC<Updateprops> = ({ currentuser, setCurrentUser }) => {
   const [loading, setIsLoading] = useState(true);
   //hold user data
-  const [formData, setFormData] = useState<userInterface>({});
+  const [formData, setFormData] = useState<userInterface>({
+    name: "",
+    email: "",
+    username: "",
+    password: "",
+    gender: "",
+    title: "",
+    department_id: 1,
+    avatar: "",
+    usertype: 0,
+  });
   //set focus
   useEffect(() => {
     console.log(formData?.usertype);

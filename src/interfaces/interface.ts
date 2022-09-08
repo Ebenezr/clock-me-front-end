@@ -10,5 +10,4 @@ export interface userInterface {
   department_id?: number;
   avatar?: string;
   usertype?: number;
-  timestamp?: string[];
 }
