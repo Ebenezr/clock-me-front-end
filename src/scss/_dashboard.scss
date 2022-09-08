@@ -20,7 +20,7 @@
     padding: $space-xs;
 
     .emp__card {
-      width: 18rem;
+      width: 20rem;
       background: $color-light;
       height: $space-3xl;
       border-radius: $border-radius-3;
@@ -66,7 +66,7 @@
         height: 30%;
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
 
         h4 {
@@ -92,17 +92,17 @@
     overflow: hidden;
     .starts {
       width: 100%;
-      justify-content: space-between;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      justify-content: space-between;
       padding: $space-xs $space-m;
       gap: $space-2xs;
       .starts__card {
-        width: 18rem;
-        height: 10rem;
+        width: 90%;
+        height: 12rem;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: $space-xl $space-s $space-xl;
+        grid-template-rows: $space-xl $space-s auto;
         grid-template-areas:
           "a b c"
           "d e c"
@@ -155,7 +155,6 @@
               stroke: $color-primary;
               stroke-width: 9;
               stroke-linecap: round;
-              // transform: translate(5px,5px);
               stroke-dasharray: 110;
               stroke-dashoffset: 92;
             }

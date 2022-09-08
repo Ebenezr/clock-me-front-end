@@ -1,28 +1,30 @@
-import React, { useContext } from 'react'
-import { appContext } from '../../pages/Main';
-import { getDepartment } from './Userinfo';
+import React, { useContext, useState } from "react";
+import { userInterface } from "../../interfaces/interface";
+import { appContext } from "../../pages/Main";
+import { getDepartment } from "./Userinfo";
 
-
-interface UserListProps{
-  renderUser(id:number):void;
+interface UserListProps {
+  renderUser(id: number): void;
 }
-const UserList:React.FC<UserListProps>=({renderUser})=> {
+const UserList: React.FC<UserListProps> = ({ renderUser }) => {
   const employees = useContext(appContext);
+  //const [users, setusers] = useState<userInterface[]>([]);
+  //setusers(employees);
   return (
     <div className="results">
-    {employees?.map((users) => (
-      <span
-        key={users.id}
-        onClick={() => {
-          renderUser(users.id);
-        }}
-      > 
-         <h4>{users.name}</h4>
-        <small>{getDepartment(users.department_id)}</small>
-      </span>
-    ))}
-  </div>
-  )
-}
+      {employees?.map((list) => (
+        <span
+          key={list?.id}
+          onClick={() => {
+            renderUser(list?.id);
+          }}
+        >
+          <h4>{list?.name}</h4>
+          <small>{getDepartment(list?.department_id)}</small>
+        </span>
+      ))}
+    </div>
+  );
+};
 
-export default UserList
+export default UserList;

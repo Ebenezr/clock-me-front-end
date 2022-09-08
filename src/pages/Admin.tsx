@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import Userinfo from "../components/cards/Userinfo";
 import UserList from "../components/cards/UserList";
@@ -35,7 +35,7 @@ const Admin: React.FC<TimecardProp> = ({
       <article className="left">
         <Welcomeinfo />
         <Starts />
-        <Searchbar />
+        <Searchbar filterUsers={filterUsers} />
         <div className="users-list">
           <div className="user-title">
             <h3>Manage Employees</h3>

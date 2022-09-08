@@ -73,13 +73,13 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
       axiosRequest.patch(`/employees/${id}`, formData);
       // .then(()=>setUsers([...users, formData]))
     } catch (err) {
-      console.log(err);
+      console.error(err);
       alert("Task Failed :(");
     }
   };
 
   //search function
-  function handleSearch(str: string) {
+  function filterUsers(str: string) {
     setSearchTerm(str);
 
     if (searchTerm !== "") {
@@ -97,7 +97,7 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
   }
 
   //filter function
-  function filterUsers(str: string) {
+  function filterdepartment(str: string) {
     setSearchTerm(str);
 
     if (searchTerm !== "all") {
@@ -120,7 +120,10 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
         <Header authenticated={authenticated} setauth={setauth} />
         <div className="view__main">
           <Routes>
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route
+              path="dashboard"
+              element={<Dashboard filterUsers={filterUsers} />}
+            />
           </Routes>
           <Routes>
             <Route

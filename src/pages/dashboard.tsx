@@ -7,31 +7,32 @@ import { useContext } from "react";
 import { userInterface } from "../interfaces/interface";
 import { appContext } from "./Main";
 
+interface dashProps {
+  filterUsers(str: string): void;
+}
 
-
-const Dashboard:React.FC = () => {
+const Dashboard: React.FC<dashProps> = ({ filterUsers }) => {
   const employees = useContext(appContext);
-//{avatar,department}=employees;
-const inputEl=React.useRef<HTMLInputElement>(null);
-  const handleFilter=()=>{
-    if(null !== inputEl.current){
-        //filterUsers(inputEl.current.value);
+  //{avatar,department}=employees;
+  const inputEl = React.useRef<HTMLInputElement>(null);
+  const handleFilter = () => {
+    if (null !== inputEl.current) {
+      //filterUsers(inputEl.current.value);
     }
-  }
-
+  };
 
   return (
     <section className="dashboard__view">
-  <article className="left">
+      <article className="left">
         <Welcomeinfo />
-        <Starts /> 
-        <Searchbar />
+        <Starts />
+        <Searchbar filterUsers={filterUsers} />
         <div className="users-list">
           <div className="user-title">
             <h3>Employees </h3>
             <select
-            //   type="option"
-            //   ref={inputEl}
+              //   type="option"
+              //   ref={inputEl}
               onChange={handleFilter}
             >
               <option value="all">Filter</option>
@@ -43,11 +44,8 @@ const inputEl=React.useRef<HTMLInputElement>(null);
         </div>
       </article>
       <article className="right">
-        {employees?.map((employee:userInterface) => (
-          <Employeecard
-            key={employee.id}
-            employee={employee}          
-          />
+        {employees?.map((employee: userInterface) => (
+          <Employeecard key={employee.id} employee={employee} />
         ))}
       </article>
     </section>

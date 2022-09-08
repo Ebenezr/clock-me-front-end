@@ -51,12 +51,10 @@ const AddNew: React.FC = () => {
     axiosRequest
       .post(requests.employeesadd, formData)
       .then((response) => {
-        console.log(formData);
-        console.log(response.data);
-        if (Object.values(response.data).length > 1) {
-          alert("Registration successful");
+        if (Object.values(response?.data).length === 1) {
+          return alert("Employee already exists");
         } else {
-          alert("Employee already exists");
+          alert("Registration successful");
         }
       })
       .then(() => setIsLoading(false));
@@ -94,7 +92,7 @@ const AddNew: React.FC = () => {
         className="inputs"
         value={formData?.email}
         onChange={handleChange}
-        placeholder="johndoe@hotmail.com"
+        placeholder="name@mail.com"
       />
 
       <label>Gender </label>

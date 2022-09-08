@@ -18,7 +18,9 @@
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
+    "react-loading": "^2.0.3",
     "react-router-dom": "^6.3.0",
+    "react-router-loading": "^1.0.0",
     "react-scripts": "5.0.1",
     "sass": "^1.54.8",
     "typescript": "^4.8.2",
@@ -29,7 +31,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json -p 9292"
+    "server": "json-server --watch db.json -p 9292",
+    "postinstall": "tsc"
   },
   "eslintConfig": {
     "extends": [

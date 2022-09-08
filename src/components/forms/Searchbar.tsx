@@ -1,11 +1,13 @@
-import React, { useRef } from "react";
+import React from "react";
 import { BiSearchAlt } from "react-icons/bi";
 
-const Searchbar:React.FC = () => {
-  const inputEl = useRef("");
+interface Searchprops {
+  filterUsers(str: string): void;
+}
+const Searchbar: React.FC<Searchprops> = ({ filterUsers }) => {
+  const inputEl = React.useRef<HTMLInputElement>(null);
   const handleSearchFunction = () => {
-    // handleSearch(inputEl.current.value);
-    
+    filterUsers(inputEl.current.value);
   };
   return (
     <form
@@ -15,11 +17,11 @@ const Searchbar:React.FC = () => {
     >
       <BiSearchAlt className="search__icon" />
       <input
-        // ref={inputEl}
+        ref={inputEl}
         className="search"
         type="search"
         placeholder="Search by name"
-        onChange={handleSearchFunction} 
+        onChange={handleSearchFunction}
       />
     </form>
   );

@@ -28,13 +28,13 @@ const Starts: React.FC = () => {
         <span className="icon__starts">
           <BsFillCalendarDateFill color="#41f1b6" className="myReact-icons" />
         </span>
-        <h3>{employees.length - 14}</h3>
+        <h3>{employees.length}</h3>
         <small>Employees working today</small>
         <div className="progress">
           <CircularProgressbar
-            value={employees.length - 14}
+            value={employees.length}
             maxValue={25}
-            text={`${((employees.length - 14) / 25) * 100}%`}
+            text={`${(employees.length / 25) * 100}%`}
             styles={buildStyles({
               strokeLinecap: "round",
               textSize: "26px",

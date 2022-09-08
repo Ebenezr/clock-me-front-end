@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { axiosRequest } from "../../API/api";
 import { requests } from "../../API/requests";
 import { userInterface } from "../../interfaces/interface";
-import { IconContext } from "react-icons";
 
 interface UsercardProps {
   className?: string;

@@ -24,10 +24,8 @@ const Update: React.FC<Updateprops> = ({ currentuser, setCurrentUser }) => {
   });
   //set focus
   useEffect(() => {
-    console.log(formData?.usertype);
     setFormData(currentuser);
   }, [currentuser]);
-  console.log(formData?.usertype);
   //hangle change event
   const handleChange = (event: any) => {
     const key = event.target.id;
@@ -48,8 +46,6 @@ const Update: React.FC<Updateprops> = ({ currentuser, setCurrentUser }) => {
     axiosRequest
       .patch(`${requests.updateinfo}/${currentuser.id}`, formData)
       .then((response) => {
-        console.log(formData);
-        console.log(response.data);
         if (Object.values(response.data).length > 1) {
           alert("Update successful");
         } else {
@@ -89,11 +85,11 @@ const Update: React.FC<Updateprops> = ({ currentuser, setCurrentUser }) => {
         <input
           required
           id="email"
-          type="text"
+          type="email"
           className="inputs"
           value={formData?.email}
           onChange={handleChange}
-          placeholder="ebbe"
+          placeholder="name@mail.com"
         />
       </label>
       <label>
@@ -151,6 +147,7 @@ const Update: React.FC<Updateprops> = ({ currentuser, setCurrentUser }) => {
           type="text"
           className="inputs"
           value={formData?.title}
+          onChange={handleChange}
           placeholder="Managing Director"
         />
       </label>

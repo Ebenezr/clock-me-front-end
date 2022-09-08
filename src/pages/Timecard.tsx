@@ -128,7 +128,7 @@ const Timecard: React.FC<TimecardProp> = ({
     <section className="timecard__view">
       <article className="left">
         <Welcomeinfo />
-        <Searchbar />
+        <Searchbar filterUsers={filterUsers} />
         <div className="users-list">
           <div className="user-title">
             <h3>Employees List</h3>

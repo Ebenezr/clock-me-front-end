@@ -8,14 +8,14 @@
   overflow: hidden;
   .right {
     display: grid;
-    max-height: 32rem;
+    max-height: 35rem;
   }
   .left {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     position: relative;
-    height: 45%;
+    height: 55%;
     padding: $space-xs;
     overflow: hidden;
     .usercard {
