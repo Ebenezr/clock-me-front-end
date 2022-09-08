@@ -29,9 +29,12 @@ Clock-me: is is a web application used to keep track of employees and thier cloc
 ## Technologies
 
 languages used are:
+Front-end
 
 1. React(Typescript)
 2. Sass
+   Back-end
+3. ruby
 
 ---
 
@@ -40,8 +43,10 @@ languages used are:
 - As a employee you can be able to:
 
 1. Login with his/her account.
-2. Record and track his/her timestamp.
-3. view company analytics
+2. Reset his/her password
+3. Record and track his/her timestamp.
+4. view his/her weekly performances tatistics
+5. View her salary
 
 - AS an admin you can be able to:
 
@@ -61,8 +66,8 @@ the application solve this such as recoding each day's clock-in and clock-out ti
 
 ### challenges
 
-- Implementing login authentification.
-- Implementing theme change.
+- Manipulating timestamps.
+- Implementing theme change using sass.
 
 ---
 
@@ -78,18 +83,45 @@ the application solve this such as recoding each day's clock-in and clock-out ti
 ### Dependencies
 
 - npm
+- ruby
 
 ---
 
 ### setup
 
+#### Back end
+
 clone the repo using the command
 
-- `git clone https://github.com/Ebenezr/clock-me.git`
+- `git clone https://github.com/Ebenezr/clock-me-back-end.git`
 
 change directory using command
 
-- `cd clock-me-react`
+- `cd clock-me-react-backend-end`
+
+open project in vscode texteditor
+
+- `code .`
+
+install dependancies gems
+
+- `bundle exec install`
+
+run server
+
+- `bundle exec rake server`
+
+---
+
+#### Front end
+
+clone the repo using the command
+
+- `git clone https://github.com/Ebenezr/clock-me-front-end.git`
+
+change directory using command
+
+- `cd clock-me-react-front-end`
 
 open project in vscode texteditor
 
@@ -98,10 +130,6 @@ open project in vscode texteditor
 install dependancies packages
 
 - `run npm install`
-
-run back end
-
-- `npm run server`
 
 run front end
 
