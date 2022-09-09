@@ -6,9 +6,16 @@ import { userInterface } from "../../interfaces/interface";
 interface Updateprops {
   currentuser: userInterface;
   setCurrentUser(obj: userInterface): void;
+  setUsers(arr: userInterface[]): void;
+  users: userInterface[];
 }
 
-const Update: React.FC<Updateprops> = ({ currentuser, setCurrentUser }) => {
+const Update: React.FC<Updateprops> = ({
+  currentuser,
+  setCurrentUser,
+  setUsers,
+  users,
+}) => {
   const [loading, setIsLoading] = useState(true);
   //hold user data
   const [formData, setFormData] = useState<userInterface>({
@@ -48,6 +55,8 @@ const Update: React.FC<Updateprops> = ({ currentuser, setCurrentUser }) => {
       .then((response) => {
         if (Object.values(response.data).length > 1) {
           alert("Update successful");
+          setUsers(users);
+          setCurrentUser(response.data);
         } else {
           alert("Employee Not Found");
         }

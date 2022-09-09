@@ -56,7 +56,10 @@ const PasswordRecovery: React.FC<formData> = () => {
     }
 
     axiosRequest
-      .patch(`${requests.passwordrecovery}/email="${formData.email}"`, formData)
+      .patch(
+        `${requests.passwordrecovery}/email="${formData?.email}"`,
+        formData
+      )
       .then((response) => {
         if (Object.values(response.data).length > 1) {
           alert("Password recovery successful");

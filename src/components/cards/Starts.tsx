@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   BsFillCalendarDateFill,
   BsPieChartFill,
@@ -14,10 +14,11 @@ import "../../scss/custom.scss";
 const Starts: React.FC = () => {
   const [departments, setDepartment] = useState<number>();
   const employees = useContext(appContext);
-
-  axiosRequest.get(requests.fetchDepartments).then((response) => {
-    setDepartment(response.data);
-  });
+  useEffect(() => {
+    axiosRequest.get(requests.fetchDepartments).then((response) => {
+      setDepartment(response.data);
+    });
+  }, []);
 
   //get total number of departments
   //const unique = [...new Set(employees.map((item) => item.department))];
@@ -33,8 +34,8 @@ const Starts: React.FC = () => {
         <div className="progress">
           <CircularProgressbar
             value={employees.length}
-            maxValue={25}
-            text={`${(employees.length / 25) * 100}%`}
+            maxValue={50}
+            text={`${Math.floor((employees?.length / 50) * 100)}%`}
             styles={buildStyles({
               strokeLinecap: "round",
               textSize: "26px",
@@ -56,8 +57,8 @@ const Starts: React.FC = () => {
         <div className="progress">
           <CircularProgressbar
             value={employees.length}
-            maxValue={25}
-            text={`${(employees.length / 25) * 100}%`}
+            maxValue={30}
+            text={`${Math.floor((employees?.length / 30) * 100)}%`}
             styles={buildStyles({
               strokeLinecap: "round",
               textSize: "26px",
@@ -80,7 +81,7 @@ const Starts: React.FC = () => {
           <CircularProgressbar
             value={departments}
             maxValue={25}
-            text={`${(departments / 25) * 100}%`}
+            text={`${Math.floor((departments / 25) * 100)}%`}
             styles={buildStyles({
               strokeLinecap: "round",
               textSize: "26px",
@@ -102,8 +103,8 @@ const Starts: React.FC = () => {
         <div className="progress">
           <CircularProgressbar
             value={employees.length}
-            maxValue={25}
-            text={`${(employees.length / 25) * 100}%`}
+            maxValue={50}
+            text={`${Math.floor((employees?.length / 50) * 100)}%`}
             styles={buildStyles({
               strokeLinecap: "round",
               textSize: "26px",

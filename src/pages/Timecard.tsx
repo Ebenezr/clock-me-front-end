@@ -15,12 +15,12 @@ export interface TimecardProp {
   filterUsers?(str: string): void;
   activeclassname?: string;
   deleteUser?(id: number): void;
+  //setUsers(arr: userInterface[]): void;
 }
 
 const Timecard: React.FC<TimecardProp> = ({
   currentuser,
   setCurrentUser,
-  postTimeStamp,
   filterUsers,
 }) => {
   const [timerecord, setTimerecords] = useState({
@@ -85,6 +85,7 @@ const Timecard: React.FC<TimecardProp> = ({
 
   // function clock-out and return day's timestamp
   const clockOutTime = () => {
+    console.log(timeIn);
     timeOut = new Date();
     const createData = () => {
       const key = today;
@@ -111,10 +112,13 @@ const Timecard: React.FC<TimecardProp> = ({
     let hours: number = getHours(timeIn, timeOut);
     // console.log(createTimerecord());
     try {
-      axiosRequest.put(
-        `${requests.updatetimestamp}/${currentuser?.id}`,
-        createData()
-      );
+      axiosRequest
+        .put(`${requests.updatetimestamp}/${currentuser?.id}`, createData())
+        .then((resp) => {
+          axiosRequest
+            .get(`${requests.gettimerecord}/${resp.data?.id}`)
+            .then((response) => setTimerecords(response?.data));
+        });
       axiosRequest.put(
         `${requests.updatetimerecord}/${currentuser?.id}`,
         createTimerecord()

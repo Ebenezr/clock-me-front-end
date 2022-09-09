@@ -3,7 +3,12 @@ import { axiosRequest } from "../../API/api";
 import { requests } from "../../API/requests";
 import { userInterface } from "../../interfaces/interface";
 
-const AddNew: React.FC = () => {
+export interface AddnewProps {
+  setUsers(arr: userInterface[]): void;
+  users: userInterface[];
+  setCurrentUser(userInterface): void;
+}
+const AddNew: React.FC<AddnewProps> = ({ setUsers, users, setCurrentUser }) => {
   //hold user data
   const [formData, setFormData] = useState<userInterface>({
     name: "",
@@ -55,6 +60,18 @@ const AddNew: React.FC = () => {
           return alert("Employee already exists");
         } else {
           alert("Registration successful");
+          setCurrentUser(response.data);
+          setUsers([...users, formData]);
+          setFormData({
+            name: "",
+            email: "",
+            username: "",
+            password: "",
+            gender: "",
+            title: "",
+            department_id: 1,
+            usertype: 0,
+          });
         }
       })
       .then(() => setIsLoading(false));

@@ -137,14 +137,35 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
                 />
               }
             >
-              <Route path="Addnew" element={<AddNew />} />
-              <Route path="/admin/" element={<AddNew />} />
+              <Route
+                path="Addnew"
+                element={
+                  <AddNew
+                    setUsers={setUsers}
+                    users={users}
+                    setCurrentUser={setCurrentUser}
+                  />
+                }
+              />
+              <Route
+                path="/admin/"
+                element={
+                  <Update
+                    currentuser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                    setUsers={setUsers}
+                    users={users}
+                  />
+                }
+              />
               <Route
                 path="update"
                 element={
                   <Update
                     currentuser={currentUser}
                     setCurrentUser={setCurrentUser}
+                    setUsers={setUsers}
+                    users={users}
                   />
                 }
               />
