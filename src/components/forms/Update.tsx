@@ -55,8 +55,10 @@ const Update: React.FC<Updateprops> = ({
       .then((response) => {
         if (Object.values(response.data).length > 1) {
           alert("Update successful");
-          setUsers(users);
           setCurrentUser(response.data);
+          axiosRequest
+            .get(requests.fetchEmployees)
+            .then((res: any) => setUsers(res.data));
         } else {
           alert("Employee Not Found");
         }

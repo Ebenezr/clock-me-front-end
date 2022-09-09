@@ -8,9 +8,10 @@ import { userInterface } from "../../interfaces/interface";
 
 interface UsercardProps {
   className?: string;
+  currentuser?: userInterface;
 }
 
-const Usercard: React.FC<UsercardProps> = () => {
+const Usercard: React.FC<UsercardProps> = ({ currentuser }) => {
   const [useraccount, setuseracc] = useState<userInterface>();
   const [loading, setIsLoading] = useState(false);
   const [salary, setSalary] = useState<number>();
@@ -21,7 +22,7 @@ const Usercard: React.FC<UsercardProps> = () => {
       localStorage.getItem("name") || "{}"
     );
     setuseracc(loggedUser);
-    const getsalary = (id = 1) => {
+    const getsalary = (id: number = 1) => {
       try {
         axiosRequest.get(`${requests.getsalary}/${id}`).then((response) => {
           setSalary(response.data);
@@ -31,7 +32,7 @@ const Usercard: React.FC<UsercardProps> = () => {
         console.error(err);
       }
     };
-    const gethours = (id = 1) => {
+    const gethours = (id: number = 1) => {
       try {
         axiosRequest.get(`${requests.gettotalhours}/${id}`).then((response) => {
           setHours(response.data);
@@ -41,7 +42,7 @@ const Usercard: React.FC<UsercardProps> = () => {
         console.error(err);
       }
     };
-    const getavghours = (id = 1) => {
+    const getavghours = (id: number = 1) => {
       try {
         axiosRequest
           .get(`${requests.getavaragetime}/${id}`)
@@ -53,9 +54,9 @@ const Usercard: React.FC<UsercardProps> = () => {
         console.error(err);
       }
     };
-    getavghours(useraccount?.id);
-    gethours(useraccount?.id);
-    getsalary(useraccount?.id);
+    getavghours(currentuser?.id);
+    gethours(currentuser?.id);
+    getsalary(currentuser?.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

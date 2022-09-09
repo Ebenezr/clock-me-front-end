@@ -127,3 +127,20 @@ b {
 .myReact-icons {
   font-size: $step-4;
 }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  //background: #202528;
+  background-image: none;
+  color: #202528;
+  cursor: pointer;
+  //border: 1px solid black;
+}
+option {
+  background: #202528;
+  padding-top: 5px;
+}

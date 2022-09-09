@@ -22,6 +22,10 @@ interface Analyticsprops {
   setCurrentUser?(obj: userInterface): void;
 }
 
+const loggedUser: userInterface = JSON.parse(
+  localStorage.getItem("name") || "{}"
+);
+
 const Analytics: React.FC<Analyticsprops> = ({
   currentuser,
   setCurrentUser,
@@ -37,11 +41,8 @@ const Analytics: React.FC<Analyticsprops> = ({
   });
 
   useEffect(() => {
-    const loggedUser: userInterface = JSON.parse(
-      localStorage.getItem("name") || "{}"
-    );
     setuseracc(loggedUser);
-    const getTimestamps = (id = 1) => {
+    const getTimestamps = (id: number) => {
       try {
         axiosRequest.get(`${requests.gettimestamp}/${id}`).then((response) => {
           setdata(response.data);
@@ -56,9 +57,10 @@ const Analytics: React.FC<Analyticsprops> = ({
         console.error(err);
       }
     };
+
     getTimestamps(currentuser?.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentuser]);
 
   const dataSource = [
     { day: "Monday", number: data?.monday },
