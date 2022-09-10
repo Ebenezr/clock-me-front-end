@@ -144,3 +144,9 @@ option {
   background: #202528;
   padding-top: 5px;
 }
+
+input {
+  &:focus {
+    border: 1px solid $color-primary !important;
+  }
+}
