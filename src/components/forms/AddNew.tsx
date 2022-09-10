@@ -67,10 +67,11 @@ const AddNew: React.FC<AddnewProps> = ({ setUsers, users, setCurrentUser }) => {
             email: "",
             username: "",
             password: "",
-            gender: "",
+            gender: "female",
             title: "",
             department_id: 1,
             usertype: 0,
+            avatar: "",
           });
         }
       })

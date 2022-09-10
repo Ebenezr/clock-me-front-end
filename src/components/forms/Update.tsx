@@ -23,7 +23,7 @@ const Update: React.FC<Updateprops> = ({
     email: "",
     username: "",
     password: "",
-    gender: "",
+    gender: "male",
     title: "",
     department_id: 1,
     avatar: "",
