@@ -12,6 +12,10 @@ Clock-me: is is a web application used to keep track of employees and thier cloc
 
 ---
 
+## Demo
+
+#### ![Demo](./src/assets/demo-clock-me.gif)
+
 ## SCREENSHOTS
 
 ### Mobile View
@@ -172,9 +176,20 @@ run front end
 
 #### live link
 
-//TODO
+- run the following live link in your browser
+  `https://clock-me-front-end.vercel.app`
 
-<!-- - run the following live link in your browser  -->
+#### login Auths..
+
+- admin:
+
+username: ebenezar
+password: show!
+
+- employee:
+
+username: elviskim
+password: elvis
 
 ## How to use the project
 
