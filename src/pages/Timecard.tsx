@@ -7,6 +7,7 @@ import { appContext } from "./Main";
 import { userInterface } from "../interfaces/interface";
 import { axiosRequest } from "../API/api";
 import { requests } from "../API/requests";
+import { ReactSession } from "react-client-session";
 
 export interface TimecardProp {
   currentuser?: userInterface;
@@ -15,7 +16,6 @@ export interface TimecardProp {
   filterUsers?(str: string): void;
   activeclassname?: string;
   deleteUser?(id: number): void;
-  //setUsers(arr: userInterface[]): void;
 }
 
 const Timecard: React.FC<TimecardProp> = ({
@@ -35,10 +35,11 @@ const Timecard: React.FC<TimecardProp> = ({
   //const [stamps, setStamp] = useState<string>();
 
   useEffect(() => {
+    setCurrentUser(ReactSession.get("sessionUser"));
     axiosRequest
       .get(`${requests.gettimerecord}/${currentuser?.id}`)
       .then((response) => setTimerecords(response?.data));
-  }, [currentuser]);
+  }, []);
 
   const renderUser = (id: number): void => {
     const user = employees.filter((element) => {

@@ -25,7 +25,6 @@ const Aside: React.FC<{ className?: string }> = () => {
 
   useEffect(() => {
     setUsertype(ReactSession.get("usertype"));
-    console.log(usertype);
   }, []);
 
   return (
@@ -65,8 +64,9 @@ const Aside: React.FC<{ className?: string }> = () => {
           <NavLink
             className="nav__link__muted"
             // activeclassname="active"
+            //prevent admin acces to non-admin users
             onClick={(e) => e.preventDefault()}
-            to="/home"
+            to="/home/admin"
           >
             <MdAdminPanelSettings />
             <h3>Login As Admin!</h3>

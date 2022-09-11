@@ -48,6 +48,7 @@ const Signin: React.FC<formData> = () => {
       .then((response) => {
         if (Object.values(response.data).length > 1) {
           ReactSession.set("usertype", response.data?.usertype);
+          ReactSession.set("sessionUser", response?.data);
           localStorage.setItem("name", JSON.stringify(response.data));
           localStorage.setItem("authenticated", JSON.stringify(true));
           alert("Login successful");

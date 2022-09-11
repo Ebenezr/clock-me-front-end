@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Welcomeinfo from "../components/cards/Welcomeinfo";
-import Starts from "../components/cards/Starts";
 import { userInterface } from "../interfaces/interface";
-//import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
+import { ReactSession } from "react-client-session";
 import {
-  AdaptiveLayout,
   Chart,
   SeriesTemplate,
   CommonSeriesSettings,
@@ -22,15 +19,10 @@ interface Analyticsprops {
   setCurrentUser?(obj: userInterface): void;
 }
 
-const loggedUser: userInterface = JSON.parse(
-  localStorage.getItem("name") || "{}"
-);
-
 const Analytics: React.FC<Analyticsprops> = ({
   currentuser,
   setCurrentUser,
 }) => {
-  const [useraccount, setuseracc] = useState<userInterface>();
   const [loading, setIsLoading] = useState(false);
   const [data, setdata] = useState({
     monday: 0,
@@ -41,7 +33,6 @@ const Analytics: React.FC<Analyticsprops> = ({
   });
 
   useEffect(() => {
-    setuseracc(loggedUser);
     const getTimestamps = (id: number) => {
       try {
         axiosRequest.get(`${requests.gettimestamp}/${id}`).then((response) => {
@@ -58,7 +49,7 @@ const Analytics: React.FC<Analyticsprops> = ({
       }
     };
 
-    getTimestamps(currentuser?.id);
+    getTimestamps(ReactSession.get("sessionUser")?.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentuser]);
 
@@ -88,7 +79,10 @@ const Analytics: React.FC<Analyticsprops> = ({
               ignoreEmptyPoints={true}
             />
             <SeriesTemplate nameField="day" />
-            <Title text="Weekly perfomance" subtitle={`${useraccount?.name}`}>
+            <Title
+              text="Weekly perfomance"
+              subtitle={`${ReactSession.get("sessionUser")?.name}`}
+            >
               <Font color="white" />
             </Title>
           </Chart>

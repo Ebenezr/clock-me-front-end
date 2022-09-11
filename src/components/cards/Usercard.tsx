@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { axiosRequest } from "../../API/api";
 import { requests } from "../../API/requests";
 import { userInterface } from "../../interfaces/interface";
+import { ReactSession } from "react-client-session";
 
 interface UsercardProps {
   className?: string;
@@ -18,10 +19,8 @@ const Usercard: React.FC<UsercardProps> = ({ currentuser }) => {
   const [hours, setHours] = useState<number>();
   const [avghours, setAvgHours] = useState<number>();
   useEffect(() => {
-    const loggedUser: userInterface = JSON.parse(
-      localStorage.getItem("name") || "{}"
-    );
-    setuseracc(loggedUser);
+    //console.log(ReactSession.get("sessionUser"));
+    setuseracc(ReactSession.get("sessionUser"));
     const getsalary = (id: number = 1) => {
       try {
         axiosRequest.get(`${requests.getsalary}/${id}`).then((response) => {
@@ -54,9 +53,9 @@ const Usercard: React.FC<UsercardProps> = ({ currentuser }) => {
         console.error(err);
       }
     };
-    getavghours(currentuser?.id);
-    gethours(currentuser?.id);
-    getsalary(currentuser?.id);
+    getavghours(useraccount?.id);
+    gethours(useraccount?.id);
+    getsalary(useraccount?.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
