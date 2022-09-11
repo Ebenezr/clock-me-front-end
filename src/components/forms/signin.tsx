@@ -12,6 +12,7 @@ interface formData {
   remember_me?: boolean;
 }
 const Signin: React.FC<formData> = () => {
+  const [status, setStatus] = useState<boolean>(null);
   const navigate = useNavigate();
   const [formData, setFormData] = useState<formData>({
     username: "",
@@ -51,10 +52,19 @@ const Signin: React.FC<formData> = () => {
           ReactSession.set("sessionUser", response?.data);
           localStorage.setItem("name", JSON.stringify(response.data));
           localStorage.setItem("authenticated", JSON.stringify(true));
-          alert("Login successful");
-          navigate("/home/dashboard");
+          setStatus(true);
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
+          setStatus(true);
+          setTimeout(() => {
+            navigate("/home/dashboard");
+          }, 500);
         } else {
-          alert(Object.values(response.data));
+          setStatus(false);
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
           setFormData({
             username: "",
             password: "",
@@ -114,6 +124,11 @@ const Signin: React.FC<formData> = () => {
           {/* eslint-disable-next-line react-hooks/exhaustive-deps */}
           <p onClick={() => navigate("recover")}>I forgot my password</p>
         </span>
+        {status ? (
+          <div className="form__status active">Login Succesfuly</div>
+        ) : status === false ? (
+          <div className="form__status">Login details incorrect</div>
+        ) : null}
       </form>
     </>
   );

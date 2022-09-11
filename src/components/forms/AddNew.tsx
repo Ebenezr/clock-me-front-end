@@ -9,6 +9,7 @@ export interface AddnewProps {
   setCurrentUser(userInterface): void;
 }
 const AddNew: React.FC<AddnewProps> = ({ setUsers, users, setCurrentUser }) => {
+  const [status, setStatus] = useState<boolean>(null);
   //hold user data
   const [formData, setFormData] = useState<userInterface>({
     name: "",
@@ -57,9 +58,15 @@ const AddNew: React.FC<AddnewProps> = ({ setUsers, users, setCurrentUser }) => {
       .post(requests.employeesadd, formData)
       .then((response) => {
         if (Object.values(response?.data).length === 1) {
-          return   alert(Object.values(response.data));
+          setStatus(false);
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
         } else {
-          alert("Registration successful");
+          setStatus(true);
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
           setCurrentUser(response.data);
           setUsers([...users, formData]);
           setFormData({
@@ -80,6 +87,11 @@ const AddNew: React.FC<AddnewProps> = ({ setUsers, users, setCurrentUser }) => {
 
   return (
     <form className="addnew" onSubmit={handleSubmit}>
+      {status ? (
+        <div className="form__status active">Employee Added Succesfuly</div>
+      ) : status === false ? (
+        <div className="form__status">Employee already Exist</div>
+      ) : null}
       <label className="required">Name</label>
       <input
         required

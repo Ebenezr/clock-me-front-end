@@ -23,7 +23,7 @@ export interface MainProps {
 const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
   const accUser = useContext(accContext);
   const [loading, setIsLoading] = useState(true);
-
+  const [status, setStatus] = useState<boolean>(null);
   const [currentUser, setCurrentUser] = useState<userInterface>({});
   const [users, setUsers] = useState<userInterface[]>([]);
   const [searchResult, setSearchResult] = useState<userInterface[]>([]);
@@ -56,9 +56,15 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
       axiosRequest.delete(`${requests.deleteuser}/${id}`).then((response) => {
         if (Object.values(response.data).length > 1) {
           setCurrentUser({});
-          alert("User Deleted succesfully :)");
+          setStatus(true);
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
         } else {
-          alert("Task Failed :(");
+          setStatus(false);
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
         }
       });
     } catch (err) {
@@ -134,6 +140,7 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
                   setCurrentUser={setCurrentUser}
                   filterUsers={filterUsers}
                   deleteUser={deleteUser}
+                  status={status}
                 />
               }
             >

@@ -150,3 +150,9 @@ input {
     border: 1px solid $color-primary !important;
   }
 }
+
+@media (max-width: $breakpoint-ipad) {
+  .myReact-icons {
+    font-size: 2rem;
+  }
+}

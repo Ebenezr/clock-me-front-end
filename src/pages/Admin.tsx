@@ -13,6 +13,7 @@ const Admin: React.FC<TimecardProp> = ({
   setCurrentUser,
   filterUsers,
   deleteUser,
+  status,
 }) => {
   const employees = useContext(appContext);
 
@@ -66,7 +67,11 @@ const Admin: React.FC<TimecardProp> = ({
             className="btn-del btn"
             onClick={() => deleteUser(currentuser.id)}
           >
-            Remove user
+            {status === true
+              ? "User Removed"
+              : status === false
+              ? "Task Failed"
+              : "Remove user"}
           </button>
         </div>
         <div className="forms-container">

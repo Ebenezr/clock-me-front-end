@@ -13,62 +13,48 @@
     box-shadow: $box-shadow;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: $space-2xl;
-    place-items: center;
+    gap: $space-m;
+    justify-items: center;
     overflow-y: auto;
-    max-height: 32rem;
+    max-height: 35rem;
     padding: $space-xs;
 
     .emp__card {
-      width: 20rem;
+      width: 80%;
       background: $color-light;
       height: $space-3xl;
       border-radius: $border-radius-3;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 30% 1fr;
+      grid-template-rows: 1fr 2fr;
+      grid-template-areas:
+        " a b"
+        "a b";
       padding: $space-xs;
-
-      img {
-        background-color: $color-dark-variant;
-        border-radius: 50%;
-        height: 2.5rem;
-        width: 2.5rem;
-        background-size: cover;
-        object-fit: cover;
-      }
       .top {
-        height: 65%;
-        align-items: center;
-        display: flex;
-        flex-direction: row;
-        font-weight: 500;
-        gap: 0.5rem;
-        position: relative;
-        font-size: $step--2;
-        h3 {
-          color: $color-dark;
-        }
-
-        &::after {
-          content: "";
-          width: 80%;
-          height: 0.05rem;
-          background-color: $color-dark;
-          position: absolute;
-          bottom: 0;
-          justify-self: center;
-          left: 50%;
-          transform: translate(-50%, 50%);
+        grid-area: a;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        img {
+          background-color: $color-dark-variant;
+          border-radius: 50%;
+          height: 5rem;
+          width: 5rem;
+          background-size: cover;
+          object-fit: cover;
         }
       }
-      .bottom {
-        justify-self: flex-end;
-        height: 30%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
 
+      .bottom {
+        grid-area: b;
+        padding-left: 1rem;
+        display: grid;
+        align-items: center;
+        h3 {
+          position: relative;
+          font-size: $step-0;
+        }
         h4 {
           font-weight: 300;
           color: $color-info-dark;
@@ -134,31 +120,6 @@
           width: 5rem;
           height: 5rem;
           border-radius: 50%;
-          .number {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            small {
-              font-size: $step-1;
-            }
-          }
-          svg {
-            width: 5rem;
-            height: 5rem;
-            circle {
-              fill: none;
-              stroke: $color-primary;
-              stroke-width: 9;
-              stroke-linecap: round;
-              stroke-dasharray: 110;
-              stroke-dashoffset: 92;
-            }
-          }
         }
       }
     }
@@ -222,7 +183,7 @@
 @media (max-width: $breakpoint-tablet) {
   .dashboard__view {
     height: auto;
-    width: 100%;
+    width: 100vw;
     grid-template-columns: 1fr;
     overflow: unset;
     .left {
@@ -232,7 +193,7 @@
         grid-template-columns: 1fr 1fr;
         justify-items: center;
         .starts__card {
-          width: 100%;
+          width: 80%;
           height: 10rem;
         }
       }
@@ -249,7 +210,7 @@
     .right {
       width: 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       justify-items: center;
       gap: $space-xs;
       .emp__card {
@@ -279,20 +240,49 @@
     .right {
       height: 100% !important;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
 
       .emp__card {
-        width: 100%;
+        width: 80%;
         height: 8rem;
-        .bottom {
-          justify-self: flex-end;
-          height: 30%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-around;
-          align-items: center;
-        }
       }
     }
   }
 }
+
+// @media (max-width: $breakpoint-ipad) {
+//   .dashboard__view {
+//     height: 88%;
+//     width: 80vw;
+//     //justify-content: space-between;
+
+//     .right {
+//       grid-template-columns: 1fr 1fr 1fr;
+//       gap: 0.5rem;
+//       max-height: 25rem;
+//     }
+//     .left {
+//       //justify-content: space-between;
+//       padding: 0.5rem;
+//       position: relative;
+//       height: 40%;
+//       padding: 0.5rem;
+//       .starts {
+//         justify-content: center;
+//         gap: 1.5rem;
+//         .starts__card {
+//           width: 100%;
+//           height: 9rem;
+//           grid-template-rows: $space-m $space-xs auto;
+//           .progress {
+//             width: 3.5rem;
+//             height: 3.5rem;
+//           }
+//         }
+//       }
+//       form {
+//         height: 2rem;
+//       }
+//     }
+//   }
+// }

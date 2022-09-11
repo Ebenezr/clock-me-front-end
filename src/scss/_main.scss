@@ -2,6 +2,7 @@
 .container__main {
   background-color: $color-background;
   height: 100%;
+
   display: grid;
   grid-template-rows: 6% auto 6%;
   overflow-y: hidden;
@@ -11,7 +12,8 @@
 }
 @media (max-width: $breakpoint-tablet) {
   .container__main {
-    height: 100vh;
+    height: 100%;
+    width: 100vw;
     overflow-y: unset;
     max-width: inherit;
   }

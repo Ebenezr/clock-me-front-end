@@ -10,7 +10,7 @@
 }
 .container__login {
   min-width: 20%;
-  height: 49%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   display: flex;
@@ -102,6 +102,21 @@
     }
     .misc {
       padding-top: 0.3rem;
+    }
+    .form__status {
+      align-self: center;
+      color: $color-dark;
+      font-weight: 500;
+      background-color: $color-danger;
+      width: 60%;
+      border-radius: $border-radius-1;
+      padding: $space-2xs;
+      text-align: center;
+      transition: 300ms ease;
+      &.active {
+        background: $color-success !important;
+        color: $color-dark !important;
+      }
     }
   }
 }

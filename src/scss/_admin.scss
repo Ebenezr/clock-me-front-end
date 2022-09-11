@@ -20,7 +20,7 @@
       box-shadow: $box-shadow;
       width: 80%;
       margin: $space-2xs auto;
-      height: 18rem;
+      height: 17rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -34,7 +34,7 @@
         height: 5rem;
       }
       h3 {
-        font-size: $step-3;
+        font-size: $step-2;
         color: $color-dark;
       }
       .card-info {
@@ -58,7 +58,7 @@
       display: flex;
       justify-content: center;
       gap: $space-xs;
-      padding: $space-xs;
+      padding: $space-2xs;
       .btn {
         padding: $space-2xs $space-xs;
         border-radius: $border-radius-3;
@@ -95,19 +95,35 @@
       width: 80%;
       justify-content: center;
       align-items: center;
+      gap: 0.8rem;
       .addnew {
+        .form__status {
+          align-self: center;
+          color: $color-dark;
+          font-weight: 500;
+          background-color: $color-danger;
+          width: 60%;
+          border-radius: $border-radius-1;
+          padding: $space-2xs;
+          text-align: center;
+          transition: 300ms ease;
+          &.active {
+            background: $color-success !important;
+            color: $color-dark;
+          }
+        }
         display: flex;
         width: 80%;
         flex-direction: column;
         gap: $space-3xs;
         padding: $space-2xs;
         label {
-          color: $color-dark;
+          color: $color-dark-variant;
           font-weight: 500;
         }
         .inputs {
           width: 100%;
-          padding: $space-2xs;
+          padding: $space-3xs;
           background: transparent;
           border: 1px solid $color-info-dark;
           border-radius: $border-radius-1;

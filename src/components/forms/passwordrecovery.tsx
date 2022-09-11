@@ -11,7 +11,7 @@ interface formData {
 }
 const PasswordRecovery: React.FC<formData> = () => {
   //  const [validemail, setvalidEmail] = useState(true);
-
+  const [status, setStatus] = useState<boolean>(null);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<formData>({
@@ -62,10 +62,19 @@ const PasswordRecovery: React.FC<formData> = () => {
       )
       .then((response) => {
         if (Object.values(response.data).length > 1) {
-          alert("Password recovery successful");
-          navigate("/login");
+          setStatus(true);
+          setTimeout(() => {
+            navigate("/login");
+          }, 500);
+
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
         } else {
-          alert(Object.values(response.data));
+          setStatus(false);
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
         }
       })
       .then(() => setIsLoading(false));
@@ -117,6 +126,11 @@ const PasswordRecovery: React.FC<formData> = () => {
         <span className="misc">
           <p onClick={() => navigate("/login")}>Back to login Page</p>
         </span>
+        {status ? (
+          <div className="form__status active">Password reset success</div>
+        ) : status === false ? (
+          <div className="form__status">Acount with email not found!</div>
+        ) : null}
       </form>
     </>
   );

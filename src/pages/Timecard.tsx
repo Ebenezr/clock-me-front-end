@@ -16,6 +16,8 @@ export interface TimecardProp {
   filterUsers?(str: string): void;
   activeclassname?: string;
   deleteUser?(id: number): void;
+  status?: boolean;
+  className?: string;
 }
 
 const Timecard: React.FC<TimecardProp> = ({
@@ -39,6 +41,7 @@ const Timecard: React.FC<TimecardProp> = ({
     axiosRequest
       .get(`${requests.gettimerecord}/${currentuser?.id}`)
       .then((response) => setTimerecords(response?.data));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const renderUser = (id: number): void => {

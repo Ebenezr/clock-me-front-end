@@ -17,6 +17,7 @@ const Update: React.FC<Updateprops> = ({
   users,
 }) => {
   const [loading, setIsLoading] = useState(true);
+  const [status, setStatus] = useState<boolean>(null);
   //hold user data
   const [formData, setFormData] = useState<userInterface>({
     name: "",
@@ -54,13 +55,21 @@ const Update: React.FC<Updateprops> = ({
       .patch(`${requests.updateinfo}/${currentuser.id}`, formData)
       .then((response) => {
         if (Object.values(response.data).length > 1) {
-          alert("Update successful");
+          //alert("Update successful");
           setCurrentUser(response.data);
+          setStatus(true);
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
           axiosRequest
             .get(requests.fetchEmployees)
             .then((res: any) => setUsers(res.data));
         } else {
-          alert(Object.values(response.data));
+          //  alert(Object.values(response.data));
+          setStatus(false);
+          setTimeout(() => {
+            setStatus(null);
+          }, 2500);
         }
       })
       .then(() => setIsLoading(false));
@@ -68,6 +77,11 @@ const Update: React.FC<Updateprops> = ({
 
   return (
     <form className="addnew" onSubmit={handleSubmit}>
+      {status ? (
+        <div className="form__status active">Information Updated</div>
+      ) : status === false ? (
+        <div className="form__status">Error while Uptating</div>
+      ) : null}
       <label>
         Name
         <input
