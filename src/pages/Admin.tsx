@@ -78,3 +78,7 @@ const Admin: React.FC<TimecardProp> = ({
 };
 
 export default Admin;
+
+const NotAdmin = () => {
+  <>Need to login as an admin!</>;
+};

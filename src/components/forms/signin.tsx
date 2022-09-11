@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosRequest } from "../../API/api";
 import { requests } from "../../API/requests";
+import { ReactSession } from "react-client-session";
+
+ReactSession.setStoreType("localStorage");
 
 interface formData {
   username?: string;
@@ -44,12 +47,13 @@ const Signin: React.FC<formData> = () => {
       .post(requests.loginuser, formData)
       .then((response) => {
         if (Object.values(response.data).length > 1) {
+          ReactSession.set("usertype", response.data?.usertype);
           localStorage.setItem("name", JSON.stringify(response.data));
           localStorage.setItem("authenticated", JSON.stringify(true));
           alert("Login successful");
           navigate("/home/dashboard");
         } else {
-          alert("user doesn't exist");
+          alert(Object.values(response.data));
           setFormData({
             username: "",
             password: "",

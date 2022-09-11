@@ -60,7 +60,7 @@ const Update: React.FC<Updateprops> = ({
             .get(requests.fetchEmployees)
             .then((res: any) => setUsers(res.data));
         } else {
-          alert("Employee Not Found");
+          alert(Object.values(response.data));
         }
       })
       .then(() => setIsLoading(false));

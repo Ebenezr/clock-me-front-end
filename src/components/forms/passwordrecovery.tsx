@@ -10,7 +10,7 @@ interface formData {
   className?: string;
 }
 const PasswordRecovery: React.FC<formData> = () => {
-  const [validemail, setvalidEmail] = useState(true);
+  //  const [validemail, setvalidEmail] = useState(true);
 
   const navigate = useNavigate();
 
@@ -65,7 +65,7 @@ const PasswordRecovery: React.FC<formData> = () => {
           alert("Password recovery successful");
           navigate("/login");
         } else {
-          alert("account not found");
+          alert(Object.values(response.data));
         }
       })
       .then(() => setIsLoading(false));

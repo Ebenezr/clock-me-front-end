@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import React, { useContext, useState } from "react";
-
+import React, { useContext, useEffect, useState } from "react";
+import { ReactSession } from "react-client-session";
 import {
   MdSpaceDashboard,
   MdAdminPanelSettings,
@@ -16,11 +16,17 @@ import { accContext } from "../../App";
 const Aside: React.FC<{ className?: string }> = () => {
   const accUser = useContext(accContext);
   const [isActive, setActive] = useState(false);
+  const [usertype, setUsertype] = useState<boolean>(false);
 
   //toggle themes
   const handleToggle = () => {
     setActive(!isActive);
   };
+
+  useEffect(() => {
+    setUsertype(ReactSession.get("usertype"));
+    console.log(usertype);
+  }, []);
 
   return (
     <aside>
@@ -46,15 +52,26 @@ const Aside: React.FC<{ className?: string }> = () => {
           <h3>Dashboard</h3>
         </NavLink>
 
-        <NavLink
-          className="nav__link"
-          // activeclassname="active"
-          to="/home/admin"
-        >
-          <MdAdminPanelSettings />
-          <h3>Admin</h3>
-        </NavLink>
-
+        {usertype === true ? (
+          <NavLink
+            className="nav__link"
+            // activeclassname="active"
+            to="/home/admin"
+          >
+            <MdAdminPanelSettings />
+            <h3>Admin</h3>
+          </NavLink>
+        ) : (
+          <NavLink
+            className="nav__link__muted"
+            // activeclassname="active"
+            onClick={(e) => e.preventDefault()}
+            to="/home"
+          >
+            <MdAdminPanelSettings />
+            <h3>Login As Admin!</h3>
+          </NavLink>
+        )}
         <NavLink
           className="nav__link"
           // activeclassname="active"

@@ -57,7 +57,7 @@ const AddNew: React.FC<AddnewProps> = ({ setUsers, users, setCurrentUser }) => {
       .post(requests.employeesadd, formData)
       .then((response) => {
         if (Object.values(response?.data).length === 1) {
-          return alert("Employee already exists");
+          return   alert(Object.values(response.data));
         } else {
           alert("Registration successful");
           setCurrentUser(response.data);
