@@ -183,8 +183,8 @@ run front end
 
 - admin:
 
-username: ebenezar
-password: show!
+username: admin
+password: admin
 
 - employee:
 
