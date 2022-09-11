@@ -55,7 +55,17 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
       setUsers(deluser);
       axiosRequest.delete(`${requests.deleteuser}/${id}`).then((response) => {
         if (Object.values(response.data).length > 1) {
-          setCurrentUser({});
+          setCurrentUser({
+            name: "",
+            email: "",
+            username: "",
+            password: "",
+            gender: "male",
+            title: "",
+            department_id: 1,
+            avatar: "",
+            usertype: 0,
+          });
           setStatus(true);
           setTimeout(() => {
             setStatus(null);

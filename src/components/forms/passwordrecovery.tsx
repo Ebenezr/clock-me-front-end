@@ -65,7 +65,7 @@ const PasswordRecovery: React.FC<formData> = () => {
           setStatus(true);
           setTimeout(() => {
             navigate("/login");
-          }, 500);
+          }, 1000);
 
           setTimeout(() => {
             setStatus(null);

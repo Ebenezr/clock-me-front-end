@@ -37,12 +37,14 @@ const Timecard: React.FC<TimecardProp> = ({
   //const [stamps, setStamp] = useState<string>();
 
   useEffect(() => {
-    setCurrentUser(ReactSession.get("sessionUser"));
+    //  setCurrentUser(ReactSession.get("sessionUser"));
     axiosRequest
       .get(`${requests.gettimerecord}/${currentuser?.id}`)
       .then((response) => setTimerecords(response?.data));
+
+    console.log(ReactSession.get("sessionUser"));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentuser]);
 
   const renderUser = (id: number): void => {
     const user = employees.filter((element) => {

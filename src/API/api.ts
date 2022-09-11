@@ -1,8 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 
 //fetch data
-export const axiosRequest =
-    axios.create({
-        baseURL: 'http://localhost:9292/'
-    });
-
+export const axiosRequest = axios.create({
+  baseURL: "https://clock-me-server.herokuapp.com/",
+});

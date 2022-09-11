@@ -59,7 +59,7 @@ const Signin: React.FC<formData> = () => {
           setStatus(true);
           setTimeout(() => {
             navigate("/home/dashboard");
-          }, 500);
+          }, 1000);
         } else {
           setStatus(false);
           setTimeout(() => {
