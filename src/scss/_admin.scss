@@ -368,6 +368,8 @@
 }
 @media (max-width: $breakpoint-mobile) {
   .admin__view {
+    width: 100%;
+    grid-template-columns: 1fr;
     .left {
       width: 100%;
       .starts {
@@ -396,58 +398,6 @@
           background: transparent;
           border: 2px solid $color-danger;
           color: $color-info-dark;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: $breakpoint-ipad) {
-  .admin__view {
-    max-height: 100%;
-    max-width: 100%;
-    grid-template-columns: 1.2fr 1fr;
-    padding: 1rem;
-    .left {
-      .starts {
-        grid-template-columns: 1fr 1fr;
-        gap: $space-s;
-        .starts__card {
-          width: 100%;
-          justify-items: center;
-          height: 8rem;
-          grid-template-rows: auto auto auto;
-          .myReact-icons {
-            font-size: $step-1;
-          }
-        }
-      }
-    }
-    .right {
-      max-height: 100vh;
-      padding: 1rem;
-      .card {
-        width: 100%;
-        height: 25%;
-        img {
-          height: 3rem;
-          width: 3rem;
-        }
-        h3 {
-          font-size: $step--1;
-        }
-      }
-      .right-manage {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .forms-container {
-        width: 100%;
-        .addnew {
-          gap: 0.5rem;
-          .inputs {
-            padding: 0.5rem;
-          }
         }
       }
     }
