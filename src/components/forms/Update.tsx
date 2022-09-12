@@ -82,75 +82,69 @@ const Update: React.FC<Updateprops> = ({
       ) : status === false ? (
         <div className="form__status">Error while Uptating</div>
       ) : null}
-      <label>
-        Name
-        <input
-          id="name"
-          type="text"
-          className="inputs"
-          value={formData?.name}
-          onChange={handleChange}
-          placeholder="Jon Doe"
-        />
-      </label>
-      <label>
-        UserName
-        <input
-          required
-          id="username"
-          type="text"
-          className="inputs"
-          value={formData?.username}
-          onChange={handleChange}
-          placeholder="ebbe"
-        />
-      </label>
-      <label>
-        Email
-        <input
-          required
-          id="email"
-          type="email"
-          className="inputs"
-          value={formData?.email}
-          onChange={handleChange}
-          placeholder="name@mail.com"
-        />
-      </label>
-      <label>
-        Gender
-        <select
-          id="gender"
-          className="inputs"
-          value={formData?.gender}
-          onChange={handleChange}
-        >
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </label>
-      <label>
-        Avatar
-        <input
-          id="avatar"
-          type="text"
-          className="inputs"
-          value={formData?.avatar}
-          onChange={handleChange}
-          placeholder="https://avater.png"
-        />
-      </label>
-      <label>
-        Password
-        <input
-          id="password"
-          type="text"
-          className="inputs"
-          value={formData?.password}
-          onChange={handleChange}
-          placeholder="******"
-        />
-      </label>
+      <label>Name</label>
+      <input
+        id="name"
+        type="text"
+        className="inputs"
+        value={formData?.name}
+        onChange={handleChange}
+        placeholder="Jon Doe"
+      />
+
+      <label>UserName </label>
+      <input
+        required
+        id="username"
+        type="text"
+        className="inputs"
+        value={formData?.username}
+        onChange={handleChange}
+        placeholder="ebbe"
+      />
+
+      <label>Email </label>
+      <input
+        required
+        id="email"
+        type="email"
+        className="inputs"
+        value={formData?.email}
+        onChange={handleChange}
+        placeholder="name@mail.com"
+      />
+
+      <label>Gender </label>
+      <select
+        id="gender"
+        className="inputs"
+        value={formData?.gender}
+        onChange={handleChange}
+      >
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
+      <label>Avatar </label>
+      <input
+        id="avatar"
+        type="text"
+        className="inputs"
+        value={formData?.avatar}
+        onChange={handleChange}
+        placeholder="https://avater.png"
+      />
+
+      <label>Password </label>
+      <input
+        id="password"
+        type="text"
+        className="inputs"
+        value={formData?.password}
+        onChange={handleChange}
+        placeholder="******"
+      />
+
       <label>Department </label>
       <select
         id="department_id"
@@ -165,17 +159,16 @@ const Update: React.FC<Updateprops> = ({
         <option value="5">Technical Support</option>
       </select>
 
-      <label>
-        Title
-        <input
-          id="title"
-          type="text"
-          className="inputs"
-          value={formData?.title}
-          onChange={handleChange}
-          placeholder="Managing Director"
-        />
-      </label>
+      <label>Title</label>
+      <input
+        id="title"
+        type="text"
+        className="inputs"
+        value={formData?.title}
+        onChange={handleChange}
+        placeholder="Managing Director"
+      />
+
       <span className="checkbox">
         Admin ?
         <input

@@ -318,6 +318,7 @@
     }
   }
 }
+
 @media (max-width: $breakpoint-tablet) {
   .admin__view {
     height: auto;
@@ -398,6 +399,43 @@
           background: transparent;
           border: 2px solid $color-danger;
           color: $color-info-dark;
+        }
+      }
+    }
+  }
+}
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen and (max-device-width: 1366px) {
+  .admin__view {
+    grid-template-columns: 1.6fr 1fr;
+
+    .left {
+      .starts {
+        gap: 1rem;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        .starts__card {
+          width: 100%;
+          height: 12rem;
+        }
+      }
+    }
+    .right {
+      .card {
+        height: 30%;
+        width: 100%;
+        img {
+          width: 3.5rem;
+          height: 3.5rem;
+        }
+      }
+      .forms-container {
+        width: 100%;
+        .addnew {
+          label {
+            display: none;
+          }
         }
       }
     }
