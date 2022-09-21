@@ -42,28 +42,19 @@ const Aside: React.FC<{ className?: string }> = () => {
       <fieldset className="side-bar" title="manage">
         <legend>MANAGE</legend>
 
-        <NavLink
-          className="nav__link"
-          // activeclassname="active"
-          to="/home/dashboard"
-        >
+        <NavLink className="nav__link" to="/home/dashboard">
           <MdSpaceDashboard />
           <h3>Dashboard</h3>
         </NavLink>
 
         {usertype === true ? (
-          <NavLink
-            className="nav__link"
-            // activeclassname="active"
-            to="/home/admin"
-          >
+          <NavLink className="nav__link" to="/home/admin">
             <MdAdminPanelSettings />
             <h3>Admin</h3>
           </NavLink>
         ) : (
           <NavLink
             className="nav__link__muted"
-            // activeclassname="active"
             //prevent admin acces to non-admin users
             onClick={(e) => e.preventDefault()}
             to="/home/admin"
@@ -72,20 +63,12 @@ const Aside: React.FC<{ className?: string }> = () => {
             <h3>Login As Admin!</h3>
           </NavLink>
         )}
-        <NavLink
-          className="nav__link"
-          // activeclassname="active"
-          to="/home/analytics"
-        >
+        <NavLink className="nav__link" to="/home/analytics">
           <MdAnalytics />
           <h3>Analytics</h3>
         </NavLink>
 
-        <NavLink
-          className="nav__link"
-          // activeclassname="active"
-          to="/home/timecard"
-        >
+        <NavLink className="nav__link" to="/home/timecard">
           <MdOutlineAccessTimeFilled />
           <h3>Timecard</h3>
         </NavLink>

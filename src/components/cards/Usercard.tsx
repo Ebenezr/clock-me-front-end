@@ -1,7 +1,7 @@
 import { VscBellDot } from "react-icons/vsc";
 import { IoTimerSharp } from "react-icons/io5";
 import { BsWalletFill, BsFillBarChartFill } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { axiosRequest } from "../../API/api";
 import { requests } from "../../API/requests";
 import { userInterface } from "../../interfaces/interface";
@@ -14,28 +14,28 @@ interface UsercardProps {
 
 const Usercard: React.FC<UsercardProps> = ({ currentuser }) => {
   const [useraccount, setuseracc] = useState<userInterface>();
-  const [loading, setIsLoading] = useState(false);
+
   const [salary, setSalary] = useState<number>();
   const [hours, setHours] = useState<number>();
   const [avghours, setAvgHours] = useState<number>();
+
   useEffect(() => {
-    //console.log(ReactSession.get("sessionUser"));
     setuseracc(ReactSession.get("sessionUser"));
+
     const getsalary = (id: number = 1) => {
       try {
         axiosRequest.get(`${requests.getsalary}/${id}`).then((response) => {
           setSalary(response.data);
-          setIsLoading(true);
         });
       } catch (err) {
         console.error(err);
       }
     };
+
     const gethours = (id: number = 1) => {
       try {
         axiosRequest.get(`${requests.gettotalhours}/${id}`).then((response) => {
           setHours(response.data);
-          setIsLoading(true);
         });
       } catch (err) {
         console.error(err);
@@ -47,7 +47,6 @@ const Usercard: React.FC<UsercardProps> = ({ currentuser }) => {
           .get(`${requests.getavaragetime}/${id}`)
           .then((response) => {
             setAvgHours(response.data);
-            setIsLoading(true);
           });
       } catch (err) {
         console.error(err);

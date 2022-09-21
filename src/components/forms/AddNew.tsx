@@ -22,15 +22,15 @@ const AddNew: React.FC<AddnewProps> = ({ setUsers, users, setCurrentUser }) => {
     avatar: "",
     usertype: 0,
   });
-  const [loading, setIsLoading] = useState(true);
 
-  function proPicGen(): string {
-    let imgurl = "https://picsum.photos/";
-    const number = Math.floor(100 + Math.random() * 10);
-    return `${imgurl}/${number}`;
-  }
   //set focus
   useEffect(() => {
+    //generate random user profile picture
+    const proPicGen = (): string => {
+      let imgurl = "https://picsum.photos/";
+      const number = Math.floor(300 + Math.random() * 10);
+      return `${imgurl}/${number}`;
+    };
     setFormData({ ...formData, avatar: proPicGen() });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -54,35 +54,32 @@ const AddNew: React.FC<AddnewProps> = ({ setUsers, users, setCurrentUser }) => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    axiosRequest
-      .post(requests.employeesadd, formData)
-      .then((response) => {
-        if (Object.values(response?.data).length === 1) {
-          setStatus(false);
-          setTimeout(() => {
-            setStatus(null);
-          }, 2500);
-        } else {
-          setStatus(true);
-          setTimeout(() => {
-            setStatus(null);
-          }, 2500);
-          setCurrentUser(response.data);
-          setUsers([...users, formData]);
-          setFormData({
-            name: "",
-            email: "",
-            username: "",
-            password: "",
-            gender: "female",
-            title: "",
-            department_id: 1,
-            usertype: 0,
-            avatar: "",
-          });
-        }
-      })
-      .then(() => setIsLoading(false));
+    axiosRequest.post(requests.employeesadd, formData).then((response) => {
+      if (Object.values(response?.data).length === 1) {
+        setStatus(false);
+        setTimeout(() => {
+          setStatus(null);
+        }, 2500);
+      } else {
+        setStatus(true);
+        setTimeout(() => {
+          setStatus(null);
+        }, 2500);
+        setCurrentUser(response.data);
+        setUsers([...users, formData]);
+        setFormData({
+          name: "",
+          email: "",
+          username: "",
+          password: "",
+          gender: "female",
+          title: "",
+          department_id: 1,
+          usertype: 0,
+          avatar: "",
+        });
+      }
+    });
   };
 
   return (
@@ -97,7 +94,6 @@ const AddNew: React.FC<AddnewProps> = ({ setUsers, users, setCurrentUser }) => {
         required
         id="name"
         type="text"
-        // ref={userRef}
         className="inputs"
         value={formData?.name}
         onChange={handleChange}

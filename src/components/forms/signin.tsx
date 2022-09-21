@@ -19,7 +19,6 @@ const Signin: React.FC<formData> = () => {
     password: "",
     remember_me: true,
   });
-  const [loading, setIsLoading] = useState(true);
   const userRef = React.useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -71,7 +70,6 @@ const Signin: React.FC<formData> = () => {
           });
         }
       })
-      .then(() => setIsLoading(false));
   };
 
   return (
@@ -121,7 +119,6 @@ const Signin: React.FC<formData> = () => {
           </button>
         </div>
         <span className="misc">
-          {/* eslint-disable-next-line react-hooks/exhaustive-deps */}
           <p onClick={() => navigate("recover")}>I forgot my password</p>
         </span>
         {status ? (

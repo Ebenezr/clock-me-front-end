@@ -16,7 +16,6 @@ const Update: React.FC<Updateprops> = ({
   setUsers,
   users,
 }) => {
-  const [loading, setIsLoading] = useState(true);
   const [status, setStatus] = useState<boolean>(null);
   //hold user data
   const [formData, setFormData] = useState<userInterface>({
@@ -55,7 +54,6 @@ const Update: React.FC<Updateprops> = ({
       .patch(`${requests.updateinfo}/${currentuser.id}`, formData)
       .then((response) => {
         if (Object.values(response.data).length > 1) {
-          //alert("Update successful");
           setCurrentUser(response.data);
           setStatus(true);
           setTimeout(() => {
@@ -65,14 +63,12 @@ const Update: React.FC<Updateprops> = ({
             .get(requests.fetchEmployees)
             .then((res: any) => setUsers(res.data));
         } else {
-          //  alert(Object.values(response.data));
           setStatus(false);
           setTimeout(() => {
             setStatus(null);
           }, 2500);
         }
-      })
-      .then(() => setIsLoading(false));
+      });
   };
 
   return (

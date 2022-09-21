@@ -7,7 +7,6 @@ import { appContext } from "./Main";
 import { userInterface } from "../interfaces/interface";
 import { axiosRequest } from "../API/api";
 import { requests } from "../API/requests";
-import { ReactSession } from "react-client-session";
 
 export interface TimecardProp {
   currentuser?: userInterface;
@@ -33,17 +32,11 @@ const Timecard: React.FC<TimecardProp> = ({
     friday: "",
   });
   const employees = useContext(appContext);
-  // const id = useId();
-  //const [stamps, setStamp] = useState<string>();
 
   useEffect(() => {
-    //  setCurrentUser(ReactSession.get("sessionUser"));
     axiosRequest
       .get(`${requests.gettimerecord}/${currentuser?.id}`)
       .then((response) => setTimerecords(response?.data));
-
-    console.log(ReactSession.get("sessionUser"));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentuser]);
 
   const renderUser = (id: number): void => {
@@ -56,7 +49,7 @@ const Timecard: React.FC<TimecardProp> = ({
 
   let timeIn: Date;
   let timeOut: Date;
-  let day: number;
+  let day: string;
   const clockInTime = () => {
     timeIn = new Date();
     return timeIn;
@@ -64,21 +57,15 @@ const Timecard: React.FC<TimecardProp> = ({
 
   //function to get clocked-in's day
   const getDay = (timeIn: Date): string => {
-    day = timeIn.getDay();
-    switch (day) {
-      case 1:
-        return "monday";
-      case 2:
-        return "tuesday";
-      case 3:
-        return "wednesday";
-      case 4:
-        return "thursday";
-      case 5:
-        return "friday";
-      default:
-        return;
-    }
+    const map = {
+      "1": "monday",
+      "2": "tuesday",
+      "3": "wednesday",
+      "4": "thursday",
+      "5": "friday",
+    };
+    day = map[timeIn.getDay()];
+    return day;
   };
 
   //function to get hours worked in aday
@@ -91,7 +78,6 @@ const Timecard: React.FC<TimecardProp> = ({
 
   // function clock-out and return day's timestamp
   const clockOutTime = () => {
-    console.log(timeIn);
     timeOut = new Date();
     const createData = () => {
       const key = today;
@@ -116,7 +102,7 @@ const Timecard: React.FC<TimecardProp> = ({
     }
     let today: string = getDay(timeIn);
     let hours: number = getHours(timeIn, timeOut);
-    // console.log(createTimerecord());
+
     try {
       axiosRequest
         .put(`${requests.updatetimestamp}/${currentuser?.id}`, createData())

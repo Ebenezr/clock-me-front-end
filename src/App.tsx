@@ -4,7 +4,6 @@ import Aside from "./components/nav/Aside";
 import { userInterface } from "./interfaces/interface";
 import Main from "./pages/Main";
 import "./scss/style.scss";
-import { ReactSession } from "react-client-session";
 
 export const accContext = createContext<userInterface | undefined>(undefined);
 const App: React.FC = () => {

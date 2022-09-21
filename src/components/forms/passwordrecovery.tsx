@@ -19,7 +19,6 @@ const PasswordRecovery: React.FC<formData> = () => {
     password: "",
     cpassword: "",
   });
-  const [loading, setIsLoading] = useState(true);
   const userRef = React.useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -29,22 +28,12 @@ const PasswordRecovery: React.FC<formData> = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  //email validator
-  // const checkEmail = (email:string) => {
-  //     const mailformat= new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
-  //     if(email.match(mailformat)){
-  //         setvalidEmail(false);
-  //         console.groupCollapsed(validemail)
-  //     }
-  // }
   //hangle change event
   const handleChange = (event: any): void => {
     const key: string = event.target.id;
     const value: any = event.target.value;
 
     setFormData({ ...formData, [key]: value });
-    // checkEmail(formData.email);
-    // console.log(validemail)
   };
 
   //submission form function
@@ -76,8 +65,7 @@ const PasswordRecovery: React.FC<formData> = () => {
             setStatus(null);
           }, 2500);
         }
-      })
-      .then(() => setIsLoading(false));
+      });
   };
 
   return (

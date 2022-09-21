@@ -19,10 +19,7 @@ interface Analyticsprops {
   setCurrentUser?(obj: userInterface): void;
 }
 
-const Analytics: React.FC<Analyticsprops> = ({
-  currentuser,
-  setCurrentUser,
-}) => {
+const Analytics: React.FC<Analyticsprops> = ({ currentuser }) => {
   const [loading, setIsLoading] = useState(false);
   const [data, setdata] = useState({
     monday: 0,
@@ -39,7 +36,6 @@ const Analytics: React.FC<Analyticsprops> = ({
           setdata(response.data);
           setIsLoading(true);
           if (Object.values(response.data).length > 1) {
-            //  alert("Update successful")
           } else {
             alert("Employee Not Found");
           }
@@ -48,9 +44,7 @@ const Analytics: React.FC<Analyticsprops> = ({
         console.error(err);
       }
     };
-
     getTimestamps(ReactSession.get("sessionUser")?.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentuser]);
 
   const dataSource = [
@@ -61,7 +55,6 @@ const Analytics: React.FC<Analyticsprops> = ({
     { day: "Friday", number: data?.friday },
   ];
 
-  // {/* <CircularProgressbar value={8} maxValue={11} text={`${8 * 100}%`} /> */}
   return (
     <section className="analytics__view">
       <article className="left">
@@ -71,7 +64,6 @@ const Analytics: React.FC<Analyticsprops> = ({
       <article className="right">
         {loading && (
           <Chart id="chart" palette="Soft" dataSource={dataSource}>
-            {/* <AdaptiveLayout height={200} width={200} /> */}
             <CommonSeriesSettings
               argumentField="day"
               valueField="number"

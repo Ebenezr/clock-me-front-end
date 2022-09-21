@@ -22,7 +22,6 @@ export interface MainProps {
 
 const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
   const accUser = useContext(accContext);
-  const [loading, setIsLoading] = useState(true);
   const [status, setStatus] = useState<boolean>(null);
   const [currentUser, setCurrentUser] = useState<userInterface>({});
   const [users, setUsers] = useState<userInterface[]>([]);
@@ -40,13 +39,11 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
           if (accUser !== undefined) {
             setCurrentUser(accUser);
           }
-        })
-        .then(() => setIsLoading(false));
+        });
     } catch (err) {
       console.error(err);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [accUser]);
 
   //delete user
   const deleteUser = (id: number): void => {
@@ -87,7 +84,6 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
   const postTimeStamp = (id: number, formData: userInterface) => {
     try {
       axiosRequest.patch(`/employees/${id}`, formData);
-      // .then(()=>setUsers([...users, formData]))
     } catch (err) {
       console.error(err);
       alert("Task Failed :(");
@@ -99,24 +95,6 @@ const Main: React.FC<MainProps> = ({ authenticated, setauth }) => {
     setSearchTerm(str);
 
     if (searchTerm !== "") {
-      const newList = users?.filter((user) =>
-        Object.values(user)
-          .join(" ")
-          .toLowerCase()
-          .includes(searchTerm.toLowerCase())
-      );
-      setSearchResult(newList);
-
-      return searchResult;
-    }
-    setSearchResult(users);
-  }
-
-  //filter function
-  function filterdepartment(str: string) {
-    setSearchTerm(str);
-
-    if (searchTerm !== "all") {
       const newList = users?.filter((user) =>
         Object.values(user)
           .join(" ")

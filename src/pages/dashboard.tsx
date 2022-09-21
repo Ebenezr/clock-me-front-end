@@ -31,8 +31,6 @@ const Dashboard: React.FC<dashProps> = ({ filterUsers }) => {
           <div className="user-title">
             <h3>Employees </h3>
             <select
-              //   type="option"
-              //   ref={inputEl}
               onChange={handleFilter}
             >
               <option value="all">Filter</option>

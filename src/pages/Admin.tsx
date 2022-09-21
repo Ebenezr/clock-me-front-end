@@ -17,11 +17,6 @@ const Admin: React.FC<TimecardProp> = ({
 }) => {
   const employees = useContext(appContext);
 
-  // const handleFilterFunction = () => {
-  //   handleSearch(inputEl.current.value);
-
-  // };
-
   const renderUser = (id: number): void => {
     const user = employees.filter((element) => {
       return element.id === id;
@@ -41,9 +36,6 @@ const Admin: React.FC<TimecardProp> = ({
           <div className="user-title">
             <h3>Manage Employees</h3>
             <select
-            // type="option"
-            // onChange={handleFilterFunction}
-            // ref={inputEl}
             >
               <option value="all">Filter</option>
               <option value="System Design">System Design</option>
@@ -84,6 +76,3 @@ const Admin: React.FC<TimecardProp> = ({
 
 export default Admin;
 
-const NotAdmin = () => {
-  <>Need to login as an admin!</>;
-};
