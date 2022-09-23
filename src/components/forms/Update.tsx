@@ -78,93 +78,102 @@ const Update: React.FC<Updateprops> = ({
       ) : status === false ? (
         <div className="form__status">Error while Uptating</div>
       ) : null}
-      <label>Name</label>
-      <input
-        id="name"
-        type="text"
-        className="inputs"
-        value={formData?.name}
-        onChange={handleChange}
-        placeholder="Jon Doe"
-      />
-
-      <label>UserName </label>
-      <input
-        required
-        id="username"
-        type="text"
-        className="inputs"
-        value={formData?.username}
-        onChange={handleChange}
-        placeholder="ebbe"
-      />
-
-      <label>Email </label>
-      <input
-        required
-        id="email"
-        type="email"
-        className="inputs"
-        value={formData?.email}
-        onChange={handleChange}
-        placeholder="name@mail.com"
-      />
-
-      <label>Gender </label>
-      <select
-        id="gender"
-        className="inputs"
-        value={formData?.gender}
-        onChange={handleChange}
-      >
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-      </select>
-
-      <label>Avatar </label>
-      <input
-        id="avatar"
-        type="text"
-        className="inputs"
-        value={formData?.avatar}
-        onChange={handleChange}
-        placeholder="https://avater.png"
-      />
-
-      <label>Password </label>
-      <input
-        id="password"
-        type="text"
-        className="inputs"
-        value={formData?.password}
-        onChange={handleChange}
-        placeholder="******"
-      />
-
-      <label>Department </label>
-      <select
-        id="department_id"
-        className="inputs"
-        value={formData?.department_id}
-        onChange={handleChange}
-      >
-        <option value="1">Hospitality</option>
-        <option value="2">Human Resource</option>
-        <option value="3">Support Desk</option>
-        <option value="4">Design</option>
-        <option value="5">Technical Support</option>
-      </select>
-
-      <label>Title</label>
-      <input
-        id="title"
-        type="text"
-        className="inputs"
-        value={formData?.title}
-        onChange={handleChange}
-        placeholder="Managing Director"
-      />
-
+      <div className="form-group">
+        <label>Name</label>
+        <input
+          required
+          id="name"
+          type="text"
+          className="inputs"
+          value={formData?.name}
+          onChange={handleChange}
+          placeholder="Jon Doe"
+        />
+      </div>{" "}
+      <div className="form-group">
+        <label>UserName </label>
+        <input
+          required
+          id="username"
+          type="text"
+          className="inputs"
+          value={formData?.username}
+          onChange={handleChange}
+          placeholder="ebbe"
+        />
+      </div>
+      <div className="form-group">
+        <label>Email </label>
+        <input
+          required
+          id="email"
+          type="email"
+          className="inputs"
+          value={formData?.email}
+          onChange={handleChange}
+          placeholder="name@mail.com"
+        />
+      </div>
+      <div className="form-group">
+        <label>Gender </label>
+        <select
+          id="gender"
+          className="inputs"
+          value={formData?.gender}
+          onChange={handleChange}
+        >
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Avatar </label>
+        <input
+          id="avatar"
+          type="text"
+          className="inputs"
+          value={formData?.avatar}
+          onChange={handleChange}
+          placeholder="https://avater.png"
+        />
+      </div>
+      <div className="form-group">
+        <label>Password </label>
+        <input
+          id="password"
+          type="text"
+          className="inputs"
+          value={formData?.password}
+          onChange={handleChange}
+          placeholder="******"
+        />
+      </div>
+      <div className="form-group">
+        <label>Department </label>
+        <select
+          id="department_id"
+          className="inputs"
+          value={formData?.department_id}
+          onChange={handleChange}
+        >
+          <option value="1">Hospitality</option>
+          <option value="2">Human Resource</option>
+          <option value="3">Support Desk</option>
+          <option value="4">Design</option>
+          <option value="5">Technical Support</option>
+        </select>
+      </div>
+      <div className="form-group">
+        <label>Title</label>
+        <input
+          id="title"
+          type="text"
+          className="inputs"
+          value={formData?.title}
+          onChange={handleChange}
+          placeholder="Managing Director"
+        />
+      </div>
       <span className="checkbox">
         Admin ?
         <input
