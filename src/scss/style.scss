@@ -68,7 +68,7 @@ img {
 //font sizes
 
 //text colors
-.text-muted {
+@mixin text-muted {
   color: $color-info-dark;
 }
 p {
