@@ -93,3 +93,8 @@ $space-l: clamp(2.63rem, calc(2.35rem + 0.91vw), 3rem);
 $space-xl: clamp(3.94rem, calc(3.53rem + 1.36vw), 4.5rem);
 $space-2xl: clamp(5.25rem, calc(4.7rem + 1.82vw), 6rem);
 $space-3xl: clamp(7.88rem, calc(7.06rem + 2.73vw), 9rem);
+
+//muted text colors
+@mixin text-muted {
+  color: $color-info-dark;
+}
